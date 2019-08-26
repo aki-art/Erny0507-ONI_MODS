@@ -1,0 +1,12 @@
+D:\modding\vs_projects\HatchMorphs\bin\Debug\HatchMorphs.dll
+D:\modding\vs_projects\HatchMorphs\bin\Debug\HatchMorphs.pdb
+D:\modding\vs_projects\HatchMorphs\obj\Debug\HatchMorphs.csprojAssemblyReference.cache
+D:\modding\vs_projects\HatchMorphs\obj\Debug\HatchMorphs.csproj.CoreCompileInputs.cache
+D:\modding\vs_projects\HatchMorphs\obj\Debug\HatchMorphs.dll
+D:\modding\vs_projects\HatchMorphs\obj\Debug\HatchMorphs.pdb
+D:\modding\vs_projects\HatchMorphs\bin\Debug\0Harmony.dll
+D:\modding\vs_projects\HatchMorphs\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\modding\vs_projects\HatchMorphs\bin\Debug\Assembly-CSharp.dll
+D:\modding\vs_projects\HatchMorphs\bin\Debug\UnityEngine.CoreModule.dll
+D:\modding\vs_projects\HatchMorphs\bin\Debug\UnityEngine.dll
+D:\modding\vs_projects\HatchMorphs\obj\Debug\HatchMorphs.csproj.CopyComplete
