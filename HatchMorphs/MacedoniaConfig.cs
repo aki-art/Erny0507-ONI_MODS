@@ -9,10 +9,10 @@ namespace HatchMorphs
 {
     class MacedoniaConfig : IEntityConfig
     {
-        public const string Id = "SteamedPalmeraBerry";
-        public const string Name = "Steamed Palmera Berry";
-        public static string Description = $"The steamed bud of a {UI.FormatAsLink(NectarConfig.Name, NectarConfig.Id)}.\n\nLong exposure to heat and exquisite cooking skills turn the toxic berry into a delicious dessert.";
-        public static string RecipeDescription = $"Delicious steamed {UI.FormatAsLink(NectarConfig.Name, NectarConfig.Id)}.";
+        public const string Id = "Macedonia";
+        public const string Name = "Macedonia";
+        public static string Description = $"Delicious {UI.FormatAsLink("Bristle Berry", "PRICKLEFRUIT")} cut into pieces and \n\nmix with  {UI.FormatAsLink(NectarConfig.Name, NectarConfig.Id)}.";
+        public static string RecipeDescription = $"{UI.FormatAsLink("Bristle Berry", "PRICKLEFRUIT")} cut and sweetened with {UI.FormatAsLink(NectarConfig.Name, NectarConfig.Id)}.";
 
         public ComplexRecipe Recipe;
 
@@ -24,7 +24,7 @@ namespace HatchMorphs
                 desc: Description,
                 mass: 1f,
                 unitMass: false,
-                anim: Assets.GetAnim("kukumelon_kanim"),
+                anim: Assets.GetAnim("macedonia"),
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
                 collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
@@ -53,7 +53,7 @@ namespace HatchMorphs
                 nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
                 fabricators = new List<Tag>
             {
-                "CookingStation"
+                fabricatorId
             },
                 sortOrder = 120
             };

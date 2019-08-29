@@ -9,9 +9,9 @@ namespace HatchMorphs
 {
     class FilamentsConfig : IEntityConfig
     {
-        public static string Id = "PalmeraBerry";
-        public static string Name = "Palmera Berry";
-        public static string Description = "A toxic, non-edible bud that emits hydrogen.";
+        public static string Id = "HatchFilaments";
+        public static string Name = "Floral Hatch Filaments";
+        public static string Description = "Produced by floral hatches";
 
         public GameObject CreatePrefab()
         {
@@ -21,7 +21,7 @@ namespace HatchMorphs
                 desc: Description,
                 mass: 1f,
                 unitMass: false,
-                anim: Assets.GetAnim("palmeraberry_kanim"),
+                anim: Assets.GetAnim("filaments"),
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
                 collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
@@ -31,8 +31,8 @@ namespace HatchMorphs
 
             var foodInfo = new EdiblesManager.FoodInfo(
                 id: Id,
-                caloriesPerUnit: 0.0f,
-                quality: TUNING.FOOD.FOOD_QUALITY_AWFUL,
+                caloriesPerUnit: 1000f,
+                quality: TUNING.FOOD.FOOD_QUALITY_GOOD,
                 preserveTemperatue: 255.15f,
                 rotTemperature: 277.15f,
                 spoilTime: TUNING.FOOD.SPOIL_TIME.SLOW,

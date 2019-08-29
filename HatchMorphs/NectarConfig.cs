@@ -9,9 +9,9 @@ namespace HatchMorphs
 {
     class NectarConfig : IEntityConfig
     {
-        public static string Id = "PalmeraBerry";
-        public static string Name = "Palmera Berry";
-        public static string Description = "A toxic, non-edible bud that emits hydrogen.";
+        public static string Id = "SweetNectar";
+        public static string Name = "Nectar";
+        public static string Description = "So so sweet.";
 
         public GameObject CreatePrefab()
         {
@@ -21,18 +21,18 @@ namespace HatchMorphs
                 desc: Description,
                 mass: 1f,
                 unitMass: false,
-                anim: Assets.GetAnim("palmeraberry_kanim"),
+                anim: Assets.GetAnim("filaments"),
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
                 collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
-                width: 0.77f,
-                height: 0.48f,
+                width: 0.35f,
+                height: 0.35f,
                 isPickupable: true);
 
             var foodInfo = new EdiblesManager.FoodInfo(
                 id: Id,
-                caloriesPerUnit: 0.0f,
-                quality: TUNING.FOOD.FOOD_QUALITY_AWFUL,
+                caloriesPerUnit: 1000f,
+                quality: TUNING.FOOD.FOOD_QUALITY_GOOD,
                 preserveTemperatue: 255.15f,
                 rotTemperature: 277.15f,
                 spoilTime: TUNING.FOOD.SPOIL_TIME.SLOW,

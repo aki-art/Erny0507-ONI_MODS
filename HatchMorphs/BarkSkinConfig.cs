@@ -12,12 +12,12 @@ namespace HatchMorphs
         // Token: 0x06005F73 RID: 24435 RVA: 0x001D486C File Offset: 0x001D2C6C
         public GameObject CreatePrefab()
         {
-            string id = "WoodLog";
-            string name = ITEMS.INDUSTRIAL_PRODUCTS.WOOD.NAME;
-            string desc = ITEMS.INDUSTRIAL_PRODUCTS.WOOD.DESC;
-            float mass = 1f;
+            string id = "BarkSkin";
+            string name = "Bark Skin";
+            string desc = "Are produced by wooden hatch";
+            float mass = 1f;//too litle, add more later
             bool unitMass = false;
-            KAnimFile anim = Assets.GetAnim("wood_kanim");
+            KAnimFile anim = Assets.GetAnim("bark_skin");
             string initialAnim = "object";
             Grid.SceneLayer sceneLayer = Grid.SceneLayer.Front;
             EntityTemplates.CollisionShape collisionShape = EntityTemplates.CollisionShape.CIRCLE;
@@ -46,9 +46,9 @@ namespace HatchMorphs
         }
 
         // Token: 0x040066F3 RID: 26355
-        public const string ID = "WoodLog";
+        public const string ID = "BarkSkin";
 
         // Token: 0x040066F4 RID: 26356
-        public static readonly Tag TAG = TagManager.Create("WoodLog");
+        public static readonly Tag TAG = TagManager.Create("BarkSkin");
     }
 }

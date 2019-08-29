@@ -31,10 +31,12 @@ namespace HatchMorphs
     {
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-
-           // SimHashes. Katairite.CreateTag()
-           "EvilFlowerSeed"
-        }), SimHashes.Diamond.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+           "PrickleFlowerSeed"
+        }), NectarConfig.Id.ToTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        new Diet.Info(new HashSet<Tag>(new Tag[]
+        {
+           "BasicSingleHarvestPlantSeed"
+        }), FilamentsConfig.Id.Tag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
         /*new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.RefinedCarbon.CreateTag()
@@ -80,10 +82,21 @@ namespace HatchMorphs
             CreateTrait(name);
 
             List<Diet.Info> diet_infos = FloralDiet(
-                poopTag: EmitElement.CreateTag(),
+                poopTag: GameTags.Edible,
                 caloriesPerKg: CaloriesPerKgOfFood,
-                producedConversionRate: TUNING.CREATURES.CONVERSION_EFFICIENCY.NORMAL);//nerfed effiendy from 3 to normal
+                producedConversionRate: TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_3);//
             wildCreature.AddOrGet<DecorProvider>()?.SetValues(tier);
+
+            DiseaseDropper.Def def = wildCreature.AddOrGetDef<DiseaseDropper.Def>();
+            def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
+            //def.singleEmitQuantity = 1000000*10;
+
+            def.emitFrequency = 1f;
+            def.averageEmitPerSecond = 1000*20;
+            def.singleEmitQuantity = 1000000;
+            IlluminationVulnerable illuminationVulnerable = wildCreature.AddOrGet<IlluminationVulnerable>();
+            illuminationVulnerable.SetPrefersDarkness(false);
+
             return BaseHatchConfig.SetupDiet(wildCreature, diet_infos, CaloriesPerKgOfFood, MinPoopSizeKg);
         }
 
@@ -148,7 +161,7 @@ namespace HatchMorphs
         public static string EggName = UI.FormatAsLink("Floral Hatchling Egg", EggId);
         public const string BabyId = "HatchFloralBaby";
         public static string BabyName = UI.FormatAsLink("Floral Hatchling", BabyId);
-        public const string BabyDescription = "It's tiny body is full of shiny crystals.";
+        public const string BabyDescription = "It has bulb growing on its back.";
         public static EffectorValues tier = DECOR.BONUS.TIER3;
     }
 }

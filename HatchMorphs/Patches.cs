@@ -53,18 +53,27 @@ namespace HatchMorphs
                 __result.Add(new Diet.Info(hashSet, poopTag, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false));
             }
         }
-        /*[HarmonyPatch(typeof(EntityConfigManager))]
+        [HarmonyPatch(typeof(EntityConfigManager))]
         [HarmonyPatch("LoadGeneratedEntities")]
         public static class EntityConfigManager_LoadGeneratedEntities_Patch
         {
             public static void Prefix()
             {
-                Debug.Log("Adding strings");
+                /*Debug.Log("Adding strings");
                 Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".NAME", "Sweet floral scents");
                 Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".LEGEND_HOVERTEXT", "Sweet floral scents description");
-                Debug.Log("Strings added");
+                Debug.Log("Strings added");*/
+                Strings.Add("STRINGS.ITEMS.FOOD." + FilamentsConfig.Id.ToUpper() + ".NAME", FilamentsConfig.Name);
+                Strings.Add("STRINGS.ITEMS.FOOD." + FilamentsConfig.Id.ToUpper() + ".DESC", FilamentsConfig.Description);
+
+                Strings.Add("STRINGS.ITEMS.FOOD." + MacedoniaConfig.Id.ToUpper() + ".NAME", MacedoniaConfig.Name);
+                Strings.Add("STRINGS.ITEMS.FOOD." + MacedoniaConfig.Id.ToUpper() + ".DESC", MacedoniaConfig.Description);
+
+                Strings.Add("STRINGS.ITEMS.FOOD." + NectarConfig.Id.ToUpper() + ".NAME", NectarConfig.Name);
+                Strings.Add("STRINGS.ITEMS.FOOD." + NectarConfig.Id.ToUpper() + ".DESC", NectarConfig.Description);
             }
         }
+        /*
         [HarmonyPatch(typeof(Diseases))]
         [HarmonyPatch("Diseases", MethodType.Setter)]
         public static class PatchDiseases
@@ -77,31 +86,26 @@ namespace HatchMorphs
             }
 
         }*/
-        [HarmonyPatch(typeof(WoodGasGeneratorConfig))]
-        [HarmonyPatch("DoPostConfigureComplete")]
+        /*[HarmonyPatch(typeof(WoodGasGeneratorConfig))]
+        [HarmonyPatch(nameof(WoodGasGeneratorConfig.DoPostConfigureComplete))]
         public static class PatchWoodGasGeneratorConfig
         {
-            public static GameObject Postfix(GameObject go)
+            public static void Postfix(ref GameObject go)
             {
-                Storage storage = go.GetComponent<Storage>();
-                //storage.SetDefaultStoredItemModifiers(Storage.StandardSealedStorage);
-                //storage.showInUI = true;
-                ManualDeliveryKG manualDeliveryKG = go.AddOrGet<ManualDeliveryKG>();
-                manualDeliveryKG.SetStorage(storage);
-                manualDeliveryKG.requestedItemTag = BarkSkinConfig.TAG;
-                manualDeliveryKG.capacity = 360f;
-                manualDeliveryKG.refillMass = 180f;
-                manualDeliveryKG.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
+                var storage = go.GetComponent<Storage>();
+                ManualDeliveryKG manualDeliveryKG2 = go.AddComponent<ManualDeliveryKG>();
+                manualDeliveryKG2.SetStorage(storage);
+                manualDeliveryKG2.requestedItemTag = BarkSkinConfig.TAG;
+                manualDeliveryKG2.capacity = 360f;
+                manualDeliveryKG2.refillMass = 180f;
+                manualDeliveryKG2.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
                 float max_stored_input_mass = 720f;
-                EnergyGenerator energyGenerator = go.AddOrGet<EnergyGenerator>();
-                energyGenerator.powerDistributionOrder = 8;
-                energyGenerator.hasMeter = true;
-                energyGenerator.formula = EnergyGenerator.CreateSimpleFormula(BarkSkinConfig.TAG, 1.2f, max_stored_input_mass, SimHashes.CarbonDioxide, 0.17f, false, new CellOffset(0, 1), 383.15f);
-                return go;
-
-
+                 EnergyGenerator energyGenerator2 = go.AddComponent<EnergyGenerator>();
+               energyGenerator2.powerDistributionOrder = 8;
+               energyGenerator2.hasMeter = true;
+               energyGenerator2.formula = EnergyGenerator.CreateSimpleFormula(BarkSkinConfig.TAG, 1.2f, max_stored_input_mass, SimHashes.CarbonDioxide, 0.17f, false, new CellOffset(0, 1), 383.15f);
             }
-        }
+        }*/
 
     }
 }
