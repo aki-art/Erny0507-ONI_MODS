@@ -11,10 +11,15 @@ namespace HatchMorphs
     class FloralAntihistamineConfig : IEntityConfig
     {
         // Token: 0x060060C1 RID: 24769 RVA: 0x001DADF0 File Offset: 0x001D91F0
+        public const string Id = "FloralAntihistamine";
+        public static string Name = UI.FormatAsLink("Floral Antihistamine", Id);
+        public const string Description = "Stops the symptomes of allergies.";
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = EntityTemplates.CreateLooseEntity("FloralAntihistamine", ITEMS.PILLS.ANTIHISTAMINE.NAME, ITEMS.PILLS.ANTIHISTAMINE.DESC, 1f, true, Assets.GetAnim("pill_allergies_kanim"), "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, null);
-            EntityTemplates.ExtendEntityToMedicine(gameObject, MEDICINE.ANTIHISTAMINE);
+            GameObject gameObject = EntityTemplates.CreateLooseEntity(Id,Name, Description, 1f, true,
+            Assets.GetAnim("pill_allergies_kanim"), "object", Grid.SceneLayer.Front, 
+            EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, null);
+            EntityTemplates.ExtendEntityToMedicine(gameObject, MEDICINE.ANTIHISTAMINE);//check if its a name
             ComplexRecipe.RecipeElement[] array = new ComplexRecipe.RecipeElement[]
             {
             new ComplexRecipe.RecipeElement("PrickleFlowerSeed", 1f),
