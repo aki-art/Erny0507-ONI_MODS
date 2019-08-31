@@ -32,11 +32,11 @@ namespace HatchMorphs
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
            "PrickleFlowerSeed"
-        }), NectarConfig.Id.ToTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        }), NectarConfig.Id.ToTag(), caloriesPerKg*5, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
            "BasicSingleHarvestPlantSeed"
-        }), FilamentsConfig.Id.Tag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*5, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
         /*new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.RefinedCarbon.CreateTag()

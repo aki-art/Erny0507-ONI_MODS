@@ -21,7 +21,7 @@ namespace HatchMorphs
                 desc: Description,
                 mass: 1f,
                 unitMass: false,
-                anim: Assets.GetAnim("filaments"),
+                anim: Assets.GetAnim("nectar"),
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
                 collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
