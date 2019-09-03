@@ -20,7 +20,15 @@ namespace HatchMorphs
                 .GetValue<System.Action>(
                     DiamondHatchConfig.Id,
                     DiamondHatchConfig.EggId.ToTag(),
-                    SimHashes.Diamond.CreateTag(),
+                    SimHashes.Katairite.CreateTag(),
+                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+            
+            TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
+                Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
+                .GetValue<System.Action>(
+                    FloralHatchConfig.Id,
+                    FloralHatchConfig .EggId.ToTag(),
+                    (Tag)"PrickleFlowerSeed",
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
         }
 
@@ -34,6 +42,14 @@ namespace HatchMorphs
                     egg_chances.Add(new FertilityMonitor.BreedingChance()
                     {
                         egg = DiamondHatchConfig.EggId.ToTag(),
+                        weight = 0.02f
+                    });
+                }
+                 if (eggId.Equals("HatchVegEgg"))
+                {
+                    egg_chances.Add(new FertilityMonitor.BreedingChance()
+                    {
+                        egg = FloralHatchConfig.EggId.ToTag(),
                         weight = 0.02f
                     });
                 }
