@@ -31,7 +31,7 @@ namespace HatchMorphs
     {
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-            SimHashes.Katairite.CreateTag()
+            SimHashes.Katairite.CreateTag()// abyssalite
         }), SimHashes.Diamond.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
