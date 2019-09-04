@@ -106,15 +106,10 @@ namespace HatchMorphs
 
         public static List<FertilityMonitor.BreedingChance> EggChances = new List<FertilityMonitor.BreedingChance>()
         {
-            new FertilityMonitor.BreedingChance()
-            {
-                egg = "HatchHardEgg".ToTag(),
-                weight = 0.15f
-            },
              new FertilityMonitor.BreedingChance()
             {
-                egg = "HatchMetalEgg".ToTag(),
-                weight = 0.15f
+                egg = "HatchVegEgg".ToTag(),
+                weight = 0.30f
             },
             new FertilityMonitor.BreedingChance()
             {
