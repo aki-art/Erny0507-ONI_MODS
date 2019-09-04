@@ -37,11 +37,11 @@ namespace HatchMorphs
         {
            "BasicSingleHarvestPlantSeed"
         }), FilamentsConfig.Id.ToTag(), caloriesPerKg*5, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
-        /*new Diet.Info(new HashSet<Tag>(new Tag[]
+       new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-            SimHashes.RefinedCarbon.CreateTag()
-        }),SimHashes.Diamond.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
-        new Diet.Info(new HashSet<Tag>(new Tag[]
+            SimHashes.Dirt.CreateTag()
+        }),FilamentsConfig.Id.ToTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        /* new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.Carbon.CreateTag()
         }),SimHashes.Diamond.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
@@ -88,7 +88,10 @@ namespace HatchMorphs
             wildCreature.AddOrGet<DecorProvider>()?.SetValues(tier);
 
             DiseaseDropper.Def def = wildCreature.AddOrGetDef<DiseaseDropper.Def>();
-            def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
+            //def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
+            //Db.Get().Diseases.Add();
+            def.diseaseIdx = Db.Get().Diseases.GetIndex(SweetPollenGerms.ID);
+            
             //def.singleEmitQuantity = 1000000*10;
 
             def.emitFrequency = 1f;
@@ -97,6 +100,7 @@ namespace HatchMorphs
             IlluminationVulnerable illuminationVulnerable = wildCreature.AddOrGet<IlluminationVulnerable>();
             illuminationVulnerable.SetPrefersDarkness(false);
 
+            wildCreature.AddOrGetDef<CreatureLightMonitor.Def>();
             return BaseHatchConfig.SetupDiet(wildCreature, diet_infos, CaloriesPerKgOfFood, MinPoopSizeKg);
         }
 

@@ -18,7 +18,7 @@ namespace HatchMorphs
             
             Debug.Log("About to change color");
             Color32 overlayColour = new Color32(252, 3, 98, byte.MaxValue);
-
+           // Color32 overlayColour = new Color32(66, 135, 245, byte.MaxValue);
             this.overlayColour = overlayColour;
          
             Debug.Log("Color changed");
@@ -51,21 +51,21 @@ namespace HatchMorphs
             {
                 minCountPerKG = new float?(500f),
                 underPopulationDeathRate = new float?(2.66666675f),
-                populationHalfLife = new float?(10f),
+                populationHalfLife = new float?(2000f),
                 overPopulationHalfLife = new float?(10f),
                 maxCountPerKG = new float?(1000000f),
                 minDiffusionCount = new int?(1000),
                 diffusionScale = new float?(0.015f)
             });
-            base.AddGrowthRule(new ElementGrowthRule(SimHashes.Oxygen)
+            base.AddGrowthRule(new ElementGrowthRule(SimHashes.Chlorine)
             {
-                populationHalfLife = new float?(200f),
+                populationHalfLife = new float?(10f),
                 overPopulationHalfLife = new float?(10f)
             });
             base.AddGrowthRule(new StateGrowthRule(Element.State.Liquid)
             {
                 minCountPerKG = new float?(0.4f),
-                populationHalfLife = new float?(10f),
+                populationHalfLife = new float?(100f),
                 overPopulationHalfLife = new float?(10f),
                 maxCountPerKG = new float?(100f),
                 diffusionScale = new float?(0.01f)
@@ -83,5 +83,7 @@ namespace HatchMorphs
 
         // Token: 0x040003BA RID: 954
         public const string ID = "SweetPollenGerms";
+        public const string Name = "Sweet Scents";
+        public const string Tooltip = "Sweet Floral Scent allergens present\n";
     }
 }

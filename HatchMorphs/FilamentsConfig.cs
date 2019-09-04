@@ -25,8 +25,8 @@ namespace HatchMorphs
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
                 collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
-                width: 0.77f,
-                height: 0.48f,
+                width: 0.70f,
+                height: 0.80f,
                 isPickupable: true);
 
             var foodInfo = new EdiblesManager.FoodInfo(

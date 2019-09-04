@@ -17,3 +17,7 @@ D:\modding\vs_projects\ONI_MODS\HatchMorphs\obj\Debug\HatchMorphs.csproj.CoreCom
 D:\modding\vs_projects\ONI_MODS\HatchMorphs\obj\Debug\HatchMorphs.csproj.CopyComplete
 D:\modding\vs_projects\ONI_MODS\HatchMorphs\obj\Debug\HatchMorphs.dll
 D:\modding\vs_projects\ONI_MODS\HatchMorphs\obj\Debug\HatchMorphs.pdb
+D:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.JSONSerializeModule.dll
+D:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.SharedInternalsModule.dll
+D:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.JSONSerializeModule.xml
+D:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.SharedInternalsModule.xml

@@ -27,9 +27,9 @@ namespace HatchMorphs
                 anim: Assets.GetAnim("macedonia"),
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
-                collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
-                width: 0.8f,
-                height: 0.7f,
+                collisionShape: EntityTemplates.CollisionShape.CIRCLE,
+                width: 0.30f,
+                height: 0.30f,
                 isPickupable: true);
 
             var foodInfo = new EdiblesManager.FoodInfo(

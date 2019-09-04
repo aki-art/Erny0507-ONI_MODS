@@ -6,6 +6,7 @@ using System.Text;
 using Database;
 using Harmony;
 using Klei.AI;
+using TUNING;
 using UnityEngine;
 using static CreatureCalorieMonitor;
 
@@ -22,6 +23,46 @@ namespace HatchMorphs
                     DiamondHatchConfig.EggId.ToTag(),
                     SimHashes.Diamond.CreateTag(),
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+
+            List<ExposureType> types = new List<ExposureType>();
+
+            types.AddRange(GERM_EXPOSURE.TYPES);
+            ExposureType t = new ExposureType
+            {
+                germ_id = SweetPollenGerms.ID,
+                sickness_id = "Allergies",
+                exposure_threshold = 2,
+                infect_immediately = true,
+                required_traits = new List<string>
+                    {
+                        "Allergies"
+                    },
+                excluded_effects = new List<string>
+                    {
+                        "HistamineSuppression",FloralAntihistamineConfig.Effect_
+                    }
+            };
+            ExposureType t2 = new ExposureType
+            {
+                germ_id = SweetPollenGerms.ID,
+                infection_effect = "SmelledFlowersLonger",
+                exposure_threshold = 2,
+                infect_immediately = true,
+                excluded_traits = new List<string>
+                    {
+                        "Allergies"
+                    }
+            };
+            types.Add(t);
+            types.Add(t2);
+            GERM_EXPOSURE.TYPES = types.ToArray();
+
+            //TUNING.MEDICINE.
+            /*  MedicineInfo ANTIHISTAMINE = new MedicineInfo("antihistamine", "HistamineSuppression", MedicineInfo.MedicineType.CureSpecific, new string[1]
+      {
+        "Allergies"
+      });*/
+
         }
 
         [HarmonyPatch(typeof(EntityTemplates), nameof(EntityTemplates.ExtendEntityToFertileCreature))]
@@ -73,6 +114,43 @@ namespace HatchMorphs
 
                 Strings.Add("STRINGS.ITEMS.FOOD." + NectarConfig.Id.ToUpper() + ".NAME", NectarConfig.Name);
                 Strings.Add("STRINGS.ITEMS.FOOD." + NectarConfig.Id.ToUpper() + ".DESC", NectarConfig.Description);
+
+                Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".NAME", SweetPollenGerms.Name);
+                Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".LEGEND_HOVERTEXT", SweetPollenGerms.Tooltip);
+
+                Strings.Add("STRINGS.ITEMS.PILLS." + FloralAntihistamineConfig.ID.ToUpper() + ".NAME", FloralAntihistamineConfig.Name);
+                Strings.Add("STRINGS.ITEMS.PILLS." + FloralAntihistamineConfig.ID.ToUpper() + ".DESC", FloralAntihistamineConfig.Description);
+                Strings.Add("STRINGS.ITEMS.PILLS." + FloralAntihistamineConfig.ID.ToUpper() + ".RECIPEDESC", FloralAntihistamineConfig.Description);
+
+                Strings.Add("STRINGS.ITEMS.PILLS." + MendingSerumConfig.ID.ToUpper() + ".NAME", MendingSerumConfig.Name);
+                Strings.Add("STRINGS.ITEMS.PILLS." + MendingSerumConfig.ID.ToUpper() + ".DESC", MendingSerumConfig.Description);
+                Strings.Add("STRINGS.ITEMS.PILLS." + MendingSerumConfig.ID.ToUpper() + ".RECIPEDESC", MendingSerumConfig.Description);
+
+
+                Db.Get().Diseases.Add(new SweetPollenGerms());
+                var effect1 = new Effect("SmelledFlowersLonger", "Smelled sweet scents", "This dupe has smelled sweet scents and feels relaxed", 600.00f * 2, true, true, false, (string)null, 0.0f, (string)null);
+                effect1.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, -0.008333334f * 2, "The sweet smell relieves some stress", false, false, true));
+                var effect2 = new Effect(FloralAntihistamineConfig.Effect_, "Floral Histamine Suppression", "Helps with allergies", 600.00f * 10, true, true, false, (string)null, 0.0f, (string)null);
+                //effect2.Add(new AttributeModifier(Db.Get().Amounts.ImmuneLevel.deltaAttribute.Id, +0.008333334f * 10, "Inmunity level is rising", false, false, true));
+                var effect3 = new Effect(MendingSerumConfig.Effect_, "Regeneration", "This dupe is constantly healing", 600.00f * 10, true, true, false, (string)null, 0.0f, (string)null);
+                effect3.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.deltaAttribute.Id, +0.008333334f, "Healing", false, false, true));
+
+                Db.Get().effects.Add(effect1);
+                Db.Get().effects.Add(effect2);
+                Db.Get().effects.Add(effect3);
+                //var x1 = Db.Get().effects.Get("SmelledFlowersLonger").SelfModifiers.Count;
+                /*Debug.Log("Debug_Effects______");
+                Debug.Log(Db.Get().effects.Get("HistamineSuppression").SelfModifiers.Count);
+                //Debug.Log(JsonUtility.ToJson(x1));
+                for (int index2 = 0; index2 < Db.Get().effects.Get("HistamineSuppression").SelfModifiers.Count; ++index2)
+                {
+                    var x2 = Db.Get().effects.Get("HistamineSuppression").SelfModifiers[index2];
+                    Debug.Log(index2);
+                    Debug.Log(x2.Value);
+                    Debug.Log(x2.IsMultiplier);
+
+                }*/
+
             }
         }
         /*
@@ -113,11 +191,11 @@ namespace HatchMorphs
         public static class PatchPoop
         {
 
-          /*  public static bool Prepare(HarmonyInstance instance)
-            {
-                Debug.Log("MyInitializer");
-                return true;
-            }*/
+            /*  public static bool Prepare(HarmonyInstance instance)
+              {
+                  Debug.Log("MyInitializer");
+                  return true;
+              }*/
             public static bool Prefix(Stomach __instance, ref GameObject ___owner,
                 ref List<CreatureCalorieMonitor.Stomach.CaloriesConsumedEntry> ___caloriesConsumed)
             {
@@ -126,7 +204,7 @@ namespace HatchMorphs
                 Debug.Log("About to patch poop");
                 // Debug.Log(___owner);
                 Debug.Log(___owner.name);
-                if (___owner.PrefabID() == FloralHatchConfig.Id)
+                if (___owner.PrefabID() == FloralHatchConfig.Id ||___owner.PrefabID() == FloralHatchConfig.BabyId )
                 {
                     float num = 0f;//consumed calories acumulated
                     Tag tag = Tag.Invalid;
@@ -167,7 +245,7 @@ namespace HatchMorphs
                         //for food and others
                         Debug.Log("About to start special route");
                         GameObject prefab = Assets.GetPrefab(tag);
-                        GameObject gameObject2 = GameUtil.KInstantiate(prefab, Grid.SceneLayer.Ground, null, 0);
+                        GameObject gameObject2 = GameUtil.KInstantiate(prefab, Grid.SceneLayer.Ore, null, 0);
                         Debug.Log("1");
                         Debug.Log(prefab);
                         // EdiblesManager.FoodInfo food_info = EdiblesManager.GetFoodInfo(tag.ToString());
@@ -184,20 +262,20 @@ namespace HatchMorphs
                         Debug.Log(out_put_food_info.CaloriesPerUnit);
                         Debug.Log(units_c);
 
-                        
+
                         int num3 = Grid.PosToCell(___owner.transform.GetPosition());
-                        var pos = Grid.CellToPosCCC(num3, Grid.SceneLayer.Ground);
+                        var pos = Grid.CellToPosCCC(num3, Grid.SceneLayer.Ore);
                         gameObject2.transform.SetPosition(pos);
 
-                        
+
 
                         PrimaryElement component2 = gameObject2.GetComponent<PrimaryElement>();
                         component2.Mass = num;
                         //component2.Units = units_c;
-                        
+
                         float temperature = ___owner.GetComponent<PrimaryElement>().Temperature;
                         component2.Temperature = temperature;
-                        
+
                         gameObject2.SetActive(true);
                         component2.AddDisease(disease_idx, num2, "ComplexFabricator.CompleteOrder");
                         Debug.Log("continue");
@@ -255,11 +333,11 @@ namespace HatchMorphs
 
                     }
                     Debug.Log("finished pooping");
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
                 // Debug.Log(___owner.PrefabID());
                 //Debug.Log(___owner.GetComponent<Tag>());
@@ -267,8 +345,45 @@ namespace HatchMorphs
             }
         }
 
-
-
+        /*[HarmonyPatch(typeof(GERM_EXPOSURE))]
+        [HarmonyPatch("GERM_EXPOSURE", MethodType.Constructor)]
+        public static class PatchGermExposure
+        {
+                public static void Postfix(ref ExposureType[] ___TYPES)
+            {
+                Debug.Log("GERM_EXPOSURE 1");
+                
+                ExposureType t=  new ExposureType
+                {
+                    germ_id = SweetPollenGerms.ID,
+                    sickness_id = "Allergies",
+                    exposure_threshold = 2,
+                    infect_immediately = true,
+                    required_traits = new List<string>
+                    {
+                        "Allergies"
+                    },
+                    excluded_effects = new List<string>
+                    {
+                        "HistamineSuppression"
+                    }
+                };
+                ExposureType t2 = new ExposureType
+                {
+                    germ_id = SweetPollenGerms.ID,
+                    infection_effect = "SmelledFlowers",
+                    exposure_threshold = 2,
+                    infect_immediately = true,
+                    excluded_traits = new List<string>
+                    {
+                        "Allergies"
+                    }
+                };
+                ___TYPES.Add(t);
+                ___TYPES.Add(t2);
+                Debug.Log("GERM_EXPOSURE 2");
+            }
+        }*/
 
 
     }
