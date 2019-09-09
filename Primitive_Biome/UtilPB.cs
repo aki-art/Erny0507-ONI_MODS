@@ -7,7 +7,7 @@ using Klei.AI;
 
 namespace Primitive_Biome
 {
-    static class Util
+    static class UtilPB
     {
         public static Texture2D DuplicateTexture(Texture2D source)
         {

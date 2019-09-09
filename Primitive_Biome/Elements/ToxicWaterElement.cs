@@ -99,7 +99,7 @@ elements:
 
         static Texture2D TintTexture(Texture sourceTexture, string name)
         {
-            Texture2D newTexture = Util.DuplicateTexture(sourceTexture as Texture2D);
+            Texture2D newTexture = UtilPB.DuplicateTexture(sourceTexture as Texture2D);
             var pixels = newTexture.GetPixels32();
             for (int i = 0; i < pixels.Length; ++i)
             {

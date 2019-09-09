@@ -62,9 +62,16 @@
     <Compile Include="GeneticTraits\GeneticTraitBuilder.cs" />
     <Compile Include="GeneticTraits\GeneticTraitComponent.cs" />
     <Compile Include="GeneticTraits\GeneticTraits.cs" />
+    <Compile Include="GeneticTraits\Groups.cs" />
+    <Compile Include="GeneticTraits\Traits\Fast.cs" />
+    <Compile Include="GeneticTraits\Traits\Fertile.cs" />
+    <Compile Include="GeneticTraits\Traits\Infertile.cs" />
+    <Compile Include="GeneticTraits\Traits\LongLived.cs" />
+    <Compile Include="GeneticTraits\Traits\ShortLived.cs" />
+    <Compile Include="GeneticTraits\Traits\Slow.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util.cs" />
+    <Compile Include="UtilPB.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="anim\" />

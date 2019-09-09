@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Primitive_Biome.GeneticTraits.Traits;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,22 +9,16 @@ namespace Primitive_Biome.GeneticTraits
 {
     class GeneticTraits
     {
-        private static readonly TraitBuilder[] traits = {
-      new Enduring(),
+        private static readonly GeneticTraitBuilder[] traits = {
+      new LongLived(),
       new Fast(),
       new Fertile(),
-      new Glowing(),
-      new Huge(),
-      new Large(),
-      new Noisy(),
-      new ShortLived(),
+      new Infertile(),
       new Slow(),
-      new Small(),
-      new Stinky(),
-      new Tiny()
+      new ShortLived()
     };
 
-        private static readonly ILookup<string, TraitBuilder> traitLookup = traits.ToLookup(trait => trait.ID);
+        private static readonly ILookup<string, GeneticTraitBuilder> traitLookup = traits.ToLookup(trait => trait.ID);
 
         private static bool traitsInitialized = false;
 
@@ -67,7 +62,7 @@ namespace Primitive_Biome.GeneticTraits
         /**
          * Chooses a trait from the given list with a probability. If the probability check fails it returns null.
          */
-        private static string ChooseTraitFrom(IGrouping<Group, TraitBuilder> group)
+        private static string ChooseTraitFrom(IGrouping<Group, GeneticTraitBuilder> group)
         {
             float prob = UnityEngine.Random.Range(0f, 1f);
             if (prob <= group.Key.Probability)

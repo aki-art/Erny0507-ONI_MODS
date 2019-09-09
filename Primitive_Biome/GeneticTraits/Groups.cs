@@ -2,7 +2,7 @@ using Klei.AI;
 using System;
 using UnityEngine;
 
-namespace Heinermann.CritterTraits.Traits
+namespace Primitive_Biome.GeneticTraits
 {
   public sealed class Group
   {

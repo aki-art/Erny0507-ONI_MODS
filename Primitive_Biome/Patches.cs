@@ -7,7 +7,7 @@ using Klei;
 using Primitive_Biome.Elements;
 using System.Collections;
 using UnityEngine;
-
+using Klei.AI;
 namespace Primitive_Biome
 {
     public class Patches
@@ -79,7 +79,7 @@ namespace Primitive_Biome
               float lethalLowTemperature,
               float lethalHighTemperature)
             {
-                __result.AddOrGet<Components.CritterTraits>();
+                __result.AddOrGet<GeneticTraits.GeneticTraitComponent>();
             }
         }
         [HarmonyPatch(typeof(SimpleInfoScreen), "OnSelectTarget")]
@@ -111,8 +111,7 @@ namespace Primitive_Biome
                     TraitsDrawer.BeginDrawing();
                     foreach (Trait trait in target.GetComponent<Klei.AI.Traits>().TraitList)
                     {
-                        if (!Traits.AllTraits.IsSupportedTrait(trait.Id)) continue;
-
+                        if (!GeneticTraits.GeneticTraits.IsSupportedTrait(trait.Id)) continue;
                         var color = trait.PositiveTrait ? Constants.POSITIVE_COLOR : Constants.NEGATIVE_COLOR;
                         TraitsDrawer.NewLabel($"<color=#{color.ToHexString()}>{trait.Name}</color>").Tooltip(trait.GetTooltip());
                     }
@@ -124,4 +123,5 @@ namespace Primitive_Biome
                 }
             }
         }
+     }
 }
