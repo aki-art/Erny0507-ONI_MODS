@@ -112,13 +112,13 @@ namespace HatchMorphs
                    id: Id,
                    name: Name,
                    desc: Description,
-                   anim_file: "diamond_hatch_kanim", // this is your new hatch anim - it should be made from the unmodified anim + build but your modified texture/png file.
+                   anim_file: "diamond_hatch_adult_kanim", 
                    is_baby: false
                ),
                EggId,
                EggName,
                Description,
-               "egg_hatch_new_kanim", // replace this with your egg anim
+               "diamond_hatch_egg_kanim",
                HatchTuning.EGG_MASS,
                BabyId,
                FertilityCycles,

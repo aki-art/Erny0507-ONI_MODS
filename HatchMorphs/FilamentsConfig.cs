@@ -10,8 +10,8 @@ namespace HatchMorphs
     class FilamentsConfig : IEntityConfig
     {
         public static string Id = "HatchFilaments";
-        public static string Name = "Floral Hatch Filaments";
-        public static string Description = "Produced by floral hatches";
+        public static string Name = "Floral filaments";
+        public static string Description = "Produced by floral hatches. Edible and useful in medicine.";
 
         public GameObject CreatePrefab()
         {
@@ -21,7 +21,7 @@ namespace HatchMorphs
                 desc: Description,
                 mass: 1f,
                 unitMass: false,
-                anim: Assets.GetAnim("filaments"),
+                anim: Assets.GetAnim("filaments_kanim"),
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
                 collisionShape: EntityTemplates.CollisionShape.RECTANGLE,
@@ -32,7 +32,7 @@ namespace HatchMorphs
             var foodInfo = new EdiblesManager.FoodInfo(
                 id: Id,
                 caloriesPerUnit: 1000f,
-                quality: TUNING.FOOD.FOOD_QUALITY_GOOD,
+                quality: TUNING.FOOD.FOOD_QUALITY_MEDIOCRE,
                 preserveTemperatue: 255.15f,
                 rotTemperature: 277.15f,
                 spoilTime: TUNING.FOOD.SPOIL_TIME.SLOW,

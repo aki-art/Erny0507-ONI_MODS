@@ -14,14 +14,13 @@ namespace HatchMorphs
         // Token: 0x0600043B RID: 1083 RVA: 0x0001F1D4 File Offset: 0x0001D5D4
         public SweetPollenGerms() : base("SweetPollenGerms", 5, new Disease.RangeInfo(263.15f, 273.15f, 363.15f, 373.15f), new Disease.RangeInfo(10f, 100f, 100f, 10f), new Disease.RangeInfo(0f, 0f, 1000f, 1000f), Disease.RangeInfo.Idempotent())
         {
-            // wildCreature.AddOrGet<DecorProvider>()?.SetValues(tier);
             
-            Debug.Log("About to change color");
+            //Debug.Log("About to change color");
             Color32 overlayColour = new Color32(252, 3, 98, byte.MaxValue);
            // Color32 overlayColour = new Color32(66, 135, 245, byte.MaxValue);
             this.overlayColour = overlayColour;
          
-            Debug.Log("Color changed");
+          //  Debug.Log("Color changed");
         }
 
         // Token: 0x0600043C RID: 1084 RVA: 0x0001F240 File Offset: 0x0001D640
@@ -83,7 +82,7 @@ namespace HatchMorphs
 
         // Token: 0x040003BA RID: 954
         public const string ID = "SweetPollenGerms";
-        public const string Name = "Sweet Scents";
-        public const string Tooltip = "Sweet Floral Scent allergens present\n";
+        public new const string Name = "Sweet Scents";
+        public const string Tooltip = "Sweet Scent allergens present";
     }
 }

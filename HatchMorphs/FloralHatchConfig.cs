@@ -23,6 +23,8 @@ namespace HatchMorphs
         public const float IncubationCycles = 20.0f;
         public const float MaxAge = 140.0f;
         public const float Hitpoints = 200.0f;
+        public const float seed_cal_multiplier = 3.0f;
+        public const float food_cal_multiplier = 50.0f;
 
         public const string SymbolOverride = "";
         public static List<Diet.Info> FloralDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId = null, float diseasePerKgProduced = 0.0f)
@@ -32,23 +34,32 @@ namespace HatchMorphs
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
            "PrickleFlowerSeed"
-        }), NectarConfig.Id.ToTag(), caloriesPerKg*5, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        }), NectarConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
            "BasicSingleHarvestPlantSeed"
-        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*5, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        new Diet.Info(new HashSet<Tag>(new Tag[]
+        {
+           "BasicFabricMaterialPlantSeed"
+        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        new Diet.Info(new HashSet<Tag>(new Tag[]
+        {
+           "ForestTreeSeed"
+        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        new Diet.Info(new HashSet<Tag>(new Tag[]
+        {
+           "MushroomSeed"
+        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        new Diet.Info(new HashSet<Tag>(new Tag[]
+        {
+           "SwampLilySeed"
+        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
        new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.Dirt.CreateTag()
         }),FilamentsConfig.Id.ToTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
-        /* new Diet.Info(new HashSet<Tag>(new Tag[]
-        {
-            SimHashes.Carbon.CreateTag()
-        }),SimHashes.Diamond.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
-        new Diet.Info(new HashSet<Tag>(new Tag[]
-        {
-            SimHashes.Glass.CreateTag()
-        }),SimHashes.Diamond.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)*/
+     
     };
         }
         public static Trait CreateTrait(string name)
@@ -84,7 +95,7 @@ namespace HatchMorphs
             List<Diet.Info> diet_infos = FloralDiet(
                 poopTag: GameTags.Edible,
                 caloriesPerKg: CaloriesPerKgOfFood,
-                producedConversionRate: TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_3);//
+                producedConversionRate: TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_1);//
             wildCreature.AddOrGet<DecorProvider>()?.SetValues(tier);
 
             DiseaseDropper.Def def = wildCreature.AddOrGetDef<DiseaseDropper.Def>();
@@ -108,7 +119,7 @@ namespace HatchMorphs
         {
              new FertilityMonitor.BreedingChance()
             {
-                egg = "HatchVegEgg".ToTag(),
+                egg = "HatchVeggieEgg".ToTag(),
                 weight = 0.30f
             },
             new FertilityMonitor.BreedingChance()
@@ -126,13 +137,13 @@ namespace HatchMorphs
                    id: Id,
                    name: Name,
                    desc: Description,
-                   anim_file: "diamond_hatch_kanim", // this is your new hatch anim - it should be made from the unmodified anim + build but your modified texture/png file.
+                   anim_file: "floral_hatch_adult_kanim", 
                    is_baby: false
                ),
                EggId,
                EggName,
                Description,
-               "egg_hatch_new_kanim", // replace this with your egg anim
+               "floral_hatch_egg_kanim",
                HatchTuning.EGG_MASS,
                BabyId,
                FertilityCycles,
@@ -155,7 +166,7 @@ namespace HatchMorphs
         public const string BASE_TRAIT_ID = "HatchFloralBaseTrait";
         public const string Id = "HatchFloral";
         public static string Name = UI.FormatAsLink("Floral Hatch", Id);
-        public const string Description = "It's body is full of flowers";
+        public const string Description = "The flower on its back releases a sweet scent that helps with stress.";
         public const string EggId = "HatchFloralEgg";
         public static string EggName = UI.FormatAsLink("Floral Hatchling Egg", EggId);
         public const string BabyId = "HatchFloralBaby";

@@ -17,7 +17,7 @@ namespace HatchMorphs
             string desc = "Are produced by wooden hatch";
             float mass = 1f;//too litle, add more later
             bool unitMass = false;
-            KAnimFile anim = Assets.GetAnim("bark_skin");
+            KAnimFile anim = Assets.GetAnim("bark_skin_kanim");
             string initialAnim = "object";
             Grid.SceneLayer sceneLayer = Grid.SceneLayer.Front;
             EntityTemplates.CollisionShape collisionShape = EntityTemplates.CollisionShape.CIRCLE;

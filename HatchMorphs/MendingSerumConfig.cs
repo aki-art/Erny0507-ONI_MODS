@@ -11,12 +11,12 @@ namespace HatchMorphs
     {
         public const string ID = "MendingSerum";
         public static string Name = UI.FormatAsLink("Mending Serum", ID);
-        public const string Description = "Provides a fast healing medicament.";
+        public const string Description = "Provides a constant healing booster.";
         public const string Effect_ = "Mending_Regeneration";
         public GameObject CreatePrefab()
         {
 
-            GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, Name, Description, 1f, true, Assets.GetAnim((HashedString)"mending_serum"),
+            GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, Name, Description, 1f, true, Assets.GetAnim((HashedString)"mending_serum_kanim"),
                 "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, (List<Tag>)null);
             MedicineInfo medicine_info = new MedicineInfo(ID.ToLower(), Effect_, MedicineInfo.MedicineType.Booster, (string[])null);
             EntityTemplates.ExtendEntityToMedicine(looseEntity, medicine_info);
@@ -24,7 +24,7 @@ namespace HatchMorphs
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[3]
             {
       new ComplexRecipe.RecipeElement( (Tag)RawEggConfig.ID, 3f),
-      new ComplexRecipe.RecipeElement((Tag) NectarConfig.Id, 1f),
+      new ComplexRecipe.RecipeElement((Tag) NectarConfig.Id, 10f),
           new ComplexRecipe.RecipeElement((Tag) SwampLilyFlowerConfig.ID, 1f)
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]

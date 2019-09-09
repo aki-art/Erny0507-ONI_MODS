@@ -15,9 +15,9 @@ namespace HatchMorphs
                 FloralHatchConfig.BabyId,
                 FloralHatchConfig.BabyName,
                 FloralHatchConfig.BabyDescription,
-                "baby_diamond_hatch_kanim",
+                "floral_hatch_baby_kanim",
                 true);
-            EntityTemplates.ExtendEntityToBeingABaby(hatch, DiamondHatchConfig.Id, null);
+            EntityTemplates.ExtendEntityToBeingABaby(hatch, FloralHatchConfig.Id, null);
             return hatch;
         }
 

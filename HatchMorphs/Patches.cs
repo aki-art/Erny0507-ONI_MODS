@@ -29,7 +29,7 @@ namespace HatchMorphs
                 .GetValue<System.Action>(
                     FloralHatchConfig.Id,
                     FloralHatchConfig .EggId.ToTag(),
-                    (Tag)"PrickleFlowerSeed",
+                    (Tag)PrickleFruitConfig.ID,
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
 
             List<ExposureType> types = new List<ExposureType>();
@@ -86,7 +86,7 @@ namespace HatchMorphs
                         weight = 0.02f
                     });
                 }
-                 if (eggId.Equals("HatchVegEgg"))
+                 if (eggId.Equals("HatchVeggieEgg"))
                 {
                     egg_chances.Add(new FertilityMonitor.BreedingChance()
                     {
@@ -148,7 +148,7 @@ namespace HatchMorphs
                 effect1.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, -0.008333334f * 2, "The sweet smell relieves some stress", false, false, true));
                 var effect2 = new Effect(FloralAntihistamineConfig.Effect_, "Floral Histamine Suppression", "Helps with allergies", 600.00f * 10, true, true, false, (string)null, 0.0f, (string)null);
                 //effect2.Add(new AttributeModifier(Db.Get().Amounts.ImmuneLevel.deltaAttribute.Id, +0.008333334f * 10, "Inmunity level is rising", false, false, true));
-                var effect3 = new Effect(MendingSerumConfig.Effect_, "Regeneration", "This dupe is constantly healing", 600.00f * 10, true, true, false, (string)null, 0.0f, (string)null);
+                var effect3 = new Effect(MendingSerumConfig.Effect_, "Regeneration", "This dupe is constantly healing", 600.00f * 5, true, true, false, (string)null, 0.0f, (string)null);
                 effect3.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.deltaAttribute.Id, +0.008333334f, "Healing", false, false, true));
 
                 Db.Get().effects.Add(effect1);

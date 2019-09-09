@@ -1,0 +1,16 @@
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\Primitive_Biome.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\Primitive_Biome.pdb
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\obj\Debug\Primitive_Biome.csprojAssemblyReference.cache
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\obj\Debug\Primitive_Biome.csproj.CoreCompileInputs.cache
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\obj\Debug\Primitive_Biome.csproj.CopyComplete
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\obj\Debug\Primitive_Biome.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\obj\Debug\Primitive_Biome.pdb
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\0Harmony.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\Assembly-CSharp.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.CoreModule.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.JSONSerializeModule.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.SharedInternalsModule.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.JSONSerializeModule.xml
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.SharedInternalsModule.xml

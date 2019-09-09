@@ -12,20 +12,20 @@ namespace HatchMorphs
     {
         public const string ID = "FloralAntihistamine";
         public static string Name = UI.FormatAsLink("Floral Antihistamine", ID);
-        public const string Description = "Stops the symptomes of allergies.";
+        public const string Description = "Stops the symptomes of allergies for a long period of time.";
         public const string Effect_ = "FloralHistamineSuppression";
         public GameObject CreatePrefab()
         {
            
-            GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, Name, Description, 1f, true, Assets.GetAnim((HashedString)"floral_antihistamine"),
+            GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, Name, Description, 1f, true, Assets.GetAnim((HashedString)"floral_antihistamine_kanim"),
                 "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, (List<Tag>)null);
             MedicineInfo medicine_info = new MedicineInfo(ID.ToLower(), Effect_, MedicineInfo.MedicineType.Booster, (string[])null);
             EntityTemplates.ExtendEntityToMedicine(looseEntity, medicine_info);
             looseEntity.GetComponent<KPrefabID>().AddTag(GameTags.MedicalSupplies, false);
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[2]
             {
-      new ComplexRecipe.RecipeElement(SimHashes.Copper.CreateTag(), 1f),
-      new ComplexRecipe.RecipeElement((Tag) FilamentsConfig.Id, 1f)
+      new ComplexRecipe.RecipeElement(SimHashes.Copper.CreateTag(), 1000f),
+      new ComplexRecipe.RecipeElement((Tag) FilamentsConfig.Id, 50f)
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
             {

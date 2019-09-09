@@ -11,7 +11,7 @@ namespace HatchMorphs
     {
         public const string Id = "Macedonia";
         public const string Name = "Macedonia";
-        public static string Description = $"Delicious {UI.FormatAsLink("Bristle Berry", "PRICKLEFRUIT")} cut into pieces and \n\nmix with  {UI.FormatAsLink(NectarConfig.Name, NectarConfig.Id)}.";
+        public static string Description = $"Delicious {UI.FormatAsLink("Bristle Berry", "PRICKLEFRUIT")} cut into pieces and \nmix with  {UI.FormatAsLink(NectarConfig.Name, NectarConfig.Id)}.";
         public static string RecipeDescription = $"{UI.FormatAsLink("Bristle Berry", "PRICKLEFRUIT")} cut and sweetened with {UI.FormatAsLink(NectarConfig.Name, NectarConfig.Id)}.";
 
         public ComplexRecipe Recipe;
@@ -24,7 +24,7 @@ namespace HatchMorphs
                 desc: Description,
                 mass: 1f,
                 unitMass: false,
-                anim: Assets.GetAnim("macedonia"),
+                anim: Assets.GetAnim("macedonia_kanim"),
                 initialAnim: "object",
                 sceneLayer: Grid.SceneLayer.Front,
                 collisionShape: EntityTemplates.CollisionShape.CIRCLE,
@@ -35,7 +35,7 @@ namespace HatchMorphs
             var foodInfo = new EdiblesManager.FoodInfo(
                 id: Id,
                 caloriesPerUnit:350000f,
-                quality: 4,
+                quality: TUNING.FOOD.FOOD_QUALITY_AMAZING,
                 preserveTemperatue: 255.15f,
                 rotTemperature: 277.15f,
                 spoilTime: TUNING.FOOD.SPOIL_TIME.SLOW,
