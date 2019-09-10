@@ -41,7 +41,9 @@ namespace Primitive_Biome.GeneticTraits
         {
             var result = new List<string>();
             int numTraitsToChoose = UnityEngine.Random.Range(2, 4);
-
+            Debug.Log("------------");
+            Debug.Log(inst);
+            Debug.Log(numTraitsToChoose);
             var groups = traits.GroupBy(trait => trait.Group);
             foreach (var group in groups)
             {
@@ -50,6 +52,7 @@ namespace Primitive_Biome.GeneticTraits
                     result.Add(ChooseTraitFrom(group));
                 }
             }
+            Debug.Log(result);
 
             // If there are more traits than asked for we don't want to bias to the ones that were chosen first
             return result
@@ -67,8 +70,10 @@ namespace Primitive_Biome.GeneticTraits
             float prob = UnityEngine.Random.Range(0f, 1f);
             if (prob <= group.Key.Probability)
             {
+                Debug.Log("return something");
                 return Util.GetRandom(group.ToList()).ID;
             }
+            Debug.Log("return null");
             return null;
         }
 

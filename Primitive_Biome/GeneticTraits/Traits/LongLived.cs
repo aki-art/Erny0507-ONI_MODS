@@ -10,7 +10,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
 {
     class LongLived: GeneticTraitBuilder
     {
-        public override string ID => "CritterEnduring";
+        public override string ID => "CritterLonglived";
         public override string Name => "Long-lived";
         public override string Description => "Lives 25% longer than usual.";
 

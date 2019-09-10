@@ -21,7 +21,7 @@ namespace HatchMorphs
                 .GetValue<System.Action>(
                     DiamondHatchConfig.Id,
                     DiamondHatchConfig.EggId.ToTag(),
-                    SimHashes.Katairite.CreateTag(),
+                    SimHashes.Diamond.CreateTag(),
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
             
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(

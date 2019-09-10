@@ -23,13 +23,14 @@ namespace Primitive_Biome.GeneticTraits
 
         protected override void OnSpawn()
         {
-            if (!appliedCritterTraits)
+            /*if (!appliedCritterTraits)
             {
                 var traitsToAdd = GeneticTraits.ChooseTraits(gameObject).Select(Db.Get().traits.Get);
                 addTraits(traitsToAdd);
 
                 appliedCritterTraits = true;
-            }
+            }*/
+
         }
 
         // Transfer critter traits owned by the `from` object to this object

@@ -62,6 +62,7 @@ namespace Primitive_Biome
         [HarmonyPatch(typeof(EntityTemplates), "ExtendEntityToBasicCreature")]
         class EntityTemplates_ExtendEntityToBasicCreature
         {
+            //adds traits to criatures
             static void Postfix(ref GameObject __result,
               GameObject template,
               FactionManager.FactionID faction,
@@ -78,6 +79,22 @@ namespace Primitive_Biome
               float warningHighTemperature,
               float lethalLowTemperature,
               float lethalHighTemperature)
+            {
+                __result.AddOrGet<GeneticTraits.GeneticTraitComponent>();
+            }
+        }
+        [HarmonyPatch(typeof(EggConfig), "CreateEgg")]
+        class EggConfig_CreateEgg
+        {
+            static void Postfix(ref GameObject __result,
+                                string id,
+                                string name,
+                                string desc,
+                                Tag creature_id,
+                                string anim,
+                                float mass,
+                                int egg_sort_order,
+                                float base_incubation_rate)
             {
                 __result.AddOrGet<GeneticTraits.GeneticTraitComponent>();
             }
@@ -106,7 +123,7 @@ namespace Primitive_Biome
                     InitTraitsPanel(__instance);
 
                     TraitsPanel.gameObject.SetActive(true);
-                    TraitsPanel.HeaderLabel.text = "TRAITS";
+                    TraitsPanel.HeaderLabel.text = "GENETIC TRAITS";
 
                     TraitsDrawer.BeginDrawing();
                     foreach (Trait trait in target.GetComponent<Klei.AI.Traits>().TraitList)
