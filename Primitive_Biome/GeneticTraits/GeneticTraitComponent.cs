@@ -60,6 +60,13 @@ namespace Primitive_Biome.GeneticTraits
         }
         private static void OnSpawnedFrom(GeneticTraitComponent component, object data)
         {
+        var parent=(data as GameObject)
+        if(parent.IsCritter())
+        {
+        }
+        if(parent==machine){
+        //rollnewtraits
+        }
             (data as GameObject).GetComponent<GeneticTraitComponent>()?.TransferTo(component);
         }
 
@@ -79,50 +86,27 @@ namespace Primitive_Biome.GeneticTraits
         }
         public void SetName(string newName)
         {
-            generation = 1;
-            if (Util.IsNullOrWhitespace(newName))
-            {
-                ResetToPrefabName();
-                return;
-            }
-
-            critterName = newName;
-            ApplyName();
+    
         }
 
         private void setGameObjectName(string newName)
         {
-            KSelectable selectable = GetComponent<KSelectable>();
-
-            name = newName;
-            selectable?.SetName(newName);
-            gameObject.name = newName;
+           
         }
 
         public void ApplyName()
         {
-            if (!IsCritter()) return;
-
-            string newName = critterName;
-            if (generation == 2)
-            {
-                newName += " Jr.";
-            }
-            else if (generation > 2)
-            {
-                newName += " " + Util.ToRoman(generation);
-            }
-            setGameObjectName(newName);
+            
         }
 
         public bool HasName()
         {
-            return !Util.IsNullOrWhitespace(critterName);
+            
         }
 
         public void TransferTo(GeneticTraitComponent other)
         {
-            if (other == null || !HasName()) return;
+            if (other == null ) return;
 
             other.critterName = critterName;
             other.generation = generation;
@@ -137,12 +121,7 @@ namespace Primitive_Biome.GeneticTraits
 
         public void ResetToPrefabName()
         {
-            KPrefabID prefab = GetComponent<KPrefabID>();
-            if (prefab != null)
-            {
-                critterName = "";
-                setGameObjectName(TagManager.GetProperName(prefab.PrefabTag));
-            }
+           
         }
     }
 }
