@@ -140,5 +140,19 @@ namespace Primitive_Biome
                 }
             }
         }
+        [HarmonyPatch(typeof(Amount), "Copy")]
+  static class Amount_Copy
+  {
+    static void Prefix(GameObject to, GameObject from)
+    {
+      string callingMethod = new StackFrame(2).GetMethod().Name;
+      Debug.LogWarning(callingMethod);
+      if (callingMethod == "SpawnBaby")
+      {
+        from.GetComponent<GeneticTraits.GeneticTraitComponent>()?.TransferTo(to.AddOrGet<GeneticTraits.GeneticTraitComponent>());//replace this for the traits
+          
+      }
+    }
+  }
      }
 }

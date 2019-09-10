@@ -14,11 +14,18 @@ namespace Primitive_Biome.GeneticTraits
         [SerializeField]
         [Serialize]
         private bool appliedCritterTraits = false;
+private static readonly EventSystem.IntraObjectHandler<CritterName> OnSpawnedFromDelegate =
+      new EventSystem.IntraObjectHandler<CritterName>(OnSpawnedFrom);
 
+    private static readonly EventSystem.IntraObjectHandler<CritterName> OnLayEggDelegate =
+      new EventSystem.IntraObjectHandler<CritterName>(OnLayEgg);
+      
         protected override void OnPrefabInit()
         {
             GeneticTraits.InitAllTraits();
             gameObject.Subscribe((int)GameHashes.SpawnedFrom, from => transferTraits(from as GameObject));
+             Subscribe((int)GameHashes.SpawnedFrom, OnSpawnedFromDelegate);
+      Subscribe((int)GameHashes.LayEgg, OnLayEggDelegate);
         }
 
         protected override void OnSpawn()
@@ -51,6 +58,92 @@ namespace Primitive_Biome.GeneticTraits
             var traits = gameObject.AddOrGet<Klei.AI.Traits>();
             traitsToAdd.ToList().ForEach(traits.Add);
         }
+         private static void OnSpawnedFrom(CritterName component, object data)
+    {
+      (data as GameObject).GetComponent<CritterName>()?.TransferTo(component);
+    }
+
+    private static void OnLayEgg(CritterName component, object data)
+    {
+      component.TransferTo((data as GameObject).GetComponent<CritterName>());
+    }
+
+    private bool IsCritter()
+    {
+      return this.HasTag(GameTags.Creature);
+    }
+
+    private bool IsEgg()
+    {
+      return this.HasTag(GameTags.Egg);
+    }
+     public void SetName(string newName)
+    {
+      generation = 1;
+      if (Util.IsNullOrWhitespace(newName))
+      {
+        ResetToPrefabName();
+        return;
+      }
+
+      critterName = newName;
+      ApplyName();
+    }
+
+    private void setGameObjectName(string newName)
+    {
+      KSelectable selectable = GetComponent<KSelectable>();
+
+      name = newName;
+      selectable?.SetName(newName);
+      gameObject.name = newName;
+    }
+
+    public void ApplyName()
+    {
+      if (!IsCritter()) return;
+
+      string newName = critterName;
+      if (generation == 2)
+      {
+        newName += " Jr.";
+      }
+      else if (generation > 2)
+      {
+        newName += " " + Util.ToRoman(generation);
+      }
+      setGameObjectName(newName);
+    }
+
+    public bool HasName()
+    {
+      return !Util.IsNullOrWhitespace(critterName);
+    }
+
+    public void TransferTo(CritterName other)
+    {
+      if (other == null || !HasName()) return;
+
+      other.critterName = critterName;
+      other.generation = generation;
+
+      if (other.IsEgg())
+      {
+        other.generation += 1;
+      }
+
+      other.ApplyName();
+    }
+
+    public void ResetToPrefabName()
+    {
+      KPrefabID prefab = GetComponent<KPrefabID>();
+      if (prefab != null)
+      {
+        critterName = "";
+        setGameObjectName(TagManager.GetProperName(prefab.PrefabTag));
+      }
+    }
     }
 }
 
