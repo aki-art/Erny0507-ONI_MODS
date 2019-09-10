@@ -14,11 +14,18 @@ namespace Primitive_Biome.GeneticTraits
         [SerializeField]
         [Serialize]
         private bool appliedCritterTraits = false;
+private static readonly EventSystem.IntraObjectHandler<CritterName> OnSpawnedFromDelegate =
+      new EventSystem.IntraObjectHandler<CritterName>(OnSpawnedFrom);
 
+    private static readonly EventSystem.IntraObjectHandler<CritterName> OnLayEggDelegate =
+      new EventSystem.IntraObjectHandler<CritterName>(OnLayEgg);
+      
         protected override void OnPrefabInit()
         {
             GeneticTraits.InitAllTraits();
             gameObject.Subscribe((int)GameHashes.SpawnedFrom, from => transferTraits(from as GameObject));
+             Subscribe((int)GameHashes.SpawnedFrom, OnSpawnedFromDelegate);
+      Subscribe((int)GameHashes.LayEgg, OnLayEggDelegate);
         }
 
         protected override void OnSpawn()
@@ -50,6 +57,26 @@ namespace Primitive_Biome.GeneticTraits
             var traits = gameObject.AddOrGet<Klei.AI.Traits>();
             traitsToAdd.ToList().ForEach(traits.Add);
         }
+         private static void OnSpawnedFrom(CritterName component, object data)
+    {
+      (data as GameObject).GetComponent<CritterName>()?.TransferTo(component);
+    }
+
+    private static void OnLayEgg(CritterName component, object data)
+    {
+      component.TransferTo((data as GameObject).GetComponent<CritterName>());
+    }
+
+    private bool IsCritter()
+    {
+      return this.HasTag(GameTags.Creature);
+    }
+
+    private bool IsEgg()
+    {
+      return this.HasTag(GameTags.Egg);
+    }
+    
     }
 }
 
