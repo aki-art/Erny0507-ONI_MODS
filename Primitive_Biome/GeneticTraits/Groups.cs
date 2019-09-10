@@ -17,17 +17,18 @@ namespace Primitive_Biome.GeneticTraits
     public static readonly Group EggHatchingSpeedGroup = new Group("EggHatchingSpeedGroup", 0.05f);
      public static readonly Group GrowingUpSpeedGroup = new Group("GrowingUpSpeedGroup", 0.05f);
 
-    public Group(string id, float probability, Predicate<GameObject> requirement = null)
+    public Group(string id, float probability, Predicate<GameObject> requirement = null,List<string> exceptions=null )
     {
       Id = id;
       Probability = probability;
       HasRequirements = requirement ?? (_ => true);
+      Exceptions=exceptions;
     }
 
     public string Id { get; private set; }
     public float Probability { get; private set; }
     public Predicate<GameObject> HasRequirements { get; private set; }
-
+    public List<string> Exceptions { get; private set; }
     private static bool HasAmount(GameObject go, Amount amount)
     {
       return go.GetComponent<Modifiers>()?.amounts.Has(amount) ?? false;
