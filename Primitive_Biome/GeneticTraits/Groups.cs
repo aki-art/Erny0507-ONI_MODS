@@ -1,5 +1,6 @@
 using Klei.AI;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Primitive_Biome.GeneticTraits
