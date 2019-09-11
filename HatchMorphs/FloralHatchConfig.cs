@@ -171,7 +171,7 @@ namespace HatchMorphs
         public static string EggName = UI.FormatAsLink("Floral Hatchling Egg", EggId);
         public const string BabyId = "HatchFloralBaby";
         public static string BabyName = UI.FormatAsLink("Floral Hatchling", BabyId);
-        public const string BabyDescription = "It has bulb growing on its back.";
+        public const string BabyDescription = "It has a bulb growing on its back.";
         public static EffectorValues tier = DECOR.BONUS.TIER3;
     }
 }

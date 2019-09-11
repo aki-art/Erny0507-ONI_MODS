@@ -8,6 +8,9 @@ using Primitive_Biome.Elements;
 using System.Collections;
 using UnityEngine;
 using Klei.AI;
+using System.Diagnostics;
+using Primitive_Biome.GeneticTraits;
+
 namespace Primitive_Biome
 {
     public class Patches
@@ -80,7 +83,7 @@ namespace Primitive_Biome
               float lethalLowTemperature,
               float lethalHighTemperature)
             {
-                __result.AddOrGet<GeneticTraits.GeneticTraitComponent>();
+                __result.AddOrGet<GeneticTraitComponent>();
             }
         }
         [HarmonyPatch(typeof(EggConfig), "CreateEgg")]
@@ -96,7 +99,8 @@ namespace Primitive_Biome
                                 int egg_sort_order,
                                 float base_incubation_rate)
             {
-                __result.AddOrGet<GeneticTraits.GeneticTraitComponent>();
+                Debug.Log("EGGS added trait");
+                __result.AddOrGet<GeneticTraitComponent>();
             }
         }
         [HarmonyPatch(typeof(SimpleInfoScreen), "OnSelectTarget")]
@@ -118,7 +122,7 @@ namespace Primitive_Biome
 
             static void Prefix(ref SimpleInfoScreen __instance, GameObject target)
             {
-                if (target != null && target.GetComponent<Klei.AI.Traits>() != null && target.HasTag(GameTags.Creature))
+                if (target != null && target.GetComponent<Klei.AI.Traits>() != null && (target.HasTag(GameTags.Creature) || target.HasTag(GameTags.Egg)))
                 {
                     InitTraitsPanel(__instance);
 
@@ -141,18 +145,18 @@ namespace Primitive_Biome
             }
         }
         [HarmonyPatch(typeof(Amount), "Copy")]
-  static class Amount_Copy
-  {
-    static void Prefix(GameObject to, GameObject from)
-    {
-      string callingMethod = new StackFrame(2).GetMethod().Name;
-      Debug.LogWarning(callingMethod);
-      if (callingMethod == "SpawnBaby")
-      {
-        from.GetComponent<GeneticTraits.GeneticTraitComponent>()?.TransferTo(to.AddOrGet<GeneticTraits.GeneticTraitComponent>());//replace this for the traits
-          
-      }
+        static class Amount_Copy
+        {
+            static void Prefix(GameObject to, GameObject from)
+            {
+                string callingMethod = new StackFrame(2).GetMethod().Name;
+                Debug.LogWarning(callingMethod);
+                if (callingMethod == "SpawnBaby")
+                {
+                    from.GetComponent<GeneticTraitComponent>()?.TransferTo(to.AddOrGet<GeneticTraitComponent>());//replace this for the traits
+
+                }
+            }
+        }
     }
-  }
-     }
 }

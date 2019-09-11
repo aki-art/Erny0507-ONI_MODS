@@ -55,23 +55,47 @@ namespace Primitive_Biome.GeneticTraits
         // Adds the provided list of traits to this object's Traits component
         private void addTraits(IEnumerable<Trait> traitsToAdd)
         {
+            Debug.Log("addTraits");
             var traits = gameObject.AddOrGet<Klei.AI.Traits>();
+            Debug.Log("traits to add");
+            foreach (Klei.AI.Trait trait in traitsToAdd.ToList())
+            {
+                Debug.Log(trait.Name);
+            }
+            Debug.Log("traits");
+            Debug.Log(traits);
+            Debug.Log(traits.TraitList);
+            foreach (Klei.AI.Trait trait in traits.TraitList)
+            {
+                Debug.Log(trait.Name);
+            }
+    
             traitsToAdd.ToList().ForEach(traits.Add);
+            Debug.Log("finish adding");
         }
-        private static void OnSpawnedFrom(GeneticTraitComponent component, object data)
+        //
+        private static void OnSpawnedFrom(GeneticTraitComponent componentChild, object data)
         {
-        var parent=(data as GameObject)
-        if(parent.IsCritter())
-        {
-        }
-        if(parent==machine){
-        //rollnewtraits
-        }
-            (data as GameObject).GetComponent<GeneticTraitComponent>()?.TransferTo(component);
+            var parent = (data as GameObject);
+            Debug.Log("OnSpawnedFrom");
+            Debug.Log(parent);
+            /*if(parent.IsCritter())
+            {
+                    //heredar
+                }
+            if(parent==machine){
+            //rollnewtraits
+            }*/
+            (data as GameObject).GetComponent<GeneticTraitComponent>()?.TransferTo(componentChild);
         }
 
         private static void OnLayEgg(GeneticTraitComponent component, object data)
         {
+            Debug.Log("OnLayEgg");
+            var egg = (data as GameObject);
+            Debug.Log(egg);
+            //pass traits
+            Debug.Log(egg.GetComponent<GeneticTraitComponent>());
             component.TransferTo((data as GameObject).GetComponent<GeneticTraitComponent>());
         }
 
@@ -86,42 +110,38 @@ namespace Primitive_Biome.GeneticTraits
         }
         public void SetName(string newName)
         {
-    
+
         }
 
         private void setGameObjectName(string newName)
         {
-           
+
         }
 
         public void ApplyName()
         {
-            
+
         }
 
         public bool HasName()
         {
-            
+            return false;
         }
 
-        public void TransferTo(GeneticTraitComponent other)
+        public void TransferTo(GeneticTraitComponent componentChild)
         {
-            if (other == null ) return;
+            if (componentChild == null) return;
 
-            other.critterName = critterName;
-            other.generation = generation;
+            var fromTraits = GetComponent<Klei.AI.Traits>();
+            if (fromTraits == null) return;
 
-            if (other.IsEgg())
-            {
-                other.generation += 1;
-            }
-
-            other.ApplyName();
+            var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
+            componentChild.addTraits(traitsToAdd);
         }
 
         public void ResetToPrefabName()
         {
-           
+
         }
     }
 }
