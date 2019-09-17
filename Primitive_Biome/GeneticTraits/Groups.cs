@@ -11,9 +11,10 @@ namespace Primitive_Biome.GeneticTraits
         public static readonly Group SpeedGroup = new Group("SpeedGroup", 0.2f, inst => inst.GetComponent<Navigator>() != null);
         public static readonly Group LifespanGroup = new Group("LifespanGroup", 0.15f, inst => HasAmount(inst, Db.Get().Amounts.Age));
         public static readonly Group FertilityGroup = new Group("FertilityGroup", 0.1f, inst => HasAmount(inst, Db.Get().Amounts.Fertility));
+        public static readonly Group ElementConverterGroup = new Group("ElementConverterGroup", 0.1f);
         /*public static readonly Group ElementEmitterGroup = new Group("ElementEmitterGroup", 0.1f);
         public static readonly Group ElementAbsorberGroup = new Group("ElementAbsorberGroup", 0.1f);
-        public static readonly Group ElementConverterGroup = new Group("ElementConverterGroup", 0.1f);
+        
         public static readonly Group EggHatchingSpeedGroup = new Group("EggHatchingSpeedGroup", 0.05f);
         public static readonly Group GrowingUpSpeedGroup = new Group("GrowingUpSpeedGroup", 0.05f);
         public static readonly Group HealthGroup = new Group("HealthGroup", 0.05f);*/
