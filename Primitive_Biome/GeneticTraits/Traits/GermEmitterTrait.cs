@@ -19,7 +19,12 @@ namespace Primitive_Biome.GeneticTraits.Traits
         };
         protected override void ApplyTrait(GameObject go)
         {
-            
+        Util.shuffle(germs);
+             DiseaseDropper.Def def = go.AddOrGetDef<DiseaseDropper.Def>();
+            def.diseaseIdx = Db.Get().Diseases.GetIndex(germs.first());
+            def.emitFrequency = 1f;
+            def.averageEmitPerSecond = 1000;
+            def.singleEmitQuantity = 100000;
         }
 
         protected override void Init()
