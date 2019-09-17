@@ -21,7 +21,7 @@ namespace Primitive_Biome.Elements
     gasSurfaceAreaMultiplier: 1
     strength: 0.1
     highTemp: 2000
-    highTempTransitionTarget: MoltenAluminum
+    highTempTransitionTarget: MoltenCyanide
     defaultTemperature:  290
     defaultMass: 700
     maxMass: 2000
@@ -32,6 +32,7 @@ namespace Primitive_Biome.Elements
     buildMenuSort: 5
     isDisabled: false
     state: Solid
+    toxicity: 10
     localizationID: STRINGS.ELEMENTS.CYANIDE.NAME";
 
         public const string Id = "Cyanide";
