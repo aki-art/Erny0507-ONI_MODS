@@ -12,7 +12,7 @@ namespace Primitive_Biome.Elements
     liquidSurfaceAreaMultiplier: 1
     gasSurfaceAreaMultiplier: 1
     strength: 1
-    highTemp: 1683
+    highTemp: 1115
     highTempTransitionTarget: Magma
     defaultTemperature: 283.15
     defaultMass: 1840
@@ -26,7 +26,7 @@ namespace Primitive_Biome.Elements
     buildMenuSort: 5 
     isDisabled: false
     state: Solid
-    localizationID: STRINGS.ELEMENTS.Calcium.NAME";
+    localizationID: STRINGS.ELEMENTS.CALCIUM.NAME";
 
         public const string Id = "Calcium";
         public static string Name = UI.FormatAsLink("Energized Fragment", Id.ToUpper());
