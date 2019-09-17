@@ -65,13 +65,13 @@
     <Compile Include="GeneticTraits\GeneticTraitComponent.cs" />
     <Compile Include="GeneticTraits\GeneticTraits.cs" />
     <Compile Include="GeneticTraits\Groups.cs" />
+    <Compile Include="GeneticTraits\Traits\ElementConverterTrait.cs" />
     <Compile Include="GeneticTraits\Traits\Fast.cs" />
     <Compile Include="GeneticTraits\Traits\Fertile.cs" />
     <Compile Include="GeneticTraits\Traits\Infertile.cs" />
     <Compile Include="GeneticTraits\Traits\LongLived.cs" />
     <Compile Include="GeneticTraits\Traits\ShortLived.cs" />
     <Compile Include="GeneticTraits\Traits\Slow.cs" />
-    <Compile Include="GeneticTraits\UnknownEggConfig.cs" />
     <Compile Include="LooseEntities\Fossils\PrimitiveHatchFossilConfig.cs" />
     <Compile Include="PatchesGeneral.cs" />
     <Compile Include="Patches\ElementsPatch.cs" />
@@ -86,6 +86,7 @@
     <Folder Include="anim\" />
     <Folder Include="Clothing\" />
     <Folder Include="Critters\" />
+    <Folder Include="GeneticTraits\Traits\ElementEmitter\" />
     <Folder Include="Plants\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

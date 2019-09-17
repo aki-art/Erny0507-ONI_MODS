@@ -68,8 +68,9 @@ namespace Primitive_Biome.GeneticTraits
             var result = new List<string>();
             var fromTraits = inst.GetComponent<AIGeneticTraits>();
             Debug.Log("All groups");
-            var groups = traits.GroupBy(trait => trait.Group);
-           DebugHelper.LogForEach(groups);
+            var groups = Group.groups;
+            Util.Shuffle<Group>(groups);
+            DebugHelper.LogForEach(groups);
             if (fromTraits == null)
             {
                 Debug.Log("No traits present");
@@ -79,17 +80,23 @@ namespace Primitive_Biome.GeneticTraits
                 Debug.Log("Traits presents");
                 var traits_present = fromTraits.GetTraitIds();
                 var traits_locked = new List<GeneticTraitBuilder>();
+                var groups_locked_list= new List<Group>();
                 foreach (String t in traits_present)
                 {
                     var trait_locked = traits.Where(x => x.ID == t).FirstOrDefault();
                     traits_locked.Add(trait_locked);
                     result.Add(t);
+                    groups_locked_list.Add(trait_locked.Group);
                     Debug.Log(trait_locked);
                 }
-                var groups_locked = traits_locked.GroupBy(trait => trait.Group);
+                
                 Debug.Log("groups_locked");
-                DebugHelper.LogForEach(groups_locked);
-                groups = groups.Except(groups_locked);
+                DebugHelper.LogForEach(groups_locked_list);
+                //groups = groups.Except(groups_locked);
+               
+                
+                List<Group> result_ = groups.Except(groups_locked_list).ToList();
+                groups = result_;
 
             }
             Debug.Log("groups");
@@ -117,34 +124,34 @@ namespace Primitive_Biome.GeneticTraits
 
             }
             groups.OrderBy(x => Util.GaussianRandom());//is not ordering randomly must be fix
-            groups = groups.ToList();
-            for (int i = 0; i < number_positives && groups.Count()>0; i++)
+            var groups_list = groups.ToList();
+            for (int i = 0; i < number_positives && groups_list.Count() > 0; i++)
             {
-                var first = groups.First();
-                var temp=ChooseTraitFromGroup(groups.First(),true,true);
+                var first = groups_list.First();
+                var temp = ChooseTraitFromGroup(groups.First(), true, true);
                 result.Add(temp);
-                groups= groups.Where(u => u.Key != first.Key).ToList();
+                groups_list = groups_list.Where(u => u.Id != first.Id).ToList();
             }
             for (int i = 0; i < number_negatives && groups.Count() > 0; i++)
             {
                 var first = groups.First();
                 var temp = ChooseTraitFromGroup(groups.First(), true, false);
                 result.Add(temp);
-                groups = groups.Where(u => u.Key != first.Key).ToList();
+                groups = groups.Where(u => u.Id != first.Id).ToList();
             }
-          /*  int numTraitsToChoose = UnityEngine.Random.Range(2, 4);
-            Debug.Log("------------");
-            Debug.Log(inst);
-            Debug.Log(numTraitsToChoose);
-            
+            /*  int numTraitsToChoose = UnityEngine.Random.Range(2, 4);
+              Debug.Log("------------");
+              Debug.Log(inst);
+              Debug.Log(numTraitsToChoose);
 
-            foreach (var group in groups)
-            {
-                if (group.Key.HasRequirements(inst))
-                {
-                    result.Add(ChooseTraitFrom(group));
-                }
-            }*/
+
+              foreach (var group in groups)
+              {
+                  if (group.Key.HasRequirements(inst))
+                  {
+                      result.Add(ChooseTraitFrom(group));
+                  }
+              }*/
             Debug.Log(result);
             DebugHelper.LogForEach(result);
             // If there are more traits than asked for we don't want to bias to the ones that were chosen first
@@ -168,18 +175,19 @@ namespace Primitive_Biome.GeneticTraits
             Debug.Log("return null");
             return null;
         }
-        private static string ChooseTraitFromGroup(IGrouping<Group, GeneticTraitBuilder> group, bool specific = false, bool positive = true)
+        private static string ChooseTraitFromGroup(Group group, bool specific = false, bool positive = true)
         {
+            var t = traits.Where(x=>x.Group== group);
             if (specific)
             {
-                return Util.GetRandom(group.Where(x=>x.Positive==positive).ToList()).ID;
+                return Util.GetRandom(t.Where(x => x.Positive == positive).ToList()).ID;
             }
             else
             {
-                return Util.GetRandom(group.ToList()).ID;
+                return Util.GetRandom(t.ToList()).ID;
             }
-            
-        
+
+
         }
 
         /**
