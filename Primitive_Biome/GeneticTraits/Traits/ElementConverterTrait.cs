@@ -12,39 +12,46 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public override string ID => "ElementEmitter";
         public override string Name => "Element Emitter";
         public override string Description => "Element Emitter";
-
+public string Description_custom="";
         public override Group Group => Group.ElementEmitterGroup;
 
         public override bool Positive => throw new NotImplementedException();
 
         public SimHashes element_input = SimHashes.Oxygen;
         public SimHashes element_output = SimHashes.Oxygen;
-        public static List<Tag> Solids = new List<Tag>(){
-SimHashes.Lime.CreateTag(),
-SimHashes.Fertilizer.CreateTag(),
-SimHashes.Clay.CreateTag(),
-SimHashes.IronOre.CreateTag(),
-SimHashes.AluminumOre.CreateTag(),
-SimHashes.Wolframite.CreateTag(),
-SimHashes.Snow.CreateTag(),
+        public static List<SimHashes> Solids = new List<SimHashes>(){
+SimHashes.Lime,
+SimHashes.Fertilizer,
+SimHashes.Clay,
+SimHashes.IronOre,
+SimHashes.AluminumOre,
+SimHashes.Wolframite,
+SimHashes.Snow,
 };
         public static List<Tag> Liquids = new List<Tag>(){
-SimHashes.Water.CreateTag(),
-SimHashes.DirtyWater.CreateTag(),
-SimHashes.Brine.CreateTag(),
-SimHashes.LiquidCarbonDioxide.CreateTag(),
-SimHashes.Ethanol.CreateTag()
+SimHashes.Wate,
+SimHashes.DirtyWater,
+SimHashes.Brine,
+SimHashes.LiquidCarbonDioxide,
+SimHashes.Ethanol
 };
-        public static List<Tag> Gases = new List<Tag>(){
-SimHashes.Hydrogen.CreateTag(),
-SimHashes.Methane.CreateTag(),
-SimHashes.Oxygen.CreateTag(),
-SimHashes.Chlorine.CreateTag(),
-SimHashes.CarbonDioxide.CreateTag(),
-SimHashes.ContaminatedOxygen.CreateTag(),
+        public static List<SimHashes> Gases = new List<SimHashes>(){
+SimHashes.Hydrogen,
+SimHashes.Methane,
+SimHashes.Oxygen,
+SimHashes.Chlorine,
+SimHashes.CarbonDioxide,
+SimHashes.ContaminatedOxygen,
 };
         protected override void Init()
         {
+        Util.Shuffle(Gases);
+        element_input=Gases.first();
+        var complete_list=Gases.Except(element_input).ToList();
+         var complete_list=  complete_list.Concat(Liquids).Concat(Solids).ToList();
+          Util.Shuffle(complete_list);
+          element_output=complete_list.first();
+        Description_custom="This critter skin absorbs small quantities of "+element_input+" and drops "+element_output;
 
             UtilPB.CreateTrait(ID, Name, Description,
               on_add: delegate (GameObject go)
@@ -60,7 +67,7 @@ SimHashes.ContaminatedOxygen.CreateTag(),
 
             go.AddComponent<Storage>().capacityKg = 10f;
             ElementConsumer elementConsumer = (ElementConsumer)go.AddOrGet<PassiveElementConsumer>();
-            elementConsumer.elementToConsume = SimHashes.DirtyWater;
+            elementConsumer.elementToConsume = element_input;
             elementConsumer.consumptionRate = 0.2f;
             elementConsumer.capacityKG = 10f;
             elementConsumer.consumptionRadius = (byte)3;
@@ -70,25 +77,25 @@ SimHashes.ContaminatedOxygen.CreateTag(),
             elementConsumer.storeOnConsume = true;
             elementConsumer.showDescriptor = false;
             go.AddOrGet<UpdateElementConsumerPosition>();
-            BubbleSpawner bubbleSpawner = go.AddComponent<BubbleSpawner>();
-            bubbleSpawner.element = SimHashes.Water;
-            bubbleSpawner.emitMass = 2f;
-            bubbleSpawner.emitVariance = 0.5f;
-            bubbleSpawner.initialVelocity = (Vector2)new Vector2f(0, 1);
+            //BubbleSpawner bubbleSpawner = go.AddComponent<BubbleSpawner>();
+            //bubbleSpawner.element = element_input;
+            //bubbleSpawner.emitMass = 2f;
+            //bubbleSpawner.emitVariance = 0.5f;
+            //bubbleSpawner.initialVelocity = (Vector2)new Vector2f(0, 1);
 
             ElementDropper elementDropper = go.AddComponent<ElementDropper>();
             elementDropper.emitMass = 10f;
-            elementDropper.emitTag = new Tag("Clay");
+            elementDropper.emitTag = element_output.CreateTag();
             elementDropper.emitOffset = new Vector3(0.0f, 0.0f, 0.0f);
 
             ElementConverter elementConverter = go.AddOrGet<ElementConverter>();
             elementConverter.consumedElements = new ElementConverter.ConsumedElement[1]
             {
-        new ElementConverter.ConsumedElement(SimHashes.DirtyWater.CreateTag(), 0.2f)
+        new ElementConverter.ConsumedElement(element_input.CreateTag(), 0.2f)
             };
             elementConverter.outputElements = new ElementConverter.OutputElement[1]
             {
-        new ElementConverter.OutputElement(0.2f, SimHashes.Water, 0.0f, true, true, 0.0f, 0.5f, 1f, byte.MaxValue, 0)
+        new ElementConverter.OutputElement(0.2f, element_output, 0.0f, true, true, 0.0f, 0.5f, 1f, byte.MaxValue, 0)
             };
         }
     }
