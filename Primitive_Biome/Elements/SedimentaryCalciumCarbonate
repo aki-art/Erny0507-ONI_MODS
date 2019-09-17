@@ -5,7 +5,7 @@ namespace Primitive_Biome.Elements
     public class SedimentaryCalciumCarbonate 
     {
         public const string Data = @"elements:
-  - elementId: ElectrifiedCrystal
+  - elementId: SedimentaryCalciumCarbonate
     specificHeatCapacity: 1
     thermalConductivity: 2
     solidSurfaceAreaMultiplier: 1
@@ -26,11 +26,11 @@ namespace Primitive_Biome.Elements
     buildMenuSort: 5 
     isDisabled: false
     state: Solid
-    localizationID: STRINGS.ELEMENTS.ELECTRIFIEDCRYSTAL.NAME";
+    localizationID: STRINGS.ELEMENTS.SEDIMENTARYCALCIUMCARBONATE.NAME";
 
-        public const string Id = "ElectrifiedCrystal";
+        public const string Id = "SedimentaryCalciumCarbonate";
         public static string Name = UI.FormatAsLink("Energized Fragment", Id.ToUpper());
-        public static string Description = $"A crystal fragment that whirs with energy. Mined from a {UI.FormatAsLink("Galvanic Outcrop", Plants.CrystalPlantCeilingConfig.Id)}.";
+        public static string Description = $"The remnants of long dead creatures. Mine for a chance to get fossils and lime.";
         public static SimHashes SimHash = (SimHashes)Hash.SDBMLower(Id);
     }
 }
