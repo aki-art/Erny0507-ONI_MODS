@@ -12,7 +12,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public override string Name => "GermEmitterTrait";
         public override string Description => "It produces germs";
 
-        public override Group Group => Group.SpeedGroup;
+        public override Group Group => Group.GermEmitterGroup;
         public override bool Positive => true;
         public List<string> germs=new List<string>(){
         PollenGerms.ID, FoodPoison.ID,Spores.ID,SlimeSlung.ID
