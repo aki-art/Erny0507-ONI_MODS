@@ -52,7 +52,7 @@ SimHashes.ContaminatedOxygen,
           Util.Shuffle(complete_list);
           element_output=complete_list.first();
         Description_custom="This critter skin absorbs small quantities of "+element_input+" and drops "+element_output;
-
+Description ="This critter skin absorbs small quantities of "+element_input+" and drops "+element_output;
             UtilPB.CreateTrait(ID, Name, Description,
               on_add: delegate (GameObject go)
               {
