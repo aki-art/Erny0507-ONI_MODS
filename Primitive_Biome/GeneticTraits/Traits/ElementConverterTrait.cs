@@ -13,7 +13,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public override string Name => "Element Emitter";
         public override string Description => "Element Emitter";
 public string Description_custom="";
-        public override Group Group => Group.ElementEmitterGroup;
+        public override Group Group => Group.ElementConverterGroup;
 
         public override bool Positive => throw new NotImplementedException();
 
