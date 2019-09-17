@@ -57,8 +57,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildings\GeneticSamplerConfig.cs" />
     <Compile Include="Elements\CyanideElement.cs" />
     <Compile Include="Elements\ToxicWaterElement.cs" />
+    <Compile Include="GeneticTraits\AIGeneticTraits.cs" />
     <Compile Include="GeneticTraits\GeneticTraitBuilder.cs" />
     <Compile Include="GeneticTraits\GeneticTraitComponent.cs" />
     <Compile Include="GeneticTraits\GeneticTraits.cs" />
@@ -69,9 +71,16 @@
     <Compile Include="GeneticTraits\Traits\LongLived.cs" />
     <Compile Include="GeneticTraits\Traits\ShortLived.cs" />
     <Compile Include="GeneticTraits\Traits\Slow.cs" />
-    <Compile Include="Patches.cs" />
+    <Compile Include="GeneticTraits\UnknownEggConfig.cs" />
+    <Compile Include="LooseEntities\Fossils\PrimitiveHatchFossilConfig.cs" />
+    <Compile Include="PatchesGeneral.cs" />
+    <Compile Include="Patches\ElementsPatch.cs" />
+    <Compile Include="Patches\GeneticSamplerPatch.cs" />
+    <Compile Include="Patches\GeneticTraitsPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UtilPB.cs" />
+    <Compile Include="UtilELU\UtilPB.cs" />
+    <Compile Include="UtilELU\Chances.cs" />
+    <Compile Include="UtilELU\DebugHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="anim\" />

@@ -15,12 +15,25 @@ namespace Primitive_Biome.GeneticTraits
         public abstract string Description { get; }
 
         public abstract Group Group { get; }
-
+        public abstract bool Positive { get; }
         protected abstract void Init();
 
         public void CreateTrait()
         {
             Init();
         }
+        protected abstract void ApplyTrait(GameObject go);
+        protected void ChooseTarget(GameObject go)
+        {
+            if (go.GetComponent<GeneticTraitComponent>().IsEgg() && Group.OnlyEgg)
+            {
+                ApplyTrait(go);
+            }
+            else
+            {
+                ApplyTrait(go);
+            }
+        }
+        public new string ToString => ID;
     }
 }

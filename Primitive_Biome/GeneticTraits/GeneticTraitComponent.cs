@@ -32,8 +32,8 @@ namespace Primitive_Biome.GeneticTraits
         {
             if (!appliedCritterTraits)
             {
-                var traitsToAdd = GeneticTraits.ChooseTraits(gameObject).Select(Db.Get().traits.Get);
-                addTraits(traitsToAdd);
+               // var traitsToAdd = GeneticTraits.ChooseTraits(gameObject).Select(Db.Get().traits.Get);
+               // addTraits(traitsToAdd);
 
                 appliedCritterTraits = true;
             }
@@ -53,25 +53,19 @@ namespace Primitive_Biome.GeneticTraits
         }
 
         // Adds the provided list of traits to this object's Traits component
-        private void addTraits(IEnumerable<Trait> traitsToAdd)
+        public void addTraits(IEnumerable<Trait> traitsToAdd)
         {
-            Debug.Log("addTraits");
-            var traits = gameObject.AddOrGet<Klei.AI.Traits>();
-            Debug.Log("traits to add");
-            foreach (Klei.AI.Trait trait in traitsToAdd.ToList())
+            if (IsEgg())
             {
-                Debug.Log(trait.Name);
+                var traits = gameObject.AddOrGet<AIGeneticTraits>();
+                traitsToAdd.ToList().ForEach(traits.Add);
             }
-            Debug.Log("traits");
-            Debug.Log(traits);
-            Debug.Log(traits.TraitList);
-            foreach (Klei.AI.Trait trait in traits.TraitList)
+            else
             {
-                Debug.Log(trait.Name);
+                var traits = gameObject.AddOrGet<Klei.AI.Traits>();
+                traitsToAdd.ToList().ForEach(traits.Add);
             }
-    
-            traitsToAdd.ToList().ForEach(traits.Add);
-            Debug.Log("finish adding");
+
         }
         //
         private static void OnSpawnedFrom(GeneticTraitComponent componentChild, object data)
@@ -99,14 +93,32 @@ namespace Primitive_Biome.GeneticTraits
             component.TransferTo((data as GameObject).GetComponent<GeneticTraitComponent>());
         }
 
-        private bool IsCritter()
+        public bool IsCritter()
         {
             return this.HasTag(GameTags.Creature);
         }
 
-        private bool IsEgg()
+        public bool IsEgg()
         {
             return this.HasTag(GameTags.Egg);
+        }
+        public bool IsBaby()
+        {
+            if (IsEgg())
+            {
+                return false;
+            }
+            else
+            {
+                if (gameObject.GetDef<BabyMonitor.Def>() != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
         public void SetName(string newName)
         {
@@ -130,13 +142,44 @@ namespace Primitive_Biome.GeneticTraits
 
         public void TransferTo(GeneticTraitComponent componentChild)
         {
-            if (componentChild == null) return;
+            if (componentChild.IsEgg())
+            {
+                Debug.Log("Component to pass on is an egg");
+                if (componentChild == null) return;
 
-            var fromTraits = GetComponent<Klei.AI.Traits>();
-            if (fromTraits == null) return;
+                var fromTraits = GetComponent<Klei.AI.Traits>();
+                if (fromTraits == null) return;
 
-            var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
-            componentChild.addTraits(traitsToAdd);
+                var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
+                Debug.Log("traitsToAdd");
+
+                componentChild.addTraits(traitsToAdd);
+            }
+            else
+            {
+                if (componentChild.IsBaby())
+                {
+                    if (componentChild == null) return;
+
+                    var fromTraits = GetComponent<AIGeneticTraits>();
+                    if (fromTraits == null) return;
+
+                    var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
+                    componentChild.addTraits(traitsToAdd);
+                }
+                else
+                {
+                    if (componentChild == null) return;
+
+                    var fromTraits = GetComponent<Klei.AI.Traits>();
+                    if (fromTraits == null) return;
+
+                    var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
+                    componentChild.addTraits(traitsToAdd);
+                }
+
+            }
+
         }
 
         public void ResetToPrefabName()

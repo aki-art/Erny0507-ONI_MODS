@@ -13,19 +13,24 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public override string Description => "Moves at half the speed.";
 
         public override Group Group => Group.SpeedGroup;
+        public override bool Positive => false;
+        protected override void ApplyTrait(GameObject go)
+        {
+            var navigator = go.GetComponent<Navigator>();
+            if (navigator != null)
+            {
+                navigator.defaultSpeed /= 2f;
+            }
+        }
 
         protected override void Init()
         {
             UtilPB.CreateTrait(ID, Name, Description,
               on_add: delegate (GameObject go)
               {
-                  var navigator = go.GetComponent<Navigator>();
-                  if (navigator != null)
-                  {
-                      navigator.defaultSpeed /= 2f;
-                  }
+                  ChooseTarget(go);
               },
-              positiveTrait: false
+              positiveTrait: Positive
             );
         }
     }

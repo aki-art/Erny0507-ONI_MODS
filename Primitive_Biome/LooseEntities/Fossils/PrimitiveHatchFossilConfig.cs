@@ -1,18 +1,17 @@
-﻿using STRINGS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace HatchMorphs
+namespace Primitive_Biome.LooseEntities.Fossils
 {
-    class BarkSkinConfig : IEntityConfig
+    class PrimitiveHatchFossilConfig : IEntityConfig
     {
         public GameObject CreatePrefab()
         {
-            string id = "BarkSkin";
-            string name = "Bark Skin";
+            string id = ID;
+            string name = "Primitive Hatch Fossil";
             string desc = "Are produced by wooden hatch";
             float mass = 1f;//too litle, add more later
             bool unitMass = false;
@@ -34,20 +33,16 @@ namespace HatchMorphs
             return gameObject;
         }
 
-        // Token: 0x06005F74 RID: 24436 RVA: 0x001D4924 File Offset: 0x001D2D24
         public void OnPrefabInit(GameObject inst)
         {
         }
 
-        // Token: 0x06005F75 RID: 24437 RVA: 0x001D4926 File Offset: 0x001D2D26
         public void OnSpawn(GameObject inst)
         {
         }
 
-        // Token: 0x040066F3 RID: 26355
-        public const string ID = "BarkSkin";
+        public const string ID = "PrimitiveHatchFossil";
 
-        // Token: 0x040066F4 RID: 26356
         public static readonly Tag TAG = TagManager.Create("BarkSkin");
     }
 }

@@ -14,20 +14,25 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public override string Description => "Has a 20% shorter lifespan.";
 
         public override Group Group => Group.LifespanGroup;
-
+        public override bool Positive => false;
         protected override void Init()
         {
             UtilPB.CreateTrait(ID, Name, Description,
               on_add: delegate (GameObject go)
               {
-                  var modifiers = go.GetComponent<Modifiers>();
-                  if (modifiers != null)
-                  {
-                      modifiers.attributes.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, -0.20f, Description, is_multiplier: true));
-                  }
+                  ChooseTarget(go);
               },
-              positiveTrait: false
+              positiveTrait: Positive
             );
         }
+        protected override void ApplyTrait(GameObject go)
+        {
+            var modifiers = go.GetComponent<Modifiers>();
+            if (modifiers != null)
+            {
+                modifiers.attributes.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, -0.20f, Description, is_multiplier: true));
+            }
+        }
+        
     }
 }

@@ -11,57 +11,10 @@ using Klei.AI;
 using System.Diagnostics;
 using Primitive_Biome.GeneticTraits;
 
-namespace Primitive_Biome
+namespace Primitive_Biome.Patches
 {
-    public class Patches
+    class GeneticTraitsPatch
     {
-        [HarmonyPatch(typeof(ElementLoader), "CollectElementsFromYAML")]
-        class ElementLoader_CollectElementsFromYAML
-        {
-            static void Postfix(ref List<ElementLoader.ElementEntry> __result)
-            {
-                var containsIron = $"Contains traces of {STRINGS.UI.FormatAsLink("cyanide", "IRON")}.";//to add cyanide later
-                Strings.Add("STRINGS.ELEMENTS." + ToxicWaterElement.ID.ToUpper() + ".NAME", STRINGS.UI.FormatAsLink("Toxic water", ToxicWaterElement.ID.ToUpper()));
-                Strings.Add("STRINGS.ELEMENTS." + ToxicWaterElement.ID.ToUpper() + ".DESC", $"Water preserved from a long time. {containsIron}");
-                Strings.Add("STRINGS.ELEMENTS." + ToxicWaterElement.IDFrozen.ToUpper() + ".NAME", STRINGS.UI.FormatAsLink("Toxic ice", ToxicWaterElement.IDFrozen.ToUpper()));
-                Strings.Add("STRINGS.ELEMENTS." + ToxicWaterElement.IDFrozen.ToUpper() + ".DESC", $"Frozen toxic water. {containsIron}");
-
-                var elementCollection = YamlIO.Parse<ElementLoader.ElementEntryCollection>(ToxicWaterElement.CONFIG, "ElementLoader.cs");
-                __result.AddRange(elementCollection.elements);
-            }
-        }
-
-        [HarmonyPatch(typeof(ElementLoader), "Load")]
-        class ElementLoader_Load
-        {
-            static void Prefix(ref Hashtable substanceList, SubstanceTable substanceTable)
-            {
-                var water = substanceTable.GetSubstance(SimHashes.Water);
-                var ice = substanceTable.GetSubstance(SimHashes.Ice);
-                substanceList[ToxicWaterElement.ElementSimHash] = ToxicWaterElement.CreateSubstance(water);
-                substanceList[ToxicWaterElement.FrozenElementSimHash] = ToxicWaterElement.CreateFrozenSubstance(ice.material, water.anim);
-            }
-        }
-
-        [HarmonyPatch(typeof(Enum), "ToString", new Type[] { })]
-        class SimHashes_ToString
-        {
-            static bool Prefix(ref Enum __instance, ref string __result)
-            {
-                if (!(__instance is SimHashes)) return true;
-                return !ToxicWaterElement.SimHashNameLookup.TryGetValue((SimHashes)__instance, out __result);
-            }
-        }
-
-        [HarmonyPatch(typeof(Enum), nameof(Enum.Parse), new Type[] { typeof(Type), typeof(string), typeof(bool) })]
-        class SimHashes_Parse
-        {
-            static bool Prefix(Type enumType, string value, ref object __result)
-            {
-                if (!enumType.Equals(typeof(SimHashes))) return true;
-                return !ToxicWaterElement.ReverseSimHashNameLookup.TryGetValue(value, out __result);
-            }
-        }
         [HarmonyPatch(typeof(EntityTemplates), "ExtendEntityToBasicCreature")]
         class EntityTemplates_ExtendEntityToBasicCreature
         {
@@ -100,6 +53,12 @@ namespace Primitive_Biome
                                 float base_incubation_rate)
             {
                 Debug.Log("EGGS added trait");
+
+                var mo = __result.AddOrGet<Modifiers>();
+                mo.attributes = new Attributes(__result);
+                Debug.Log(mo.GetAttributes());
+                //__result.AddComponent<Modifiers>();
+                __result.AddOrGet<AIGeneticTraits>();
                 __result.AddOrGet<GeneticTraitComponent>();
             }
         }
@@ -122,15 +81,22 @@ namespace Primitive_Biome
 
             static void Prefix(ref SimpleInfoScreen __instance, GameObject target)
             {
-                if (target != null && target.GetComponent<Klei.AI.Traits>() != null && (target.HasTag(GameTags.Creature) || target.HasTag(GameTags.Egg)))
+                if (target != null && (target.GetComponent<Klei.AI.Traits>() != null || target.GetComponent<AIGeneticTraits>() != null) && (target.HasTag(GameTags.Creature) || target.HasTag(GameTags.Egg)))
                 {
                     InitTraitsPanel(__instance);
-
                     TraitsPanel.gameObject.SetActive(true);
                     TraitsPanel.HeaderLabel.text = "GENETIC TRAITS";
-
                     TraitsDrawer.BeginDrawing();
-                    foreach (Trait trait in target.GetComponent<Klei.AI.Traits>().TraitList)
+                    List<Trait> traits = null;
+                    if (target.HasTag(GameTags.Egg) && target.GetComponent<AIGeneticTraits>() != null)
+                    {
+                        traits = target.GetComponent<AIGeneticTraits>().TraitList;
+                    }
+                    else
+                    {
+                        traits = target.GetComponent<Klei.AI.Traits>().TraitList;
+                    }
+                    foreach (Trait trait in traits)
                     {
                         if (!GeneticTraits.GeneticTraits.IsSupportedTrait(trait.Id)) continue;
                         var color = trait.PositiveTrait ? Constants.POSITIVE_COLOR : Constants.NEGATIVE_COLOR;
@@ -158,5 +124,6 @@ namespace Primitive_Biome
                 }
             }
         }
+
     }
 }
