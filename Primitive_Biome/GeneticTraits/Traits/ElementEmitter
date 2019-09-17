@@ -45,6 +45,7 @@ SimHashes.PolludedOxigen.CreateTag(),
             UtilPB.CreateTrait(ID, Name, Description,
               on_add: delegate (GameObject go)
               {
+              var random_element=SimHashes.Hydrogen.CreateTag();
                   
               },
               positiveTrait: true
