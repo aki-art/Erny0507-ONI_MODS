@@ -1,4 +1,5 @@
-﻿using System;
+﻿using STRINGS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Primitive_Biome.Elements
     gasSurfaceAreaMultiplier: 1
     strength: 0.1
     highTemp: 2000
-    highTempTransitionTarget: MoltenCyanide
+    highTempTransitionTarget: Magma
     defaultTemperature:  290
     defaultMass: 700
     maxMass: 2000

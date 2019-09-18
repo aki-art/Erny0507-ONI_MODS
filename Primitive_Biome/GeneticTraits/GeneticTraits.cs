@@ -129,14 +129,21 @@ namespace Primitive_Biome.GeneticTraits
             {
                 var first = groups_list.First();
                 var temp = ChooseTraitFromGroup(groups.First(), true, true);
-                result.Add(temp);
+                if (temp!=null)
+                {
+result.Add(temp);
+                }
+                
                 groups_list = groups_list.Where(u => u.Id != first.Id).ToList();
             }
             for (int i = 0; i < number_negatives && groups.Count() > 0; i++)
             {
                 var first = groups.First();
                 var temp = ChooseTraitFromGroup(groups.First(), true, false);
-                result.Add(temp);
+                if (temp != null)
+                {
+                    result.Add(temp);
+                }
                 groups = groups.Where(u => u.Id != first.Id).ToList();
             }
             /*  int numTraitsToChoose = UnityEngine.Random.Range(2, 4);
@@ -180,7 +187,16 @@ namespace Primitive_Biome.GeneticTraits
             var t = traits.Where(x=>x.Group== group);
             if (specific)
             {
-                return Util.GetRandom(t.Where(x => x.Positive == positive).ToList()).ID;
+                var t2 = t.Where(x => x.Positive == positive).ToList();
+                if (t2.Count()>0)
+                {
+return Util.GetRandom(t2).ID;
+                }
+                else
+                {
+                    return null;
+                }
+                
             }
             else
             {

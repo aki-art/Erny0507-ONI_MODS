@@ -28,8 +28,8 @@ SimHashes.AluminumOre,
 SimHashes.Wolframite,
 SimHashes.Snow,
 };
-        public static List<Tag> Liquids = new List<Tag>(){
-SimHashes.Wate,
+        public static List<SimHashes> Liquids = new List<SimHashes>(){
+SimHashes.Water,
 SimHashes.DirtyWater,
 SimHashes.Brine,
 SimHashes.LiquidCarbonDioxide,
@@ -46,14 +46,15 @@ SimHashes.ContaminatedOxygen,
         protected override void Init()
         {
         Util.Shuffle(Gases);
-        element_input=Gases.first();
-        var complete_list=Gases.Except(element_input).ToList();
-         var complete_list=  complete_list.Concat(Liquids).Concat(Solids).ToList();
+        element_input=Gases.First();
+            List<SimHashes> complete_list = Gases.Where(x => x != element_input).ToList();
+            //Except(element_input).ToList();
+            complete_list =  complete_list.Concat(Liquids).Concat(Solids).ToList();
           Util.Shuffle(complete_list);
-          element_output=complete_list.first();
+          element_output=(SimHashes)complete_list.First();
         Description_custom="This critter skin absorbs small quantities of "+element_input+" and drops "+element_output;
-Description ="This critter skin absorbs small quantities of "+element_input+" and drops "+element_output;
-            UtilPB.CreateTrait(ID, Name, Description,
+
+            UtilPB.CreateTrait(ID, Name, Description_custom,
               on_add: delegate (GameObject go)
               {
                   ChooseTarget(go);

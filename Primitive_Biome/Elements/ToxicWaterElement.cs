@@ -43,7 +43,7 @@ elements:
     highTemp: 393.15
     lowTempTransitionTarget: ToxicIce
     highTempTransitionTarget: Steam
-    highTempTransitionOreId: Iron
+    highTempTransitionOreId: Cyanide
     highTempTransitionOreMassConversion: 0.005
     defaultTemperature: 310
     defaultMass: 1000
