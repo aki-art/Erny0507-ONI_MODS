@@ -49,5 +49,6 @@ namespace HatchMorphs
 
         // Token: 0x040066F4 RID: 26356
         public static readonly Tag TAG = TagManager.Create("BarkSkin");
+
     }
 }

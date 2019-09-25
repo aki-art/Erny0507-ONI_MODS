@@ -2,7 +2,7 @@ using STRINGS;
 
 namespace Primitive_Biome.Elements
 {
-    public class SedimentaryCalciumCarbonate 
+    public class SedimentaryCalciumCarbonateElement 
     {
         public const string Data = @"elements:
   - elementId: SedimentaryCalciumCarbonate

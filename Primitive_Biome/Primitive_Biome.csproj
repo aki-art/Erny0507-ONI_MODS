@@ -58,7 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buildings\GeneticSamplerConfig.cs" />
+    <Compile Include="Elements\CalciumElement.cs" />
     <Compile Include="Elements\CyanideElement.cs" />
+    <Compile Include="Elements\SedimentaryCalciumCarbonateElement.cs" />
     <Compile Include="Elements\ToxicWaterElement.cs" />
     <Compile Include="GeneticTraits\AIGeneticTraits.cs" />
     <Compile Include="GeneticTraits\GeneticTraitBuilder.cs" />

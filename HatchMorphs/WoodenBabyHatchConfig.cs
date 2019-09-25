@@ -2,10 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace HatchMorphs
 {
-    class WoodenBabyHatchConfig
+    class WoodenBabyHatchConfig : IEntityConfig
     {
+
+        public GameObject CreatePrefab()
+        {
+            GameObject hatch = WoodenHatchConfig.CreateHatch(
+                WoodenHatchConfig.BabyId,
+                WoodenHatchConfig.BabyName,
+                WoodenHatchConfig.BabyDescription,
+                "wooden_hatch_baby_kanim",
+                true);
+            EntityTemplates.ExtendEntityToBeingABaby(hatch, WoodenHatchConfig.Id, null);
+            return hatch;
+        }
+
+        public void OnPrefabInit(GameObject prefab)
+        {
+        }
+
+        public void OnSpawn(GameObject inst)
+        {
+        }
     }
+
 }

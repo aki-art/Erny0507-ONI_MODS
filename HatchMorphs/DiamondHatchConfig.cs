@@ -141,12 +141,12 @@ namespace HatchMorphs
         public const string BASE_TRAIT_ID = "HatchDiamondBaseTrait";
         public const string Id = "HatchDiamond";
         public static string Name = UI.FormatAsLink("Diamond Hatch", Id);
-        public const string Description = "It's body is full of shiny crystals.";
+        public const string Description = "Its body is full of shiny crystals.";
         public const string EggId = "HatchDiamondEgg";
         public static string EggName = UI.FormatAsLink("Diamond Hatchling Egg", EggId);
         public const string BabyId = "HatchDiamondBaby";
         public static string BabyName = UI.FormatAsLink("Diamond Hatchling", BabyId);
-        public const string BabyDescription = "It's tiny body is full of shiny crystals.";
+        public const string BabyDescription = "Its tiny body is full of shiny crystals.";
         public static EffectorValues tier = DECOR.BONUS.TIER3;
     }
 }

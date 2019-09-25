@@ -33,27 +33,28 @@ namespace HatchMorphs
     {
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-           "PrickleFlowerSeed"
+          (Tag)PrickleFlowerConfig.SEED_ID
         }), NectarConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-           "BasicSingleHarvestPlantSeed"
+            (Tag)BasicSingleHarvestPlantConfig.SEED_ID
+       
         }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-           "BasicFabricMaterialPlantSeed"
+           (Tag) BasicFabricMaterialPlantConfig.SEED_ID
         }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-           "ForestTreeSeed"
+            (Tag)ForestTreeConfig.SEED_ID
         }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-           "MushroomSeed"
+            (Tag)MushroomPlantConfig.SEED_ID
         }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
-           "SwampLilySeed"
+            (Tag)SwampLilyConfig.SEED_ID
         }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
        new Diet.Info(new HashSet<Tag>(new Tag[]
         {
@@ -119,8 +120,13 @@ namespace HatchMorphs
         {
              new FertilityMonitor.BreedingChance()
             {
-                egg = "HatchVeggieEgg".ToTag(),
-                weight = 0.30f
+                egg = HatchVeggieConfig.EGG_ID.ToTag(),
+                weight = 0.15f
+            },
+             new FertilityMonitor.BreedingChance()
+            {
+                egg = WoodenHatchConfig.EggId.ToTag(),
+                weight = 0.15f
             },
             new FertilityMonitor.BreedingChance()
             {

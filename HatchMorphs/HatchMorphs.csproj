@@ -73,6 +73,8 @@
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SweetPollenGerms.cs" />
+    <Compile Include="WoodenBabyHatchConfig.cs" />
+    <Compile Include="WoodenHatchConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

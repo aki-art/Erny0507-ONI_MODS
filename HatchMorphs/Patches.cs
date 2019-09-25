@@ -23,15 +23,42 @@ namespace HatchMorphs
                     DiamondHatchConfig.EggId.ToTag(),
                     SimHashes.Diamond.CreateTag(),
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
-            
+            TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
+                Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
+                .GetValue<System.Action>(
+                    DiamondHatchConfig.Id,
+                    DiamondHatchConfig.EggId.ToTag(),
+                    SimHashes.Katairite.CreateTag(),
+                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
                 .GetValue<System.Action>(
                     FloralHatchConfig.Id,
-                    FloralHatchConfig .EggId.ToTag(),
+                    FloralHatchConfig.EggId.ToTag(),
                     (Tag)PrickleFruitConfig.ID,
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
-
+            TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
+                Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
+                .GetValue<System.Action>(
+                    FloralHatchConfig.Id,
+                    FloralHatchConfig.EggId.ToTag(),
+                    (Tag)PrickleFlowerConfig.SEED_ID,
+                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+            TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
+                Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
+                .GetValue<System.Action>(
+                    WoodenHatchConfig.Id,
+                    WoodenHatchConfig.EggId.ToTag(),
+                 (Tag)TUNING.FOOD.FOOD_TYPES.BASICPLANTFOOD.Id,
+                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+            TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
+                Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
+                .GetValue<System.Action>(
+                    WoodenHatchConfig.Id,
+                    WoodenHatchConfig.EggId.ToTag(),
+                 WoodLogConfig.TAG,
+                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
             List<ExposureType> types = new List<ExposureType>();
 
             types.AddRange(GERM_EXPOSURE.TYPES);
@@ -78,7 +105,7 @@ namespace HatchMorphs
         {
             private static void Prefix(string eggId, List<FertilityMonitor.BreedingChance> egg_chances)
             {
-                if (eggId.Equals("HatchHardEgg"))
+                if (eggId.Equals(HatchHardConfig.EGG_ID))
                 {
                     egg_chances.Add(new FertilityMonitor.BreedingChance()
                     {
@@ -86,11 +113,16 @@ namespace HatchMorphs
                         weight = 0.02f
                     });
                 }
-                 if (eggId.Equals("HatchVeggieEgg"))
+                if (eggId.Equals(HatchVeggieConfig.EGG_ID))
                 {
                     egg_chances.Add(new FertilityMonitor.BreedingChance()
                     {
                         egg = FloralHatchConfig.EggId.ToTag(),
+                        weight = 0.02f
+                    });
+                    egg_chances.Add(new FertilityMonitor.BreedingChance()
+                    {
+                        egg = WoodenHatchConfig.EggId.ToTag(),
                         weight = 0.02f
                     });
                 }
@@ -182,7 +214,7 @@ namespace HatchMorphs
             }
 
         }*/
-        /*[HarmonyPatch(typeof(WoodGasGeneratorConfig))]
+        [HarmonyPatch(typeof(WoodGasGeneratorConfig))]
         [HarmonyPatch(nameof(WoodGasGeneratorConfig.DoPostConfigureComplete))]
         public static class PatchWoodGasGeneratorConfig
         {
@@ -196,12 +228,42 @@ namespace HatchMorphs
                 manualDeliveryKG2.refillMass = 180f;
                 manualDeliveryKG2.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
                 float max_stored_input_mass = 720f;
-                 EnergyGenerator energyGenerator2 = go.AddComponent<EnergyGenerator>();
-               energyGenerator2.powerDistributionOrder = 8;
-               energyGenerator2.hasMeter = true;
-               energyGenerator2.formula = EnergyGenerator.CreateSimpleFormula(BarkSkinConfig.TAG, 1.2f, max_stored_input_mass, SimHashes.CarbonDioxide, 0.17f, false, new CellOffset(0, 1), 383.15f);
+                EnergyGenerator energyGenerator2 = go.AddComponent<EnergyGenerator>();
+                energyGenerator2.powerDistributionOrder = 8;
+                energyGenerator2.hasMeter = true;
+                energyGenerator2.formula = EnergyGenerator.CreateSimpleFormula(BarkSkinConfig.TAG, 1.2f, max_stored_input_mass, SimHashes.CarbonDioxide, 0.17f, false, new CellOffset(0, 1), 383.15f);
             }
-        }*/
+        }
+
+        [HarmonyPatch(typeof(EthanolDistilleryConfig))]
+        [HarmonyPatch(nameof(EthanolDistilleryConfig.DoPostConfigureComplete))]
+        public static class PatchEthanolDistilleryConfig
+        {
+            public static void Postfix(ref GameObject go)
+            {
+                var storage = go.GetComponent<Storage>();
+                ManualDeliveryKG manualDeliveryKG2 = go.AddComponent<ManualDeliveryKG>();
+                manualDeliveryKG2.SetStorage(storage);
+                manualDeliveryKG2.requestedItemTag = BarkSkinConfig.TAG;
+                manualDeliveryKG2.capacity = 400f;
+                manualDeliveryKG2.refillMass = 150f;
+                manualDeliveryKG2.choreTypeIDHash = Db.Get().ChoreTypes.MachineFetch.IdHash;
+
+                //ElementConverter elementConverter = go.GetComponent<ElementConverter>();
+                ElementConverter elementConverter2 = go.AddComponent<ElementConverter>();
+                elementConverter2.consumedElements = new ElementConverter.ConsumedElement[1]
+                {
+                  new ElementConverter.ConsumedElement(BarkSkinConfig.TAG, 1f)
+                };
+                elementConverter2.outputElements = new ElementConverter.OutputElement[3]
+                {
+                  new ElementConverter.OutputElement(0.5f, SimHashes.Ethanol, 346.5f, false, true, 0.0f, 0.5f, 1f, byte.MaxValue, 0),
+                  new ElementConverter.OutputElement(0.3333333f, SimHashes.ToxicSand, 366.5f, false, true, 0.0f, 0.5f, 1f, byte.MaxValue, 0),
+                  new ElementConverter.OutputElement(0.1666667f, SimHashes.CarbonDioxide, 366.5f, false, false, 0.0f, 0.5f, 1f, byte.MaxValue, 0)
+                };
+            }
+        }
+
         [HarmonyPatch(typeof(CreatureCalorieMonitor.Stomach))]
         [HarmonyPatch(nameof(CreatureCalorieMonitor.Stomach.Poop))]
         public static class PatchPoop
@@ -220,7 +282,7 @@ namespace HatchMorphs
                 Debug.Log("About to patch poop");
                 // Debug.Log(___owner);
                 Debug.Log(___owner.name);
-                if (___owner.PrefabID() == FloralHatchConfig.Id ||___owner.PrefabID() == FloralHatchConfig.BabyId )
+                if (___owner.PrefabID() == FloralHatchConfig.Id || ___owner.PrefabID() == FloralHatchConfig.BabyId || ___owner.PrefabID() == WoodenHatchConfig.Id || ___owner.PrefabID() == WoodenHatchConfig.BabyId)
                 {
                     float num = 0f;//consumed calories acumulated
                     Tag tag = Tag.Invalid;
@@ -264,30 +326,57 @@ namespace HatchMorphs
                         GameObject gameObject2 = GameUtil.KInstantiate(prefab, Grid.SceneLayer.Ore, null, 0);
                         Debug.Log("1");
                         Debug.Log(prefab);
-                        // EdiblesManager.FoodInfo food_info = EdiblesManager.GetFoodInfo(tag.ToString());
-                        var out_put_edible = prefab.GetComponent<Edible>();
+                        int units_c = 0;
+                        PrimaryElement component2 = null;
+                        if (___owner.PrefabID() == WoodenHatchConfig.Id || ___owner.PrefabID() == WoodenHatchConfig.BabyId)
+                        {
+                            // EdiblesManager.FoodInfo food_info = EdiblesManager.GetFoodInfo(tag.ToString());
+                            var out_put = prefab.GetComponent<PrimaryElement>();
 
-                        //Debug.Log(out_put_edible);
-                        var out_put_food_info = out_put_edible.FoodInfo;
-                        //Debug.Log(out_put_food_info);
-                        // var kcal_per_unit = out_put_edible.CaloriesPerUnit;
-                        int units_c = (int)(num / out_put_food_info.CaloriesPerUnit);
-                        Facing component = ___owner.GetComponent<Facing>();
-                        //int cell = component.GetFrontCell();
-                        Debug.Log(num);
-                        Debug.Log(out_put_food_info.CaloriesPerUnit);
-                        Debug.Log(units_c);
+                            //Debug.Log(out_put_edible);
 
-
-                        int num3 = Grid.PosToCell(___owner.transform.GetPosition());
-                        var pos = Grid.CellToPosCCC(num3, Grid.SceneLayer.Ore);
-                        gameObject2.transform.SetPosition(pos);
-
+                            //Debug.Log(out_put_food_info);
+                            // var kcal_per_unit = out_put_edible.CaloriesPerUnit;
+                            units_c = (int)(num / out_put.Mass);
+                            Facing component = ___owner.GetComponent<Facing>();
+                            //int cell = component.GetFrontCell();
+                            Debug.Log(num);
+                            Debug.Log(out_put);
+                            Debug.Log(units_c);
 
 
-                        PrimaryElement component2 = gameObject2.GetComponent<PrimaryElement>();
-                        component2.Mass = num;
-                        //component2.Units = units_c;
+                            int num3 = Grid.PosToCell(___owner.transform.GetPosition());
+                            var pos = Grid.CellToPosCCC(num3, Grid.SceneLayer.Ore);
+                            gameObject2.transform.SetPosition(pos);
+                            component2 = gameObject2.GetComponent<PrimaryElement>();
+                            //component2.Mass = num;
+                            component2.Units = units_c;
+
+                        }
+                        else
+                        {
+                            // EdiblesManager.FoodInfo food_info = EdiblesManager.GetFoodInfo(tag.ToString());
+                            var out_put_edible = prefab.GetComponent<Edible>();
+
+                            //Debug.Log(out_put_edible);
+                            var out_put_food_info = out_put_edible.FoodInfo;
+                            //Debug.Log(out_put_food_info);
+                            // var kcal_per_unit = out_put_edible.CaloriesPerUnit;
+                            units_c = (int)(num / out_put_food_info.CaloriesPerUnit);
+                            Facing component = ___owner.GetComponent<Facing>();
+                            //int cell = component.GetFrontCell();
+                            Debug.Log(num);
+                            Debug.Log(out_put_food_info.CaloriesPerUnit);
+                            Debug.Log(units_c);
+
+
+                            int num3 = Grid.PosToCell(___owner.transform.GetPosition());
+                            var pos = Grid.CellToPosCCC(num3, Grid.SceneLayer.Ore);
+                            gameObject2.transform.SetPosition(pos);
+                            component2 = gameObject2.GetComponent<PrimaryElement>();
+                            component2.Mass = num;
+                            //component2.Units = units_c;
+                        }
 
                         float temperature = ___owner.GetComponent<PrimaryElement>().Temperature;
                         component2.Temperature = temperature;
