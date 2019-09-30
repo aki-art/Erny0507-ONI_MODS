@@ -15,6 +15,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
 
         public override Group Group => Group.LifespanGroup;
         public override bool Positive => false;
+        public override bool CustomDescription => false;
         protected override void Init()
         {
             UtilPB.CreateTrait(ID, Name, Description,

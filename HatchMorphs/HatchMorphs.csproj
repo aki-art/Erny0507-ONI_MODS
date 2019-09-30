@@ -63,6 +63,7 @@
     <Compile Include="CreatureLightMonitor.cs" />
     <Compile Include="DiamondBabyHatchConfig.cs" />
     <Compile Include="DiamondHatchConfig.cs" />
+    <Compile Include="EthanolDistillery.cs" />
     <Compile Include="FilamentsConfig.cs" />
     <Compile Include="FloralAntihistamineConfig.cs" />
     <Compile Include="FloralBabyHatchConfig.cs" />

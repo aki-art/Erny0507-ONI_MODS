@@ -61,7 +61,8 @@ namespace Primitive_Biome.Buildings
             BuildingTemplates.CreateComplexFabricatorStorage(go, fabricator);
             fabricatorWorkable.overrideAnims = new KAnimFile[1]
             {
-      Assets.GetAnim((HashedString) "anim_interacts_supermaterial_refinery_kanim")
+                //Assets.GetAnim((HashedString) "anim_interacts_supermaterial_refinery_kanim")
+                Assets.GetAnim((HashedString) "anim_interacts_metalrefinery_kanim")
             };
             Prioritizable.AddRef(go);
 

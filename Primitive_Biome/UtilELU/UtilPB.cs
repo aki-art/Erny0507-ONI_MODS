@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Klei.AI;
+using Primitive_Biome.GeneticTraits;
 
 namespace Primitive_Biome
 {
@@ -140,5 +141,28 @@ namespace Primitive_Biome
                 light.Lux = lux;
             }
         }
+        public static void ApplyTint(GameObject go, Color color)
+        {
+            var kAnimBase = go.GetComponent<KAnimControllerBase>();
+
+            kAnimBase.TintColour = color;
+
+        }
+        public static void ApplyTint(Capturable go, Color color)
+        {
+            var kAnimBase = go.GetComponent<KAnimControllerBase>();
+
+            kAnimBase.TintColour = color;
+            
+
+        }
+       /* public static Color recoverColor(ColorHolderComponent colorHolder)
+        {
+            return new Color(colorHolder.r, colorHolder.g, colorHolder.b, colorHolder.a);
+        }
+        public static void setColor(ColorHolderComponent colorHolder, Color color)
+        {
+            colorHolder.r = color.r; colorHolder.g = color.g; colorHolder.b = color.b; colorHolder.a = color.a;
+        }*/
     }
 }

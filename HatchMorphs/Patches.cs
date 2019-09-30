@@ -249,11 +249,11 @@ namespace HatchMorphs
                 manualDeliveryKG2.refillMass = 150f;
                 manualDeliveryKG2.choreTypeIDHash = Db.Get().ChoreTypes.MachineFetch.IdHash;
 
-                //ElementConverter elementConverter = go.GetComponent<ElementConverter>();
+               // ElementConverter elementConverter2 = go.GetComponent<ElementConverter>();
                 ElementConverter elementConverter2 = go.AddComponent<ElementConverter>();
                 elementConverter2.consumedElements = new ElementConverter.ConsumedElement[1]
                 {
-                  new ElementConverter.ConsumedElement(BarkSkinConfig.TAG, 1f)
+                  new ElementConverter.ConsumedElement(BarkSkinConfig.TAG_2, 1f)
                 };
                 elementConverter2.outputElements = new ElementConverter.OutputElement[3]
                 {
@@ -261,6 +261,14 @@ namespace HatchMorphs
                   new ElementConverter.OutputElement(0.3333333f, SimHashes.ToxicSand, 366.5f, false, true, 0.0f, 0.5f, 1f, byte.MaxValue, 0),
                   new ElementConverter.OutputElement(0.1666667f, SimHashes.CarbonDioxide, 366.5f, false, false, 0.0f, 0.5f, 1f, byte.MaxValue, 0)
                 };
+                //AlgaeDistillery algaeDistillery = go.GetComponent<AlgaeDistillery>();
+                go.UpdateComponentRequirement<AlgaeDistillery>(false);
+                //UnityEngine.Object.Destroy(algaeDistillery);
+
+                go.AddOrGet<EthanolDistillery>();
+     
+
+
             }
         }
 

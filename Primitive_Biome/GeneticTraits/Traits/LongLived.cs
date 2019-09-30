@@ -17,7 +17,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public override Group Group => Group.LifespanGroup;
 
         public override bool Positive => true;
-
+        public override bool CustomDescription => false;
         protected override void ApplyTrait(GameObject go)
         {
             var modifiers = go.GetComponent<Modifiers>();

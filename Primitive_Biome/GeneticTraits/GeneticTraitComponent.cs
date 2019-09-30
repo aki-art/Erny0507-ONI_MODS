@@ -11,9 +11,9 @@ namespace Primitive_Biome.GeneticTraits
 
     public class GeneticTraitComponent : KMonoBehaviour, ISaveLoadable
     {
-        [SerializeField]
-        [Serialize]
-        private bool appliedCritterTraits = false;
+       // [SerializeField]
+       // [Serialize]
+        //private List<GeneticTraitBuilder> traits = new List<GeneticTraitBuilder> ();
         private static readonly EventSystem.IntraObjectHandler<GeneticTraitComponent> OnSpawnedFromDelegate =
               new EventSystem.IntraObjectHandler<GeneticTraitComponent>(OnSpawnedFrom);
 
@@ -30,13 +30,10 @@ namespace Primitive_Biome.GeneticTraits
 
         protected override void OnSpawn()
         {
-            if (!appliedCritterTraits)
-            {
+           
                // var traitsToAdd = GeneticTraits.ChooseTraits(gameObject).Select(Db.Get().traits.Get);
                // addTraits(traitsToAdd);
 
-                appliedCritterTraits = true;
-            }
 
         }
 
@@ -49,7 +46,6 @@ namespace Primitive_Biome.GeneticTraits
             var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
             addTraits(traitsToAdd);
 
-            appliedCritterTraits = true;
         }
 
         // Adds the provided list of traits to this object's Traits component
@@ -120,6 +116,24 @@ namespace Primitive_Biome.GeneticTraits
                 }
             }
         }
+        public bool IsAdult()
+        {
+            if (IsEgg())
+            {
+                return false;
+            }
+            else
+            {
+                if (IsBaby())
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
         public void SetName(string newName)
         {
 
@@ -182,10 +196,7 @@ namespace Primitive_Biome.GeneticTraits
 
         }
 
-        public void ResetToPrefabName()
-        {
-
-        }
+     
     }
 }
 

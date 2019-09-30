@@ -10,6 +10,7 @@ using UnityEngine;
 using Klei.AI;
 using System.Diagnostics;
 using Primitive_Biome.GeneticTraits;
+using Primitive_Biome.GeneticTraits.Traits;
 
 namespace Primitive_Biome.Patches
 {
@@ -101,12 +102,96 @@ namespace Primitive_Biome.Patches
                         if (!GeneticTraits.GeneticTraits.IsSupportedTrait(trait.Id)) continue;
                         var color = trait.PositiveTrait ? Constants.POSITIVE_COLOR : Constants.NEGATIVE_COLOR;
                         TraitsDrawer.NewLabel($"<color=#{color.ToHexString()}>{trait.Name}</color>").Tooltip(trait.GetTooltip());
+                        var traitComponent = GeneticTraits.GeneticTraits.getTrait(trait.Id);
+                        if (traitComponent.CustomDescription)
+                        {
+                            var textholders = target.GetComponents<StringHolderComponent>();
+                            var text = textholders.Where(x => x.id == trait.Id).First();
+                            if (text.text != null)
+                            {
+                                TraitsDrawer.NewLabel(text.text);
+                            }
+
+
+                        }
                     }
                     TraitsDrawer.EndDrawing();
                 }
                 else
                 {
                     TraitsPanel?.gameObject?.SetActive(false);
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(OverlayScreen))]
+        [HarmonyPatch("ToggleOverlay")]
+        public static class OverlayMenu_OnOverlayChanged_Patch
+        {
+            public static void Prefix(HashedString newMode, ref OverlayScreen __instance, out bool __state)
+            {
+                var val = Traverse.Create(__instance).Field("currentModeInfo").Field("mode").Method("ViewMode").GetValue<HashedString>();
+
+                __state = val == OverlayModes.Decor.ID && newMode != OverlayModes.Decor.ID;
+            }
+            public static void Postfix(bool __state)
+            {
+                if (!__state)
+                {
+                    return;
+                }
+
+                foreach (var capturable in Components.Capturables.Items)
+                {
+                    var gtc = capturable.GetComponent<GeneticTraitComponent>();
+                    if (gtc != null)
+                    {
+                        var flag = false;
+                        if (gtc.IsEgg())
+                        {
+                            var fromTraits = capturable.GetComponent<AIGeneticTraits>();
+                            if (fromTraits != null)
+                            {
+
+                                var traits_present = fromTraits.GetTraitIds();
+                                var t = traits_present.Where(x => x == (new OffColor()).ID).First();
+                                if (t != null)
+                                {
+                                    flag = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var fromTraits = capturable.GetComponent<Traits>();
+                            if (fromTraits != null)
+                            {
+
+                                var traits_present = fromTraits.GetTraitIds();
+                                var t = traits_present.Where(x => x == (new OffColor()).ID).First();
+                                if (t != null)
+                                {
+                                    flag = true;
+                                }
+                            }
+                        }
+                        if (flag)
+                        {
+                            var text_holders = capturable.GetComponents<StringHolderComponent>();
+                            if (text_holders.Length > 0)
+                            {
+                                var text_holder = text_holders.Where(x => x.id == OffColor.id_color).First();
+                                if (text_holder != null)
+                                {
+                                    //UtilPB.ApplyTint(capturable, text_holder.color);
+                                }
+                            }
+
+
+                        }
+
+                    }
+
                 }
             }
         }

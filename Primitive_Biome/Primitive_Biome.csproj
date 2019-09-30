@@ -34,14 +34,17 @@
     <Reference Include="0Harmony">
       <HintPath>..\..\..\dlls\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\dlls\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\..\dlls\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -58,23 +61,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buildings\GeneticSamplerConfig.cs" />
+    <Compile Include="Critters\SturdyBabyHatchConfig.cs" />
+    <Compile Include="Critters\SturdyHatchConfig.cs" />
     <Compile Include="Elements\CalciumElement.cs" />
     <Compile Include="Elements\CyanideElement.cs" />
     <Compile Include="Elements\SedimentaryCalciumCarbonateElement.cs" />
     <Compile Include="Elements\ToxicWaterElement.cs" />
     <Compile Include="GeneticTraits\AIGeneticTraits.cs" />
+    <Compile Include="GeneticTraits\ColorHolderComponent.cs" />
     <Compile Include="GeneticTraits\GeneticTraitBuilder.cs" />
     <Compile Include="GeneticTraits\GeneticTraitComponent.cs" />
     <Compile Include="GeneticTraits\GeneticTraits.cs" />
     <Compile Include="GeneticTraits\Groups.cs" />
+    <Compile Include="GeneticTraits\StringHolderComponent.cs" />
+    <Compile Include="GeneticTraits\Traits\Efficient.cs" />
+    <Compile Include="GeneticTraits\Traits\ElementConverterBadTrait.cs" />
     <Compile Include="GeneticTraits\Traits\ElementConverterTrait.cs" />
     <Compile Include="GeneticTraits\Traits\Fast.cs" />
     <Compile Include="GeneticTraits\Traits\Fertile.cs" />
+    <Compile Include="GeneticTraits\Traits\Finicky.cs" />
+    <Compile Include="GeneticTraits\Traits\GermEmitterTrait.cs" />
+    <Compile Include="GeneticTraits\Traits\Gregarious.cs" />
+    <Compile Include="GeneticTraits\Traits\Inefficient.cs" />
     <Compile Include="GeneticTraits\Traits\Infertile.cs" />
     <Compile Include="GeneticTraits\Traits\LongLived.cs" />
+    <Compile Include="GeneticTraits\Traits\OffColor.cs" />
+    <Compile Include="GeneticTraits\Traits\Resilient.cs" />
     <Compile Include="GeneticTraits\Traits\ShortLived.cs" />
     <Compile Include="GeneticTraits\Traits\Slow.cs" />
-    <Compile Include="LooseEntities\Fossils\PrimitiveHatchFossilConfig.cs" />
+    <Compile Include="Fossils\SturdyHatchFossilConfig.cs" />
+    <Compile Include="GeneticTraits\Traits\Solitaire.cs" />
     <Compile Include="PatchesGeneral.cs" />
     <Compile Include="Patches\ElementsPatch.cs" />
     <Compile Include="Patches\GeneticSamplerPatch.cs" />
@@ -87,8 +103,6 @@
   <ItemGroup>
     <Folder Include="anim\" />
     <Folder Include="Clothing\" />
-    <Folder Include="Critters\" />
-    <Folder Include="GeneticTraits\Traits\ElementEmitter\" />
     <Folder Include="Plants\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

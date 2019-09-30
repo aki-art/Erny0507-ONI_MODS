@@ -103,12 +103,14 @@ namespace HatchMorphs
             //def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
             //Db.Get().Diseases.Add();
             def.diseaseIdx = Db.Get().Diseases.GetIndex(SweetPollenGerms.ID);
-            
-            //def.singleEmitQuantity = 1000000*10;
+           
 
             def.emitFrequency = 1f;
-            def.averageEmitPerSecond = 1000*20;
-            def.singleEmitQuantity = 1000000;
+            def.averageEmitPerSecond = 1000*40;
+            def.singleEmitQuantity = 0;
+
+      
+
             IlluminationVulnerable illuminationVulnerable = wildCreature.AddOrGet<IlluminationVulnerable>();
             illuminationVulnerable.SetPrefersDarkness(false);
 

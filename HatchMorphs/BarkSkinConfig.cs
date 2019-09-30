@@ -11,7 +11,6 @@ namespace HatchMorphs
     {
         public GameObject CreatePrefab()
         {
-            string id = "BarkSkin";
             string name = "Bark Skin";
             string desc = "Are produced by wooden hatch";
             float mass = 1f;//too litle, add more later
@@ -28,7 +27,7 @@ namespace HatchMorphs
             GameTags.IndustrialIngredient,
             GameTags.Organics
         };
-            GameObject gameObject = EntityTemplates.CreateLooseEntity(id, name, desc, mass, unitMass, anim, initialAnim, sceneLayer, collisionShape, width, height, isPickupable, 0, SimHashes.Creature, additionalTags);
+            GameObject gameObject = EntityTemplates.CreateLooseEntity(ID, name, desc, mass, unitMass, anim, initialAnim, sceneLayer, collisionShape, width, height, isPickupable, 0, SimHashes.Creature, additionalTags);
             gameObject.AddOrGet<EntitySplitter>();
             gameObject.AddOrGet<SimpleMassStatusItem>();
             return gameObject;
@@ -46,8 +45,7 @@ namespace HatchMorphs
 
         // Token: 0x040066F3 RID: 26355
         public const string ID = "BarkSkin";
-
-        // Token: 0x040066F4 RID: 26356
+        public static  Tag TAG_2 = TagManager.Create("BarkSkin", "Bark Skin");
         public static readonly Tag TAG = TagManager.Create("BarkSkin");
 
     }

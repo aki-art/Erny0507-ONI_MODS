@@ -15,7 +15,11 @@ namespace Primitive_Biome.GeneticTraits
       new Fertile(),
       new Infertile(),
       new Slow(),
-      new ShortLived()
+      new ShortLived(),
+      new ElementConverterTrait(),
+      new GermEmitterTrait(),
+     new OffColor()
+
     };
 
         private static readonly ILookup<string, GeneticTraitBuilder> traitLookup = traits.ToLookup(trait => trait.ID);
@@ -32,7 +36,10 @@ namespace Primitive_Biome.GeneticTraits
             Array.ForEach(traits, trait => trait.CreateTrait());
             traitsInitialized = true;
         }
-
+        public static GeneticTraitBuilder getTrait(string traitId)
+        {
+            return traits.Where(x => x.ID == traitId).First();
+        }
         /**
          * Chooses a random set of traits between 0 and 4. (max is capped randomly between 2 and 4)
          * Only applied traits that are relevant, i.e. Glowing trait on Shine Bug doesn't make sense.
@@ -80,7 +87,7 @@ namespace Primitive_Biome.GeneticTraits
                 Debug.Log("Traits presents");
                 var traits_present = fromTraits.GetTraitIds();
                 var traits_locked = new List<GeneticTraitBuilder>();
-                var groups_locked_list= new List<Group>();
+                var groups_locked_list = new List<Group>();
                 foreach (String t in traits_present)
                 {
                     var trait_locked = traits.Where(x => x.ID == t).FirstOrDefault();
@@ -89,12 +96,12 @@ namespace Primitive_Biome.GeneticTraits
                     groups_locked_list.Add(trait_locked.Group);
                     Debug.Log(trait_locked);
                 }
-                
+
                 Debug.Log("groups_locked");
                 DebugHelper.LogForEach(groups_locked_list);
                 //groups = groups.Except(groups_locked);
-               
-                
+
+
                 List<Group> result_ = groups.Except(groups_locked_list).ToList();
                 groups = result_;
 
@@ -129,13 +136,17 @@ namespace Primitive_Biome.GeneticTraits
             {
                 var first = groups_list.First();
                 var temp = ChooseTraitFromGroup(groups.First(), true, true);
-                if (temp!=null)
+                if (temp != null)
                 {
-result.Add(temp);
+                    result.Add(temp);
                 }
-                
+
                 groups_list = groups_list.Where(u => u.Id != first.Id).ToList();
             }
+            //for testing
+            result.Clear();
+            result.Add((new OffColor()).ID);
+
             for (int i = 0; i < number_negatives && groups.Count() > 0; i++)
             {
                 var first = groups.First();
@@ -184,19 +195,19 @@ result.Add(temp);
         }
         private static string ChooseTraitFromGroup(Group group, bool specific = false, bool positive = true)
         {
-            var t = traits.Where(x=>x.Group== group);
+            var t = traits.Where(x => x.Group == group);
             if (specific)
             {
                 var t2 = t.Where(x => x.Positive == positive).ToList();
-                if (t2.Count()>0)
+                if (t2.Count() > 0)
                 {
-return Util.GetRandom(t2).ID;
+                    return Util.GetRandom(t2).ID;
                 }
                 else
                 {
                     return null;
                 }
-                
+
             }
             else
             {
@@ -211,5 +222,6 @@ return Util.GetRandom(t2).ID;
          */
         public static bool IsSupportedTrait(string traitId) => traitLookup.Contains(traitId);
         public static bool IsSupportedTrait(Klei.AI.Trait trait) => IsSupportedTrait(trait.Id);
+        
     }
 }

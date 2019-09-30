@@ -13,6 +13,11 @@ namespace Primitive_Biome.GeneticTraits
         public static readonly Group FertilityGroup = new Group("FertilityGroup", 0.1f, inst => HasAmount(inst, Db.Get().Amounts.Fertility));
         public static readonly Group ElementConverterGroup = new Group("ElementConverterGroup", 0.1f);
         public static readonly Group GermEmitterGroup = new Group("GermEmitterGroup", 0.1f);
+        public static readonly Group ColorGroup = new Group("ColorGroup", 0.1f);
+        public static readonly Group HerdingGroup = new Group("HerdingGroup", 0.1f);
+        public static readonly Group EfficiencyGroup = new Group("EfficiencyGroup", 0.1f);
+        public static readonly Group TemperatureSensitivityGroup = new Group("TemperatureSensitivityGroup", 0.1f);
+
         /*public static readonly Group ElementEmitterGroup = new Group("ElementEmitterGroup", 0.1f);
         public static readonly Group ElementAbsorberGroup = new Group("ElementAbsorberGroup", 0.1f);
         
@@ -24,7 +29,7 @@ namespace Primitive_Biome.GeneticTraits
         //public static readonly Group GrowingUpSpeedGroup = new Group("GrowingUpSpeedGroup", 0.05f);
         public static readonly List<Group> groups = new List<Group>()
         {
-            SpeedGroup,LifespanGroup,FertilityGroup
+            SpeedGroup,LifespanGroup,FertilityGroup,ElementConverterGroup,GermEmitterGroup,ColorGroup,HerdingGroup,EfficiencyGroup,TemperatureSensitivityGroup
         };
 
         public Group(string id, float probability, Predicate<GameObject> requirement = null, List<string> exceptions = null)

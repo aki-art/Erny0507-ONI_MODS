@@ -15,6 +15,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
 
         public override Group Group => Group.FertilityGroup;
         public override bool Positive => false;
+        public override bool CustomDescription => false;
         protected override void ApplyTrait(GameObject go)
         {
             var modifiers = go.GetComponent<Modifiers>();

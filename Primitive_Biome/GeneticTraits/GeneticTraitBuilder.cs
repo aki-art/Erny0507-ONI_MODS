@@ -16,6 +16,7 @@ namespace Primitive_Biome.GeneticTraits
 
         public abstract Group Group { get; }
         public abstract bool Positive { get; }
+        public abstract bool CustomDescription { get; }
         protected abstract void Init();
 
         public void CreateTrait()
@@ -25,14 +26,18 @@ namespace Primitive_Biome.GeneticTraits
         protected abstract void ApplyTrait(GameObject go);
         protected void ChooseTarget(GameObject go)
         {
-            if (go.GetComponent<GeneticTraitComponent>().IsEgg() && Group.OnlyEgg)
+            if (Group.OnlyEgg)
             {
-                ApplyTrait(go);
+                if (go.GetComponent<GeneticTraitComponent>().IsEgg() )
+                {
+                    ApplyTrait(go);
+                }
             }
             else
             {
                 ApplyTrait(go);
             }
+            
         }
         public new string ToString => ID;
     }

@@ -14,6 +14,8 @@ namespace Primitive_Biome.GeneticTraits.Traits
 
         public override Group Group => Group.SpeedGroup;
         public override bool Positive => true;
+        public override bool CustomDescription => false;
+
         protected override void ApplyTrait(GameObject go)
         {
             var navigator = go.GetComponent<Navigator>();
