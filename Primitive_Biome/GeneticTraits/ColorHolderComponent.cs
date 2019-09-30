@@ -13,7 +13,7 @@ namespace Primitive_Biome.GeneticTraits
     {
         //[Serialize]
         //public float r, g, b, a;
-        [SerializeField]
+        [Serialize]
         public Color color;
         protected override void OnPrefabInit()
         {
@@ -24,5 +24,9 @@ namespace Primitive_Biome.GeneticTraits
         {
             base.OnSpawn();
         }
+        protected override void OnCleanUp()
+        {
+            base.OnCleanUp();
         }
+    }
 }

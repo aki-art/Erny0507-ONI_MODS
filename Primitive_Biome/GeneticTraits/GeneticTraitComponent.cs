@@ -196,7 +196,12 @@ namespace Primitive_Biome.GeneticTraits
 
         }
 
-     
+        protected override void OnCleanUp()
+        {
+            base.OnCleanUp();
+            Unsubscribe((int)GameHashes.SpawnedFrom, OnSpawnedFromDelegate);
+            Unsubscribe((int)GameHashes.LayEgg, OnLayEggDelegate);
+        }
     }
 }
 
