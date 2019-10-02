@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\HelloWorld\packages\ILMerge.3.0.29\build\ILMerge.props" Condition="Exists('..\..\HelloWorld\packages\ILMerge.3.0.29\build\ILMerge.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -86,6 +89,7 @@
     <Compile Include="GeneticTraits\Traits\Infertile.cs" />
     <Compile Include="GeneticTraits\Traits\LongLived.cs" />
     <Compile Include="GeneticTraits\Traits\OffColor.cs" />
+    <Compile Include="GeneticTraits\Traits\OffColorComponent.cs" />
     <Compile Include="GeneticTraits\Traits\Resilient.cs" />
     <Compile Include="GeneticTraits\Traits\ShortLived.cs" />
     <Compile Include="GeneticTraits\Traits\Slow.cs" />
@@ -105,9 +109,18 @@
     <Folder Include="Clothing\" />
     <Folder Include="Plants\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "C:\Users\Erny\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
 </PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\HelloWorld\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\HelloWorld\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+  </Target>
 </Project>

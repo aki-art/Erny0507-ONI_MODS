@@ -1,0 +1,6 @@
+D:\modding\vs_projects\ONI_MODS\Asteroid\bin\Debug\Asteroid.dll
+D:\modding\vs_projects\ONI_MODS\Asteroid\bin\Debug\Asteroid.pdb
+D:\modding\vs_projects\ONI_MODS\Asteroid\obj\Debug\Asteroid.csprojAssemblyReference.cache
+D:\modding\vs_projects\ONI_MODS\Asteroid\obj\Debug\Asteroid.csproj.CoreCompileInputs.cache
+D:\modding\vs_projects\ONI_MODS\Asteroid\obj\Debug\Asteroid.dll
+D:\modding\vs_projects\ONI_MODS\Asteroid\obj\Debug\Asteroid.pdb
