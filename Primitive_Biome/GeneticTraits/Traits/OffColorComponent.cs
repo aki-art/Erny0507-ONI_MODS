@@ -23,11 +23,19 @@ namespace Primitive_Biome.GeneticTraits.Traits
         }
         protected void OnSpawn(GameObject go)
         {
-            
+        if(isSet){
+        randomizeColor()
+        }
+               UtilPB.ApplyTint(go, color);
         }
         protected override void OnCleanUp()
         {
             base.OnCleanUp();
+        }
+        private void randomizeColor(){
+       var colors=OffColor.colors;
+        Util.Shuffle(colors);
+                    color = colors.First();
         }
     }
 }
