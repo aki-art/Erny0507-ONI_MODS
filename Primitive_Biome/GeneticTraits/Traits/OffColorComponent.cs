@@ -25,6 +25,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         {
         if(!isSet){
         randomizeColor()
+        isSet=true;
         }
                UtilPB.ApplyTint(go, color);
         }
