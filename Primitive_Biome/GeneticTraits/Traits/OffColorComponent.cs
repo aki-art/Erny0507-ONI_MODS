@@ -23,7 +23,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         }
         protected void OnSpawn(GameObject go)
         {
-        if(isSet){
+        if(!isSet){
         randomizeColor()
         }
                UtilPB.ApplyTint(go, color);
