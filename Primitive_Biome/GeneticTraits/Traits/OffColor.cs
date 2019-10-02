@@ -18,7 +18,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public override Group Group => Group.GermEmitterGroup;
         public override bool CustomDescription => false;
         public override bool Positive => true;
-        public List<Color> colors = new List<Color>(){
+        public static List<Color> colors = new List<Color>(){
             new Color (130/255f,255/255f,130/255f, 1f), //Color.green
             new Color (130/255f,130/255f,255/255f, 1f),//Color.blue,
           new Color (255/255f,128/255f,128/255f, 1f), //Color.red
@@ -49,8 +49,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
                     var text_holder = text_holders.First();
                     if (text_holder != null)
                     {
-
-                        Color color = text_holder.color;//UtilPB.recoverColor(text_holder);
+                        Color color = text_holder.color;
                         DebugHelper.LogVar(color);
                         UtilPB.ApplyTint(go, color);
                         flag = false;
@@ -61,16 +60,9 @@ namespace Primitive_Biome.GeneticTraits.Traits
                 {
                     Util.Shuffle(colors);
                     color = colors.First();
-                    //color.a = color.a / 2;
                     UtilPB.ApplyTint(go, color);
-                    /*var string_holder = go.AddComponent<StringHolderComponent>();
-
-                    string_holder.text = "This critter skin has soft tint of " + color.ToString()+ "";
-                    string_holder.id = ID;*/
-
                     var color_holder = go.AddOrGet<ColorHolderComponent>();
                     color_holder.color = color;
-                    //UtilPB.setColor(color_holder, color);
 
 
                 }

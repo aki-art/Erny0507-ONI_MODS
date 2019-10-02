@@ -1,22 +1,22 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KSerialization;
 using UnityEngine;
-using Color = UnityEngine.Color;
-
 namespace Primitive_Biome.GeneticTraits.Traits
 {
     [SerializationConfig(MemberSerialization.OptIn)]
-    class OffColorComponent : KMonoBehaviour, ISaveLoadable
+    class ElementConverterComponent : KMonoBehaviour, ISaveLoadable
 
     {
-        [Serialize]
+    [Serialize]
         public bool isSet=false;
-        [Serialize]
-        public Color color;
-        protected override void OnPrefabInit()
+         [Serialize]
+    public SimHashes element_input;
+     [Serialize]
+        public SimHashes element_output;
+  protected override void OnPrefabInit()
         {
             base.OnPrefabInit();
 
@@ -33,7 +33,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         {
             base.OnCleanUp();
         }
-        private void randomizeColor(){
+        private void setConfiguration(){
        var colors=OffColor.colors;
         Util.Shuffle(colors);
                     color = colors.First();
