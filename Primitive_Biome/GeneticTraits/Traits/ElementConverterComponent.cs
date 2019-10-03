@@ -12,6 +12,8 @@ namespace Primitive_Biome.GeneticTraits.Traits
     {
     [Serialize]
         public bool isSet=false;
+        [Serialize]
+        public bool isGood=true;
          [Serialize]
     public SimHashes element_input;
      [Serialize]
@@ -34,6 +36,11 @@ namespace Primitive_Biome.GeneticTraits.Traits
             base.OnCleanUp();
         }
         private void setConfiguration(){
+        List<SimHashes>  Possible_Inputs;
+        List<SimHashes> Possible_Outputs ;
+        if(isGood){
+        Possible_Inputs
+        }
        var colors=OffColor.colors;
         Util.Shuffle(colors);
                     color = colors.First();
