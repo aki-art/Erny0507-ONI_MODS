@@ -140,7 +140,7 @@ namespace Primitive_Biome.Patches
                 {
                     return;
                 }
-
+                
                 foreach (var capturable in Components.Capturables.Items)
                 {
                     var gtc = capturable.GetComponent<GeneticTraitComponent>();
