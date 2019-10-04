@@ -71,7 +71,6 @@
     <Compile Include="Elements\SedimentaryCalciumCarbonateElement.cs" />
     <Compile Include="Elements\ToxicWaterElement.cs" />
     <Compile Include="GeneticTraits\AIGeneticTraits.cs" />
-    <Compile Include="GeneticTraits\ColorHolderComponent.cs" />
     <Compile Include="GeneticTraits\GeneticTraitBuilder.cs" />
     <Compile Include="GeneticTraits\GeneticTraitComponent.cs" />
     <Compile Include="GeneticTraits\GeneticTraits.cs" />
@@ -79,7 +78,8 @@
     <Compile Include="GeneticTraits\StringHolderComponent.cs" />
     <Compile Include="GeneticTraits\Traits\Efficient.cs" />
     <Compile Include="GeneticTraits\Traits\ElementConverterBadTrait.cs" />
-    <Compile Include="GeneticTraits\Traits\ElementConverterTrait.cs" />
+    <Compile Include="GeneticTraits\Traits\ElementConverterComponent.cs" />
+    <Compile Include="GeneticTraits\Traits\ElementConverterGoodTrait.cs" />
     <Compile Include="GeneticTraits\Traits\Fast.cs" />
     <Compile Include="GeneticTraits\Traits\Fertile.cs" />
     <Compile Include="GeneticTraits\Traits\Finicky.cs" />

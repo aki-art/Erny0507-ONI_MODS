@@ -44,12 +44,12 @@ namespace Primitive_Biome.GeneticTraits
             if (fromTraits == null) return;
 
             var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
-            addTraits(traitsToAdd);
+            addTraits(traitsToAdd, from);
 
         }
 
         // Adds the provided list of traits to this object's Traits component
-        public void addTraits(IEnumerable<Trait> traitsToAdd)
+        public void addTraits(IEnumerable<Trait> traitsToAdd,GameObject father)
         {
             if (IsEgg())
             {
@@ -61,7 +61,13 @@ namespace Primitive_Biome.GeneticTraits
                 var traits = gameObject.AddOrGet<Klei.AI.Traits>();
                 traitsToAdd.ToList().ForEach(traits.Add);
             }
-
+            foreach(var t in traitsToAdd)
+            {
+                GeneticTraitBuilder trait_ = GeneticTraits.traits.Where(x => x.ID == t.Id).FirstOrDefault();
+                if (trait_ != null) {
+                    trait_.SetConfiguration(gameObject, father);
+                }
+            }
         }
         //
         private static void OnSpawnedFrom(GeneticTraitComponent componentChild, object data)
@@ -167,7 +173,7 @@ namespace Primitive_Biome.GeneticTraits
                 var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
                 Debug.Log("traitsToAdd");
 
-                componentChild.addTraits(traitsToAdd);
+                componentChild.addTraits(traitsToAdd,gameObject);
             }
             else
             {
@@ -179,7 +185,7 @@ namespace Primitive_Biome.GeneticTraits
                     if (fromTraits == null) return;
 
                     var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
-                    componentChild.addTraits(traitsToAdd);
+                    componentChild.addTraits(traitsToAdd, gameObject);
                 }
                 else
                 {
@@ -189,7 +195,7 @@ namespace Primitive_Biome.GeneticTraits
                     if (fromTraits == null) return;
 
                     var traitsToAdd = fromTraits.TraitList.Where(GeneticTraits.IsSupportedTrait);
-                    componentChild.addTraits(traitsToAdd);
+                    componentChild.addTraits(traitsToAdd, gameObject);
                 }
 
             }

@@ -36,5 +36,9 @@ namespace Primitive_Biome.GeneticTraits.Traits
               positiveTrait: Positive
             );
         }
+        public override void SetConfiguration(GameObject to, GameObject from)
+        {
+            
+        }
     }
 }

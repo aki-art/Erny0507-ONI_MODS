@@ -134,7 +134,7 @@ namespace Primitive_Biome.Patches
                                         go.GetComponent<KMonoBehaviour>().Trigger(748399584, (object)null);
 
                                         var gtc = go.AddOrGet<GeneticTraitComponent>();
-                                        gtc.addTraits(traitsToAdd);
+                                        gtc.addTraits(traitsToAdd, item_0);
 
                                         gameObjectList.Add(go);
                                         if (__instance.storeProduced)

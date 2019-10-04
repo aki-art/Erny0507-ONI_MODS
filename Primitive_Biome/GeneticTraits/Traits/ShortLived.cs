@@ -34,6 +34,9 @@ namespace Primitive_Biome.GeneticTraits.Traits
                 modifiers.attributes.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, -0.20f, Description, is_multiplier: true));
             }
         }
-        
+        public override void SetConfiguration(GameObject to, GameObject from)
+        {
+           
+        }
     }
 }

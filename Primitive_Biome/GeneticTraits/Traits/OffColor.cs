@@ -33,42 +33,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         {
 
 
-            if (go.GetComponent<GeneticTraitComponent>().IsBaby() ||
-               go.GetComponent<GeneticTraitComponent>().IsAdult()
-               || go.GetComponent<GeneticTraitComponent>().IsEgg()
-               )
-            {
-                DebugHelper.Separator();
-                var text_holders = go.GetComponents<ColorHolderComponent>();
-                DebugHelper.LogVar(text_holders);
-                var flag = true;
-                if (text_holders.Length > 0)
-                {
-                    DebugHelper.LogVar(text_holders);
-                    DebugHelper.LogForEach(text_holders);
-                    var text_holder = text_holders.First();
-                    if (text_holder != null)
-                    {
-                        Color color = text_holder.color;
-                        DebugHelper.LogVar(color);
-                        UtilPB.ApplyTint(go, color);
-                        flag = false;
-                    }
-                }
-
-                if(flag)
-                {
-                    Util.Shuffle(colors);
-                    color = colors.First();
-                    UtilPB.ApplyTint(go, color);
-                    var color_holder = go.AddOrGet<ColorHolderComponent>();
-                    color_holder.color = color;
-
-
-                }
-
-            }
-
+           
 
         }
 
@@ -81,6 +46,21 @@ namespace Primitive_Biome.GeneticTraits.Traits
               },
               positiveTrait: Positive
             );
+        }
+        public override void SetConfiguration(GameObject to, GameObject from)
+        {
+            var t = to.AddComponent<OffColorComponent>();
+            var color_parent = from.GetComponent<OffColorComponent>();
+            if (color_parent == null)
+            {
+            t.setConfiguration(to);
+            }
+            else
+            {
+                t.color = color_parent.color;
+                t.isSet = true;
+            }
+           
         }
     }
 }

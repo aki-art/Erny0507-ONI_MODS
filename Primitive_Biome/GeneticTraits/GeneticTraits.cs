@@ -9,14 +9,15 @@ namespace Primitive_Biome.GeneticTraits
 {
     class GeneticTraits
     {
-        private static readonly GeneticTraitBuilder[] traits = {
+        public static readonly GeneticTraitBuilder[] traits = {
       new LongLived(),
       new Fast(),
       new Fertile(),
       new Infertile(),
       new Slow(),
       new ShortLived(),
-      new ElementConverterTrait(),
+      new ElementConverterGoodTrait(),
+      new ElementConverterBadTrait(),
       new GermEmitterTrait(),
      new OffColor()
 
@@ -222,6 +223,6 @@ namespace Primitive_Biome.GeneticTraits
          */
         public static bool IsSupportedTrait(string traitId) => traitLookup.Contains(traitId);
         public static bool IsSupportedTrait(Klei.AI.Trait trait) => IsSupportedTrait(trait.Id);
-        
+
     }
 }

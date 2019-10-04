@@ -39,6 +39,7 @@ namespace Primitive_Biome.GeneticTraits
             }
             
         }
+        public abstract void SetConfiguration(GameObject to, GameObject from);
         public new string ToString => ID;
     }
 }

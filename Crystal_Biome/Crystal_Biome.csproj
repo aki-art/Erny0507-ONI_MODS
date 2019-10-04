@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="ChiseledCrystalTileConfig.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Elements\CrystalGeode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShiningCrystalTileConfig.cs" />
     <Compile Include="TemplatedCrystalTileConfig.cs" />

@@ -13,7 +13,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
 
     {
         [Serialize]
-        public bool isSet=false;
+        public bool isSet = false;
         [Serialize]
         public Color color;
         protected override void OnPrefabInit()
@@ -21,22 +21,29 @@ namespace Primitive_Biome.GeneticTraits.Traits
             base.OnPrefabInit();
 
         }
-        protected void OnSpawn(GameObject go)
+        protected override void OnSpawn()
         {
-        if(!isSet){
-        randomizeColor()
-        isSet=true;
-        }
-               UtilPB.ApplyTint(go, color);
+            base.OnSpawn();
+            if (!isSet)
+            {
+                Debug.Log("is NO set");
+                setConfiguration(gameObject);
+                
+            }
+            Debug.Log("Applying colors");
+            UtilPB.ApplyTint(gameObject, color);
         }
         protected override void OnCleanUp()
         {
             base.OnCleanUp();
         }
-        private void randomizeColor(){
-       var colors=OffColor.colors;
-        Util.Shuffle(colors);
-                    color = colors.First();
+        public void setConfiguration(GameObject go)
+        {
+            Debug.Log("Configurating");
+            var colors = OffColor.colors;
+            Util.Shuffle(colors);
+            color = colors.First();
+            isSet = true;
         }
     }
 }
