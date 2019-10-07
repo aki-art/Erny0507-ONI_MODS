@@ -265,8 +265,10 @@ namespace HatchMorphs
                 go.UpdateComponentRequirement<AlgaeDistillery>(false);
                 //UnityEngine.Object.Destroy(algaeDistillery);
 
-                go.AddOrGet<EthanolDistillery>();
-     
+                EthanolDistillery ethanolDistillery = go.AddOrGet<EthanolDistillery>();
+                ethanolDistillery.emitMass = 20f;
+                ethanolDistillery.emitTag = new Tag("ToxicSand");
+                ethanolDistillery.emitOffset = new Vector3(2f, 1f);
 
 
             }

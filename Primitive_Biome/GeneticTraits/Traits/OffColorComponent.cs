@@ -9,7 +9,7 @@ using Color = UnityEngine.Color;
 namespace Primitive_Biome.GeneticTraits.Traits
 {
     [SerializationConfig(MemberSerialization.OptIn)]
-    class OffColorComponent : KMonoBehaviour, ISaveLoadable
+    public class OffColorComponent : KMonoBehaviour, ISaveLoadable
 
     {
         [Serialize]
@@ -18,20 +18,27 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public Color color;
         protected override void OnPrefabInit()
         {
-            base.OnPrefabInit();
-
+           // base.OnPrefabInit();
+            Debug.Log("Should be applying");
         }
+        protected override void OnLoadLevel()
+        {
+            Debug.Log("Should be applying2222");
+            ApplyColor();
+        }
+
+
         protected override void OnSpawn()
         {
-            base.OnSpawn();
+            //base.OnSpawn();
             if (!isSet)
             {
                 Debug.Log("is NO set");
-                setConfiguration(gameObject);
+                setConfiguration(this.gameObject);
                 
             }
             Debug.Log("Applying colors");
-            UtilPB.ApplyTint(gameObject, color);
+            ApplyColor();
         }
         protected override void OnCleanUp()
         {
@@ -44,6 +51,10 @@ namespace Primitive_Biome.GeneticTraits.Traits
             Util.Shuffle(colors);
             color = colors.First();
             isSet = true;
+        }
+        public void ApplyColor()
+        {
+            UtilPB.ApplyTint(this.gameObject, color);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace HatchMorphs
             looseEntity.GetComponent<KPrefabID>().AddTag(GameTags.MedicalSupplies, false);
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[2]
             {
-      new ComplexRecipe.RecipeElement(SimHashes.Copper.CreateTag(), 1000f),
+      new ComplexRecipe.RecipeElement(SimHashes.Copper.CreateTag(), 100f),
       new ComplexRecipe.RecipeElement((Tag) FilamentsConfig.Id, 50f)
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]

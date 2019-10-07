@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="PLib">
+      <HintPath>..\..\..\dlls\PLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -64,8 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buildings\GeneticSamplerConfig.cs" />
-    <Compile Include="Critters\SturdyBabyHatchConfig.cs" />
-    <Compile Include="Critters\SturdyHatchConfig.cs" />
     <Compile Include="Elements\CalciumElement.cs" />
     <Compile Include="Elements\CyanideElement.cs" />
     <Compile Include="Elements\SedimentaryCalciumCarbonateElement.cs" />
@@ -93,7 +94,6 @@
     <Compile Include="GeneticTraits\Traits\Resilient.cs" />
     <Compile Include="GeneticTraits\Traits\ShortLived.cs" />
     <Compile Include="GeneticTraits\Traits\Slow.cs" />
-    <Compile Include="Fossils\SturdyHatchFossilConfig.cs" />
     <Compile Include="GeneticTraits\Traits\Solitaire.cs" />
     <Compile Include="PatchesGeneral.cs" />
     <Compile Include="Patches\ElementsPatch.cs" />
@@ -107,6 +107,8 @@
   <ItemGroup>
     <Folder Include="anim\" />
     <Folder Include="Clothing\" />
+    <Folder Include="Critters\" />
+    <Folder Include="Fossils\" />
     <Folder Include="Plants\" />
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +116,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\Erny\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+    <PostBuildEvent>"$(ILMergeConsolePath)" /ndebug /out:$(TargetName).dll $(TargetName).dll PLib.dll /targetplatform:v2,C:/Windows/Microsoft.NET/Framework64/v2.0.50727
+
+copy "$(TargetPath)" "C:\Users\Erny\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
 </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

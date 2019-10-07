@@ -46,3 +46,4 @@ D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.UnityWebRe
 D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.UnityWebRequestTextureModule.xml
 D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.IMGUIModule.xml
 D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.AudioModule.xml
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\PLib.dll

@@ -26,7 +26,8 @@ namespace Primitive_Biome.Patches
                 Database.Techs.TECH_GROUPING[tech] = techList.ToArray();
                 var category = "Refining";
                 string addAfterBuildingId = null;
-                var index = TUNING.BUILDINGS.PLANORDER.FindIndex(x => x.category == category);
+                ModUtil.AddBuildingToPlanScreen(category, buildingId);
+               /* var index = TUNING.BUILDINGS.PLANORDER.FindIndex(x => x.category == category);
                 if (index == -1)
                     return;
                 var planOrderList = TUNING.BUILDINGS.PLANORDER[index].data as IList<string>;
@@ -38,7 +39,7 @@ namespace Primitive_Biome.Patches
                 if (neighborIdx != -1)
                     planOrderList.Insert(neighborIdx + 1, buildingId);
                 else
-                    planOrderList.Add(buildingId);
+                    planOrderList.Add(buildingId);*/
             }
         }
         [HarmonyPatch(typeof(EntityConfigManager))]

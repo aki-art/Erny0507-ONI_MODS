@@ -24,7 +24,8 @@ namespace HatchMorphs
         public const float MaxAge = 140.0f;
         public const float Hitpoints = 200.0f;
         public const float seed_cal_multiplier = 3.0f;
-        public const float food_cal_multiplier = 50.0f;
+        private const float dirt_cal_multiplier = 0.5f;
+        public const float food_cal_multiplier = 40.0f;
 
         public const string SymbolOverride = "";
         public static List<Diet.Info> FloralDiet(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId = null, float diseasePerKgProduced = 0.0f)
@@ -39,27 +40,27 @@ namespace HatchMorphs
         {
             (Tag)BasicSingleHarvestPlantConfig.SEED_ID
        
-        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        }), NectarConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
            (Tag) BasicFabricMaterialPlantConfig.SEED_ID
-        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        }), NectarConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             (Tag)ForestTreeConfig.SEED_ID
-        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        }), NectarConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             (Tag)MushroomPlantConfig.SEED_ID
-        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        }), NectarConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             (Tag)SwampLilyConfig.SEED_ID
-        }), FilamentsConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
+        }), NectarConfig.Id.ToTag(), caloriesPerKg*seed_cal_multiplier, food_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
        new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.Dirt.CreateTag()
-        }),FilamentsConfig.Id.ToTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        }),FilamentsConfig.Id.ToTag(), caloriesPerKg, producedConversionRate*dirt_cal_multiplier, diseaseId, diseasePerKgProduced, false, false),
      
     };
         }
@@ -181,5 +182,7 @@ namespace HatchMorphs
         public static string BabyName = UI.FormatAsLink("Floral Hatchling", BabyId);
         public const string BabyDescription = "It has a bulb growing on its back.";
         public static EffectorValues tier = DECOR.BONUS.TIER3;
+
+        public static float Dirt_cal_multiplier => dirt_cal_multiplier;
     }
 }

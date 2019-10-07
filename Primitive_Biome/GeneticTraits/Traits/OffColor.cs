@@ -31,10 +31,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public static string id_color = "ColorTint";
         protected override void ApplyTrait(GameObject go)
         {
-
-
-           
-
+            go.AddOrGet<OffColorComponent>();
         }
 
         protected override void Init()
@@ -49,18 +46,21 @@ namespace Primitive_Biome.GeneticTraits.Traits
         }
         public override void SetConfiguration(GameObject to, GameObject from)
         {
-            var t = to.AddComponent<OffColorComponent>();
+            var t = to.AddOrGet<OffColorComponent>();
             var color_parent = from.GetComponent<OffColorComponent>();
             if (color_parent == null)
             {
-            t.setConfiguration(to);
+                Debug.Log("About to config");
+                t.setConfiguration(to);
             }
             else
             {
+                Debug.Log("Passing on");
                 t.color = color_parent.color;
                 t.isSet = true;
+                t.ApplyColor();
             }
-           
+
         }
     }
 }

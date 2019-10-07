@@ -10,12 +10,16 @@ using UnityEngine;
 using Klei.AI;
 using System.Diagnostics;
 using Primitive_Biome.GeneticTraits;
+using PeterHan;
 
 namespace Primitive_Biome
 {
     public class PatchesGeneral
     {
-       
-        
+
+        public static void OnLoad()
+        {
+            PeterHan.PLib.PUtil.LogModInit();
+        }
     }
 }

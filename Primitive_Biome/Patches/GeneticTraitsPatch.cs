@@ -106,13 +106,14 @@ namespace Primitive_Biome.Patches
                         if (traitComponent.CustomDescription)
                         {
                             var textholders = target.GetComponents<StringHolderComponent>();
-                            var text = textholders.Where(x => x.id == trait.Id).First();
-                            if (text.text != null)
+                            if (textholders != null)
                             {
-                                TraitsDrawer.NewLabel(text.text);
+                                var text = textholders.Where(x => x.id == trait.Id).First();
+                                if (text.text != null)
+                                {
+                                    TraitsDrawer.NewLabel(text.text);
+                                }
                             }
-
-
                         }
                     }
                     TraitsDrawer.EndDrawing();
@@ -140,7 +141,7 @@ namespace Primitive_Biome.Patches
                 {
                     return;
                 }
-                
+
                 foreach (var capturable in Components.Capturables.Items)
                 {
                     var gtc = capturable.GetComponent<GeneticTraitComponent>();
@@ -175,7 +176,7 @@ namespace Primitive_Biome.Patches
                                 }
                             }
                         }
-                        if (flag)
+                        if (flag)//check if is offcolor, this was discarded and must be deleted latter
                         {
                             var text_holders = capturable.GetComponents<StringHolderComponent>();
                             if (text_holders.Length > 0)
@@ -186,7 +187,6 @@ namespace Primitive_Biome.Patches
                                     //UtilPB.ApplyTint(capturable, text_holder.color);
                                 }
                             }
-
 
                         }
 
