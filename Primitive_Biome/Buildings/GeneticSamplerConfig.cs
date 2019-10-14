@@ -77,7 +77,8 @@ namespace Primitive_Biome.Buildings
             {
                 new ComplexRecipe.RecipeElement((Tag)HatchConfig.EGG_ID, 1f)
             };
-            var r = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(ID, (IList<ComplexRecipe.RecipeElement>)ingredients4, (IList<ComplexRecipe.RecipeElement>)results4), ingredients4, results4)
+            var r = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(ID, (IList<ComplexRecipe.RecipeElement>)ingredients4,
+                (IList<ComplexRecipe.RecipeElement>)results4), ingredients4, results4)
             {
                 time = 80f/8,
                 description = RECOMBINATION_RECIPE_DESCRIPTION,

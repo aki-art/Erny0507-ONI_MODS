@@ -141,7 +141,7 @@ namespace Primitive_Biome.Patches
                 {
                     return;
                 }
-
+                
                 foreach (var capturable in Components.Capturables.Items)
                 {
                     var gtc = capturable.GetComponent<GeneticTraitComponent>();
@@ -149,13 +149,20 @@ namespace Primitive_Biome.Patches
                     {
                         var flag = false;
                         if (gtc.IsEgg())
-                        {
+                        { 
                             var fromTraits = capturable.GetComponent<AIGeneticTraits>();
                             if (fromTraits != null)
                             {
 
                                 var traits_present = fromTraits.GetTraitIds();
-                                var t = traits_present.Where(x => x == (new OffColor()).ID).First();
+                                //var t = traits_present.Where(x => x == (new OffColor()).ID).First();
+                                var t_ = traits_present.Where(x => x == (new OffColor()).ID).ToList();
+                                string t = null;
+                                if (t_.Count>0)
+                                {
+                                    t = t_.First();
+                                }
+                                
                                 if (t != null)
                                 {
                                     flag = true;
@@ -167,9 +174,15 @@ namespace Primitive_Biome.Patches
                             var fromTraits = capturable.GetComponent<Traits>();
                             if (fromTraits != null)
                             {
-
                                 var traits_present = fromTraits.GetTraitIds();
-                                var t = traits_present.Where(x => x == (new OffColor()).ID).First();
+                                //var t = traits_present.Where(x => x == (new OffColor()).ID).First();
+                                var t_ = traits_present.Where(x => x == (new OffColor()).ID).ToList();
+                                string t = null;
+                                if (t_.Count > 0)
+                                {
+                                    t = t_.First();
+                                }
+
                                 if (t != null)
                                 {
                                     flag = true;

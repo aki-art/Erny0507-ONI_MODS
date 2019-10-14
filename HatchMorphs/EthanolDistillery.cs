@@ -6,9 +6,10 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 #pragma warning disable 649
-//[SerializationConfig(MemberSerialization.OptIn)]
+
 namespace HatchMorphs
 {
+    [SerializationConfig(MemberSerialization.OptIn)]
     class EthanolDistillery : StateMachineComponent<EthanolDistillery.StatesInstance>
     {
         [SerializeField]
