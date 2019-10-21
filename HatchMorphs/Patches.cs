@@ -150,10 +150,7 @@ namespace HatchMorphs
         {
             public static void Prefix()
             {
-                /*Debug.Log("Adding strings");
-                Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".NAME", "Sweet floral scents");
-                Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".LEGEND_HOVERTEXT", "Sweet floral scents description");
-                Debug.Log("Strings added");*/
+              
                 Strings.Add("STRINGS.ITEMS.FOOD." + FilamentsConfig.Id.ToUpper() + ".NAME", FilamentsConfig.Name);
                 Strings.Add("STRINGS.ITEMS.FOOD." + FilamentsConfig.Id.ToUpper() + ".DESC", FilamentsConfig.Description);
 
@@ -186,18 +183,7 @@ namespace HatchMorphs
                 Db.Get().effects.Add(effect1);
                 Db.Get().effects.Add(effect2);
                 Db.Get().effects.Add(effect3);
-                //var x1 = Db.Get().effects.Get("SmelledFlowersLonger").SelfModifiers.Count;
-                /*Debug.Log("Debug_Effects______");
-                Debug.Log(Db.Get().effects.Get("HistamineSuppression").SelfModifiers.Count);
-                //Debug.Log(JsonUtility.ToJson(x1));
-                for (int index2 = 0; index2 < Db.Get().effects.Get("HistamineSuppression").SelfModifiers.Count; ++index2)
-                {
-                    var x2 = Db.Get().effects.Get("HistamineSuppression").SelfModifiers[index2];
-                    Debug.Log(index2);
-                    Debug.Log(x2.Value);
-                    Debug.Log(x2.IsMultiplier);
-
-                }*/
+                
 
             }
         }
@@ -279,19 +265,10 @@ namespace HatchMorphs
         public static class PatchPoop
         {
 
-            /*  public static bool Prepare(HarmonyInstance instance)
-              {
-                  Debug.Log("MyInitializer");
-                  return true;
-              }*/
             public static bool Prefix(Stomach __instance, ref GameObject ___owner,
                 ref List<CreatureCalorieMonitor.Stomach.CaloriesConsumedEntry> ___caloriesConsumed)
             {
-                // var diet = __instance.diet;
-                //var caloriesConsumed = __caloriesConsumed;
-                Debug.Log("About to patch poop");
-                // Debug.Log(___owner);
-                Debug.Log(___owner.name);
+                            
                 if (___owner.PrefabID() == FloralHatchConfig.Id || ___owner.PrefabID() == FloralHatchConfig.BabyId || ___owner.PrefabID() == WoodenHatchConfig.Id || ___owner.PrefabID() == WoodenHatchConfig.BabyId)
                 {
                     float num = 0f;//consumed calories acumulated
@@ -331,11 +308,9 @@ namespace HatchMorphs
                     if (element == null)
                     {
                         //for food and others
-                        Debug.Log("About to start special route");
                         GameObject prefab = Assets.GetPrefab(tag);
                         GameObject gameObject2 = GameUtil.KInstantiate(prefab, Grid.SceneLayer.Ore, null, 0);
-                        Debug.Log("1");
-                        Debug.Log(prefab);
+                      
                         int units_c = 0;
                         PrimaryElement component2 = null;
                         if (___owner.PrefabID() == WoodenHatchConfig.Id || ___owner.PrefabID() == WoodenHatchConfig.BabyId)
@@ -343,49 +318,31 @@ namespace HatchMorphs
                             // EdiblesManager.FoodInfo food_info = EdiblesManager.GetFoodInfo(tag.ToString());
                             var out_put = prefab.GetComponent<PrimaryElement>();
 
-                            //Debug.Log(out_put_edible);
-
-                            //Debug.Log(out_put_food_info);
-                            // var kcal_per_unit = out_put_edible.CaloriesPerUnit;
+                        
                             units_c = (int)(num / out_put.Mass);
                             Facing component = ___owner.GetComponent<Facing>();
-                            //int cell = component.GetFrontCell();
-                            Debug.Log(num);
-                            Debug.Log(out_put);
-                            Debug.Log(units_c);
-
-
+                            
                             int num3 = Grid.PosToCell(___owner.transform.GetPosition());
                             var pos = Grid.CellToPosCCC(num3, Grid.SceneLayer.Ore);
                             gameObject2.transform.SetPosition(pos);
                             component2 = gameObject2.GetComponent<PrimaryElement>();
-                            //component2.Mass = num;
                             component2.Units = units_c;
 
                         }
                         else
                         {
-                            // EdiblesManager.FoodInfo food_info = EdiblesManager.GetFoodInfo(tag.ToString());
                             var out_put_edible = prefab.GetComponent<Edible>();
 
-                            //Debug.Log(out_put_edible);
                             var out_put_food_info = out_put_edible.FoodInfo;
-                            //Debug.Log(out_put_food_info);
-                            // var kcal_per_unit = out_put_edible.CaloriesPerUnit;
+                          
                             units_c = (int)(num / out_put_food_info.CaloriesPerUnit);
                             Facing component = ___owner.GetComponent<Facing>();
-                            //int cell = component.GetFrontCell();
-                            Debug.Log(num);
-                            Debug.Log(out_put_food_info.CaloriesPerUnit);
-                            Debug.Log(units_c);
-
-
+                           
                             int num3 = Grid.PosToCell(___owner.transform.GetPosition());
                             var pos = Grid.CellToPosCCC(num3, Grid.SceneLayer.Ore);
                             gameObject2.transform.SetPosition(pos);
                             component2 = gameObject2.GetComponent<PrimaryElement>();
                             component2.Mass = num;
-                            //component2.Units = units_c;
                         }
 
                         float temperature = ___owner.GetComponent<PrimaryElement>().Temperature;
@@ -393,7 +350,6 @@ namespace HatchMorphs
 
                         gameObject2.SetActive(true);
                         component2.AddDisease(disease_idx, num2, "ComplexFabricator.CompleteOrder");
-                        Debug.Log("continue");
 
                         KPrefabID component3 = ___owner.GetComponent<KPrefabID>();
                         if (!Game.Instance.savedInfo.creaturePoopAmount.ContainsKey(component3.PrefabTag))
@@ -447,59 +403,16 @@ namespace HatchMorphs
                         PopFXManager.Instance.SpawnFX(PopFXManager.Instance.sprite_Resource, element.name, ___owner.transform, 1.5f, false);
 
                     }
-                    Debug.Log("finished pooping");
                     return false;
                 }
                 else
                 {
                     return true;
                 }
-                // Debug.Log(___owner.PrefabID());
-                //Debug.Log(___owner.GetComponent<Tag>());
-
+              
             }
         }
 
-        /*[HarmonyPatch(typeof(GERM_EXPOSURE))]
-        [HarmonyPatch("GERM_EXPOSURE", MethodType.Constructor)]
-        public static class PatchGermExposure
-        {
-                public static void Postfix(ref ExposureType[] ___TYPES)
-            {
-                Debug.Log("GERM_EXPOSURE 1");
-                
-                ExposureType t=  new ExposureType
-                {
-                    germ_id = SweetPollenGerms.ID,
-                    sickness_id = "Allergies",
-                    exposure_threshold = 2,
-                    infect_immediately = true,
-                    required_traits = new List<string>
-                    {
-                        "Allergies"
-                    },
-                    excluded_effects = new List<string>
-                    {
-                        "HistamineSuppression"
-                    }
-                };
-                ExposureType t2 = new ExposureType
-                {
-                    germ_id = SweetPollenGerms.ID,
-                    infection_effect = "SmelledFlowers",
-                    exposure_threshold = 2,
-                    infect_immediately = true,
-                    excluded_traits = new List<string>
-                    {
-                        "Allergies"
-                    }
-                };
-                ___TYPES.Add(t);
-                ___TYPES.Add(t2);
-                Debug.Log("GERM_EXPOSURE 2");
-            }
-        }*/
-
-
+      
     }
 }

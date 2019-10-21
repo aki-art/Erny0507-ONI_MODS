@@ -7,16 +7,16 @@ using UnityEngine;
 
 namespace PuftMorphs
 {
-    class CloudyBabyPuftConfig : IEntityConfig
+    class SmoggyBabyPuftConfig : IEntityConfig
     {
         public GameObject CreatePrefab()
         {
-            GameObject puft = CloudyPuftConfig.CreatePuft(CloudyPuftConfig.BABY_ID, CloudyPuftConfig.BabyName,
-                CloudyPuftConfig.BabyDescription,
-                "cloudy_puft_baby_kanim"
-                //"baby_puft_kanim"
+            GameObject puft = SmoggyPuftConfig.CreatePuft(SmoggyPuftConfig.BABY_ID, SmoggyPuftConfig.BabyName,
+                SmoggyPuftConfig.BabyDescription,
+              "Smoggy_puft_baby_kanim"
+                 // "baby_puft_kanim"
                 , true);
-            EntityTemplates.ExtendEntityToBeingABaby(puft, (Tag)CloudyPuftConfig.ID, (string)null);
+            EntityTemplates.ExtendEntityToBeingABaby(puft, (Tag)SmoggyPuftConfig.ID, (string)null);
             return puft;
         }
         public void OnPrefabInit(GameObject prefab)

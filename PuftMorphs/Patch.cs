@@ -15,22 +15,23 @@ namespace PuftMorphs
         [HarmonyPatch(nameof(CreatureCalorieMonitor.Stomach.Poop))]
         public static class PatchPoop
         {
-             /*  public static bool Prepare(HarmonyInstance instance)
-              {
-                  Debug.Log("MyInitializer");
-                  return true;
-              }*/
+            
             public static bool Prefix(Stomach __instance, ref GameObject ___owner,
                 ref List<CreatureCalorieMonitor.Stomach.CaloriesConsumedEntry> ___caloriesConsumed)
             {
-                // var diet = __instance.diet;
-                //var caloriesConsumed = __caloriesConsumed;
-                Debug.Log("About to patch poop");
-                // Debug.Log(___owner);
-                Debug.Log(___owner.name);
-                if (___owner.PrefabID() == CloudyPuftConfig.ID || ___owner.PrefabID() == CloudyPuftConfig.BABY_ID)
+              
+               
+                if (___owner.PrefabID() == CloudyPuftConfig.ID || ___owner.PrefabID() == CloudyPuftConfig.BABY_ID|| ___owner.PrefabID() == SmoggyPuftConfig.ID || ___owner.PrefabID() == SmoggyPuftConfig.BABY_ID)
                 {
-                    float deltaEmitTemperature = -5f*4;
+                    float deltaEmitTemperature = 0;
+                    if (___owner.PrefabID() == CloudyPuftConfig.ID || ___owner.PrefabID() == CloudyPuftConfig.BABY_ID)
+                    {
+                        deltaEmitTemperature = -5f * 2;
+                    }
+                    if (___owner.PrefabID() == SmoggyPuftConfig.ID || ___owner.PrefabID() == SmoggyPuftConfig.BABY_ID)
+                    {
+                        deltaEmitTemperature = 5f * 8;
+                    }
                     float num1 = 0.0f;
                     Tag tag = Tag.Invalid;
                     byte disease_idx = byte.MaxValue;
@@ -60,9 +61,7 @@ namespace PuftMorphs
                     Debug.Assert(element != null, (object)"TODO: implement non-element tag spawning");
                     int cell = Grid.PosToCell(___owner.transform.GetPosition());
                     float temperature = ___owner.GetComponent<PrimaryElement>().Temperature;
-                    Debug.Log("old temperature is " + temperature);
                     temperature = Mathf.Max(element.lowTemp + 5f, temperature + deltaEmitTemperature);
-                    Debug.Log("New temperature is "+ temperature);
                     if (element.IsLiquid)
                         FallingWater.instance.AddParticle(cell, element.idx, num1, temperature, disease_idx, num2, true, false, false, false);
                     else if (element.IsGas)

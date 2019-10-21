@@ -58,6 +58,8 @@
     <Compile Include="CloudyPuftConfig.cs" />
     <Compile Include="Patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmoggyBabyPuftConfig.cs" />
+    <Compile Include="SmoggyPuftConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

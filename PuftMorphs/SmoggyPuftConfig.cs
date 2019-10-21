@@ -10,26 +10,28 @@ using Klei.AI;
 
 namespace PuftMorphs
 {
-    public class CloudyPuftConfig : IEntityConfig
+    class SmoggyPuftConfig : IEntityConfig
     {
         private static float KG_ORE_EATEN_PER_CYCLE = 50f;
-        private static float CALORIES_PER_KG_OF_ORE = PuftTuning.STANDARD_CALORIES_PER_CYCLE / CloudyPuftConfig.KG_ORE_EATEN_PER_CYCLE;
+        private static float CALORIES_PER_KG_OF_ORE = PuftTuning.STANDARD_CALORIES_PER_CYCLE / SmoggyPuftConfig.KG_ORE_EATEN_PER_CYCLE;
         private static float MIN_POOP_SIZE_IN_KG = 25f;
-        public static int EGG_SORT_ORDER = PuftConfig.EGG_SORT_ORDER + 5;
-        public const string ID = "PuftHydrogen";
-        public const string BASE_TRAIT_ID = "PuftHydrogenBaseTrait";
-        public const string EGG_ID = "PuftHydrogenEgg";
-        public const string BABY_ID = "PuftHydrogenBaby";
-        public const SimHashes CONSUME_ELEMENT = SimHashes.Hydrogen;
-        public const SimHashes EMIT_ELEMENT = SimHashes.LiquidHydrogen;
+        public static int EGG_SORT_ORDER = PuftConfig.EGG_SORT_ORDER + 6;
+        public const string ID = "PuftCO2";
+        public const string BASE_TRAIT_ID = "PuftCO2BaseTrait";
+        public const string EGG_ID = "PuftCO2Egg";
+        public const string BABY_ID = "PuftCO2Baby";
+        public const SimHashes CONSUME_ELEMENT = SimHashes.CarbonDioxide;
+        public const SimHashes EMIT_ELEMENT = SimHashes.Carbon;
 
-        public static string Name = UI.FormatAsLink("Cloudy Puft", ID);
-        public const string Description = "It resembles a cloud and loves the cold. It slowsly absorbs the heat in its food.";
-        public static string EggName = UI.FormatAsLink("Cloudy Puftlet Egg", ID);
-        public static string BabyName = UI.FormatAsLink("Cloudy Puftlet", BABY_ID);
-        public const string BabyDescription = "It resembles a cloud and loves the cold. It slowsly absorbs the heat in its food.";
-        public const float warningLowTemperature = 0f;
-        public const float warningHighTemperature = 283.15f; //303.15f;
+        public static string Name = UI.FormatAsLink("Smoggy Puft", ID);
+        public const string Description = "It loves hot environments. It slowsly heats its food.";
+        public static string EggName = UI.FormatAsLink("Smoggy Puftlet Egg", ID);
+        public static string BabyName = UI.FormatAsLink("Smoggy Puftlet", BABY_ID);
+        public const string BabyDescription = "It loves hot environments. It slowsly heats its food.";
+        public const float warningLowTemperature = 273.15f;
+        public const float warningHighTemperature = 723f;
+        // float lethalLowTemperature = warningLowTemperature - 45f;
+        //float lethalHighTemperature = warningHighTemperature + 50f;
         public static GameObject CreatePuft(
       string id,
       string name,
@@ -43,7 +45,7 @@ namespace PuftMorphs
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, (float)(-(double)PuftTuning.STANDARD_CALORIES_PER_CYCLE / 600.0), name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, 25f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, 75f, name, false, false, true));
-            GameObject go = BasePuftConfig.SetupDiet(wildCreature, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CloudyPuftConfig.CALORIES_PER_KG_OF_ORE, TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_2, (string)null, 0.0f, CloudyPuftConfig.MIN_POOP_SIZE_IN_KG);
+            GameObject go = BasePuftConfig.SetupDiet(wildCreature, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), SmoggyPuftConfig.CALORIES_PER_KG_OF_ORE, TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_2, (string)null, 0.0f, SmoggyPuftConfig.MIN_POOP_SIZE_IN_KG);
             go.AddOrGetDef<LureableMonitor.Def>().lures = new Tag[1]
             {
       SimHashes.SolidHydrogen.CreateTag()
@@ -55,7 +57,7 @@ namespace PuftMorphs
         {
             new FertilityMonitor.BreedingChance()
             {
-                egg = CloudyPuftConfig.EGG_ID.ToTag(),
+                egg = SmoggyPuftConfig.EGG_ID.ToTag(),
                 weight = 1f
             },
 
@@ -67,12 +69,12 @@ namespace PuftMorphs
             {
                 new ComplexRecipe.RecipeElement((Tag)PuftConfig.EGG_ID, 2f ),
                 new ComplexRecipe.RecipeElement((Tag)PuftAlphaConfig.EGG_ID, 1f ),
-                 new ComplexRecipe.RecipeElement((Tag)PuftOxyliteConfig.EGG_ID, 2f ),
-                 new ComplexRecipe.RecipeElement(SimHashes.Hydrogen.CreateTag(), 10f),
+                 new ComplexRecipe.RecipeElement((Tag)PuftBleachstoneConfig.EGG_ID, 2f ),
+                 new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), 10f),
             };
             ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
             {
-                new ComplexRecipe.RecipeElement((Tag)CloudyPuftConfig.EGG_ID, 1f)
+                new ComplexRecipe.RecipeElement((Tag)SmoggyPuftConfig.EGG_ID, 1f)
             };
             var r = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(ID, (IList<ComplexRecipe.RecipeElement>)ingredients,
                 (IList<ComplexRecipe.RecipeElement>)results), ingredients, results)
@@ -85,16 +87,16 @@ namespace PuftMorphs
             {
                 TagManager.Create(SupermaterialRefineryConfig.ID)
             };
-            return EntityTemplates.ExtendEntityToFertileCreature(CloudyPuftConfig.CreatePuft(ID,
+            return EntityTemplates.ExtendEntityToFertileCreature(SmoggyPuftConfig.CreatePuft(ID,
                Name,
                Description,
-                "cloudy_puft_adult_kanim"
+                "Smoggy_puft_adult_kanim"
                 // "puft_kanim"
                 , false), EGG_ID,
                EggName,
                 Description,
-                "cloudy_puft_egg_kanim", PuftTuning.EGG_MASS, BABY_ID, 45f, 15f,
-                EggChances, CloudyPuftConfig.EGG_SORT_ORDER, true, false, true, 1f);
+                "Smoggy_puft_egg_kanim", PuftTuning.EGG_MASS, BABY_ID, 45f, 15f,
+                EggChances, SmoggyPuftConfig.EGG_SORT_ORDER, true, false, true, 1f);
         }
 
         public void OnPrefabInit(GameObject prefab)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using KSerialization;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Primitive_Biome.GeneticTraits.Traits
         public bool isSet = false;
         [Serialize]
         public Color color;
-        protected override void OnPrefabInit()
+        /*protected override void OnPrefabInit()
         {
            // base.OnPrefabInit();
             Debug.Log("Should be applying");
@@ -36,6 +37,19 @@ namespace Primitive_Biome.GeneticTraits.Traits
                 Debug.Log("is NO set");
                 setConfiguration(this.gameObject);
                 
+            }
+            Debug.Log("Applying colors");
+            ApplyColor();
+        }*/
+        [OnDeserialized]
+        internal void OnDeserialized()
+        {
+            Debug.Log("OnDeserialized");
+            if (!isSet)
+            {
+                Debug.Log("is NO set");
+                setConfiguration(this.gameObject);
+
             }
             Debug.Log("Applying colors");
             ApplyColor();
