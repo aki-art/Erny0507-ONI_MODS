@@ -38,6 +38,7 @@ namespace Primitive_Biome.Patches
               float lethalHighTemperature)
             {
                 __result.AddOrGet<GeneticTraitComponent>();
+                __result.AddOrGet<OffColorComponent>();
             }
         }
         [HarmonyPatch(typeof(EggConfig), "CreateEgg")]
@@ -53,14 +54,16 @@ namespace Primitive_Biome.Patches
                                 int egg_sort_order,
                                 float base_incubation_rate)
             {
-                Debug.Log("EGGS added trait");
+                //Debug.Log("EGGS added trait");
 
                 var mo = __result.AddOrGet<Modifiers>();
                 mo.attributes = new Attributes(__result);
-                Debug.Log(mo.GetAttributes());
+                //Debug.Log(mo.GetAttributes());
                 //__result.AddComponent<Modifiers>();
                 __result.AddOrGet<AIGeneticTraits>();
                 __result.AddOrGet<GeneticTraitComponent>();
+                __result.AddOrGet<OffColorComponent>();
+
             }
         }
         [HarmonyPatch(typeof(SimpleInfoScreen), "OnSelectTarget")]

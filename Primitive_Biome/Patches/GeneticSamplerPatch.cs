@@ -25,7 +25,7 @@ namespace Primitive_Biome.Patches
                 var techList = new List<string>(Database.Techs.TECH_GROUPING[tech]) { buildingId };
                 Database.Techs.TECH_GROUPING[tech] = techList.ToArray();
                 var category = "Refining";
-                string addAfterBuildingId = null;
+                //string addAfterBuildingId = null;
                 ModUtil.AddBuildingToPlanScreen(category, buildingId);
                /* var index = TUNING.BUILDINGS.PLANORDER.FindIndex(x => x.category == category);
                 if (index == -1)

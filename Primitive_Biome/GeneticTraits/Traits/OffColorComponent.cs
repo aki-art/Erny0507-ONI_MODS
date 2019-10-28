@@ -27,32 +27,31 @@ namespace Primitive_Biome.GeneticTraits.Traits
             Debug.Log("Should be applying2222");
             ApplyColor();
         }
-
+*/
 
         protected override void OnSpawn()
         {
+            Debug.Log("OnSpawn");
             //base.OnSpawn();
-            if (!isSet)
+            if (isSet)
             {
-                Debug.Log("is NO set");
-                setConfiguration(this.gameObject);
-                
+                Debug.Log("Applying colors");
+                ApplyColor();
+
             }
-            Debug.Log("Applying colors");
-            ApplyColor();
-        }*/
+            
+        }
         [OnDeserialized]
         internal void OnDeserialized()
         {
             Debug.Log("OnDeserialized");
-            if (!isSet)
+            if (isSet)
             {
-                Debug.Log("is NO set");
-                setConfiguration(this.gameObject);
+                Debug.Log("Applying colors");
+                ApplyColor();
 
             }
-            Debug.Log("Applying colors");
-            ApplyColor();
+            
         }
         protected override void OnCleanUp()
         {

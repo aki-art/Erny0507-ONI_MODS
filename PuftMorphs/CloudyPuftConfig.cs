@@ -28,8 +28,8 @@ namespace PuftMorphs
         public static string EggName = UI.FormatAsLink("Cloudy Puftlet Egg", ID);
         public static string BabyName = UI.FormatAsLink("Cloudy Puftlet", BABY_ID);
         public const string BabyDescription = "It resembles a cloud and loves the cold. It slowsly absorbs the heat in its food.";
-        public const float warningLowTemperature = 0f;
-        public const float warningHighTemperature = 283.15f; //303.15f;
+        public const float warningLowTemperature =0f;
+        public const float warningHighTemperature = 303.15f; //303.15f;
         public static GameObject CreatePuft(
       string id,
       string name,
@@ -43,7 +43,7 @@ namespace PuftMorphs
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, (float)(-(double)PuftTuning.STANDARD_CALORIES_PER_CYCLE / 600.0), name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, 25f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, 75f, name, false, false, true));
-            GameObject go = BasePuftConfig.SetupDiet(wildCreature, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CloudyPuftConfig.CALORIES_PER_KG_OF_ORE, TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_2, (string)null, 0.0f, CloudyPuftConfig.MIN_POOP_SIZE_IN_KG);
+            GameObject go = BasePuftConfig.SetupDiet(wildCreature, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CloudyPuftConfig.CALORIES_PER_KG_OF_ORE, TUNING.CREATURES.CONVERSION_EFFICIENCY.BAD_2, (string)null, 0.0f, CloudyPuftConfig.MIN_POOP_SIZE_IN_KG);
             go.AddOrGetDef<LureableMonitor.Def>().lures = new Tag[1]
             {
       SimHashes.SolidHydrogen.CreateTag()

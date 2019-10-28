@@ -47,3 +47,6 @@ D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.UnityWebRe
 D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.IMGUIModule.xml
 D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\UnityEngine.AudioModule.xml
 D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\PLib.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\PipLib.dll
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\PipLib.pdb
+D:\modding\vs_projects\ONI_MODS\Primitive_Biome\bin\Debug\PipLib.xml

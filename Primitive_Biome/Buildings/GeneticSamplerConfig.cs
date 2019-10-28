@@ -67,7 +67,7 @@ namespace Primitive_Biome.Buildings
             Prioritizable.AddRef(go);
 
 
-            float num7 = 0.35f;
+            //float num7 = 0.35f;
             ComplexRecipe.RecipeElement[] ingredients4 = new ComplexRecipe.RecipeElement[2]
             {
                 new ComplexRecipe.RecipeElement((Tag)HatchConfig.EGG_ID, 1f ),

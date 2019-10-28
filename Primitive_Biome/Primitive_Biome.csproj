@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="PipLib">
+      <HintPath>C:\Users\Erny\Documents\Klei\OxygenNotIncluded\mods\Steam\1880615893\PipLib.dll</HintPath>
+    </Reference>
     <Reference Include="PLib">
       <HintPath>..\..\..\dlls\PLib.dll</HintPath>
     </Reference>
@@ -67,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buildings\GeneticSamplerConfig.cs" />
+    <Compile Include="Buildings\SeedSplitter.cs" />
     <Compile Include="Elements\CalciumElement.cs" />
     <Compile Include="Elements\CyanideElement.cs" />
     <Compile Include="Elements\SedimentaryCalciumCarbonateElement.cs" />
