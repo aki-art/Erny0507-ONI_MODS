@@ -21,7 +21,7 @@ namespace PuftMorphs
         public const string EGG_ID = "PuftHydrogenEgg";
         public const string BABY_ID = "PuftHydrogenBaby";
         public const SimHashes CONSUME_ELEMENT = SimHashes.Hydrogen;
-        public const SimHashes EMIT_ELEMENT = SimHashes.LiquidHydrogen;
+        public const SimHashes EMIT_ELEMENT = SimHashes.DirtyIce;
 
         public static string Name = UI.FormatAsLink("Cloudy Puft", ID);
         public const string Description = "It resembles a cloud and loves the cold. It slowsly absorbs the heat in its food.";

@@ -11,14 +11,19 @@ namespace HatchMorphs
 {
     class SweetPollenGerms : Disease
     {
-        public SweetPollenGerms() : base("SweetPollenGerms", 5, new Disease.RangeInfo(263.15f, 273.15f, 363.15f, 373.15f), new Disease.RangeInfo(10f, 100f, 100f, 10f), new Disease.RangeInfo(0f, 0f, 1000f, 1000f), Disease.RangeInfo.Idempotent())
-        {
-            
-            Color32 overlayColour = new Color32(252, 3, 98, byte.MaxValue);
-            this.overlayColour = overlayColour;
-         
-        }
+        public const string ID = "SweetPollenGerms";
+        public new const string Name = "Sweet Scents";
+        public const string Tooltip = "Sweet Scent allergens present";
+        //public SweetPollenGerms() : base("SweetPollenGerms", 5, new Disease.RangeInfo(263.15f, 273.15f, 363.15f, 373.15f), new Disease.RangeInfo(10f, 100f, 100f, 10f), new Disease.RangeInfo(0f, 0f, 1000f, 1000f), Disease.RangeInfo.Idempotent())
+        //{
 
+        //Color32 overlayColour = new Color32(252, 3, 98, byte.MaxValue);
+        //this.overlayColour = overlayColour;
+
+        // }
+        public SweetPollenGerms(): base(nameof(SweetPollenGerms), (byte)5, new Disease.RangeInfo(263.15f, 273.15f, 363.15f, 373.15f), new Disease.RangeInfo(10f, 100f, 100f, 10f), new Disease.RangeInfo(0.0f, 0.0f, 1000f, 1000f), Disease.RangeInfo.Idempotent())
+        {
+        }
         protected override void PopulateElemGrowthInfo()
         {
             base.InitializeElemGrowthArray(ref this.elemGrowthInfo, Disease.DEFAULT_GROWTH_INFO);
@@ -76,8 +81,6 @@ namespace HatchMorphs
         }
 
         // Token: 0x040003BA RID: 954
-        public const string ID = "SweetPollenGerms";
-        public new const string Name = "Sweet Scents";
-        public const string Tooltip = "Sweet Scent allergens present";
+
     }
 }

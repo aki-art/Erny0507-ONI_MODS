@@ -14,7 +14,6 @@ namespace HatchMorphs
         {
 
             default_state = this.satisfiedState;
-
             // Create and configure the light effect
             Effect needLightEffect = new Effect("NeedLight", "Needs light", "This creature needs light to live properly.", 0f, true, true, true);
             needLightEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Metabolism.Id, -40f, CREATURES.MODIFIERS.UNHAPPY.NAME));

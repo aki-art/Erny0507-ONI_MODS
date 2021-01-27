@@ -172,15 +172,15 @@ namespace HatchMorphs
                 Strings.Add("STRINGS.ITEMS.PILLS." + MendingSerumConfig.ID.ToUpper() + ".RECIPEDESC", MendingSerumConfig.Description);
 
 
-                Db.Get().Diseases.Add(new SweetPollenGerms());
-                var effect1 = new Effect("SmelledFlowersLonger", "Smelled sweet scents", "This dupe has smelled sweet scents and feels relaxed", 600.00f * 2, true, true, false, (string)null, 0.0f, (string)null);
-                effect1.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, -0.008333334f * 2, "The sweet smell relieves some stress", false, false, true));
+                //Db.Get().Diseases.Add(new SweetPollenGerms());
+                //var effect1 = new Effect("SmelledFlowersLonger", "Smelled sweet scents", "This dupe has smelled sweet scents and feels relaxed", 600.00f * 2, true, true, false, (string)null, 0.0f, (string)null);
+                //effect1.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, -0.008333334f * 2, "The sweet smell relieves some stress", false, false, true));
                 var effect2 = new Effect(FloralAntihistamineConfig.Effect_, "Floral Histamine Suppression", "Helps with allergies", 600.00f * 10, true, true, false, (string)null, 0.0f, (string)null);
                 //effect2.Add(new AttributeModifier(Db.Get().Amounts.ImmuneLevel.deltaAttribute.Id, +0.008333334f * 10, "Inmunity level is rising", false, false, true));
                 var effect3 = new Effect(MendingSerumConfig.Effect_, "Regeneration", "This dupe is constantly healing", 600.00f * 5, true, true, false, (string)null, 0.0f, (string)null);
                 effect3.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.deltaAttribute.Id, +0.008333334f, "Healing", false, false, true));
 
-                Db.Get().effects.Add(effect1);
+                //Db.Get().effects.Add(effect1);
                 Db.Get().effects.Add(effect2);
                 Db.Get().effects.Add(effect3);
                 
@@ -200,65 +200,7 @@ namespace HatchMorphs
             }
 
         }*/
-        [HarmonyPatch(typeof(WoodGasGeneratorConfig))]
-        [HarmonyPatch(nameof(WoodGasGeneratorConfig.DoPostConfigureComplete))]
-        public static class PatchWoodGasGeneratorConfig
-        {
-            public static void Postfix(ref GameObject go)
-            {
-                var storage = go.GetComponent<Storage>();
-                ManualDeliveryKG manualDeliveryKG2 = go.AddComponent<ManualDeliveryKG>();
-                manualDeliveryKG2.SetStorage(storage);
-                manualDeliveryKG2.requestedItemTag = BarkSkinConfig.TAG;
-                manualDeliveryKG2.capacity = 360f;
-                manualDeliveryKG2.refillMass = 180f;
-                manualDeliveryKG2.choreTypeIDHash = Db.Get().ChoreTypes.FetchCritical.IdHash;
-                float max_stored_input_mass = 720f;
-                EnergyGenerator energyGenerator2 = go.AddComponent<EnergyGenerator>();
-                energyGenerator2.powerDistributionOrder = 8;
-                energyGenerator2.hasMeter = true;
-                energyGenerator2.formula = EnergyGenerator.CreateSimpleFormula(BarkSkinConfig.TAG, 1.2f, max_stored_input_mass, SimHashes.CarbonDioxide, 0.17f, false, new CellOffset(0, 1), 383.15f);
-            }
-        }
 
-        [HarmonyPatch(typeof(EthanolDistilleryConfig))]
-        [HarmonyPatch(nameof(EthanolDistilleryConfig.DoPostConfigureComplete))]
-        public static class PatchEthanolDistilleryConfig
-        {
-            public static void Postfix(ref GameObject go)
-            {
-                var storage = go.GetComponent<Storage>();
-                ManualDeliveryKG manualDeliveryKG2 = go.AddComponent<ManualDeliveryKG>();
-                manualDeliveryKG2.SetStorage(storage);
-                manualDeliveryKG2.requestedItemTag = BarkSkinConfig.TAG;
-                manualDeliveryKG2.capacity = 400f;
-                manualDeliveryKG2.refillMass = 150f;
-                manualDeliveryKG2.choreTypeIDHash = Db.Get().ChoreTypes.MachineFetch.IdHash;
-
-               // ElementConverter elementConverter2 = go.GetComponent<ElementConverter>();
-                ElementConverter elementConverter2 = go.AddComponent<ElementConverter>();
-                elementConverter2.consumedElements = new ElementConverter.ConsumedElement[1]
-                {
-                  new ElementConverter.ConsumedElement(BarkSkinConfig.TAG_2, 1f)
-                };
-                elementConverter2.outputElements = new ElementConverter.OutputElement[3]
-                {
-                  new ElementConverter.OutputElement(0.5f, SimHashes.Ethanol, 346.5f, false, true, 0.0f, 0.5f, 1f, byte.MaxValue, 0),
-                  new ElementConverter.OutputElement(0.3333333f, SimHashes.ToxicSand, 366.5f, false, true, 0.0f, 0.5f, 1f, byte.MaxValue, 0),
-                  new ElementConverter.OutputElement(0.1666667f, SimHashes.CarbonDioxide, 366.5f, false, false, 0.0f, 0.5f, 1f, byte.MaxValue, 0)
-                };
-                //AlgaeDistillery algaeDistillery = go.GetComponent<AlgaeDistillery>();
-                go.UpdateComponentRequirement<AlgaeDistillery>(false);
-                //UnityEngine.Object.Destroy(algaeDistillery);
-
-                EthanolDistillery ethanolDistillery = go.AddOrGet<EthanolDistillery>();
-                ethanolDistillery.emitMass = 20f;
-                ethanolDistillery.emitTag = new Tag("ToxicSand");
-                ethanolDistillery.emitOffset = new Vector3(2f, 1f);
-
-
-            }
-        }
 
         [HarmonyPatch(typeof(CreatureCalorieMonitor.Stomach))]
         [HarmonyPatch(nameof(CreatureCalorieMonitor.Stomach.Poop))]

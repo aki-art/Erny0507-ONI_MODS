@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PuftMorphs</RootNamespace>
     <AssemblyName>PuftMorphs</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,7 +64,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\Erny\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\Sr. Leyva\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

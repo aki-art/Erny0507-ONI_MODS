@@ -38,15 +38,15 @@ namespace HatchMorphs
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.Dirt.CreateTag()
-        }),(Tag) BarkSkinConfig.ID, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        }),SimHashes.Carbon.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.Clay.CreateTag()
-        }),(Tag) BarkSkinConfig.ID, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+        }),SimHashes.Ethanol.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
         new Diet.Info(new HashSet<Tag>(new Tag[]
         {
             SimHashes.Sand.CreateTag()
-        }),(Tag) BarkSkinConfig.ID, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)
+        }),SimHashes.Carbon.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)
     };
         }
         public static Trait CreateTrait(string name)
@@ -82,7 +82,7 @@ namespace HatchMorphs
             List<Diet.Info> diet_infos = WoodenDiet(
                 poopTag: WoodLogConfig.TAG,
                 caloriesPerKg: CaloriesPerKgOfFood,
-                producedConversionRate: TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_3);//nerfed effiendy from 3 to normal
+                producedConversionRate: TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_2);//nerfed effiendy from 3 to normal
             wildCreature.AddOrGet<DecorProvider>()?.SetValues(tier);
             if (!is_baby)
             {

@@ -4,3 +4,7 @@ D:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\obj\Debug\Deep_Sea_Biome.csprojAs
 D:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\obj\Debug\Deep_Sea_Biome.csproj.CoreCompileInputs.cache
 D:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\obj\Debug\Deep_Sea_Biome.dll
 D:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\obj\Debug\Deep_Sea_Biome.pdb
+G:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\bin\Debug\Deep_Sea_Biome.dll
+G:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\bin\Debug\Deep_Sea_Biome.pdb
+G:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\obj\Debug\Deep_Sea_Biome.dll
+G:\modding\vs_projects\ONI_MODS\Deep_Sea_Biome\obj\Debug\Deep_Sea_Biome.pdb

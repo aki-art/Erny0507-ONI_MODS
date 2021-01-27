@@ -44,3 +44,14 @@ D:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.csproj.CoreCompi
 D:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.csproj.CopyComplete
 D:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.dll
 D:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.pdb
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\bin\Debug\PuftMorphs.dll
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\bin\Debug\PuftMorphs.pdb
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\bin\Debug\0Harmony.dll
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\bin\Debug\UnityEngine.CoreModule.dll
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\bin\Debug\UnityEngine.dll
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.csproj.CopyComplete
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.dll
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.pdb
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\obj\Debug\PuftMorphs.csprojAssemblyReference.cache
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\bin\Debug\UnityEngine.UIModule.dll
+G:\modding\vs_projects\ONI_MODS\PuftMorphs\bin\Debug\UnityEngine.TextRenderingModule.dll

@@ -31,6 +31,7 @@ namespace HatchMorphs
             {
       new ComplexRecipe.RecipeElement((Tag) ID, 1f)
             };
+            
             FloralAntihistamineConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("Apothecary", (IList<ComplexRecipe.RecipeElement>)ingredients, (IList<ComplexRecipe.RecipeElement>)results), ingredients, results)
             {
                 time = 200f,
@@ -38,7 +39,7 @@ namespace HatchMorphs
                 nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
                 fabricators = new List<Tag>() { (Tag)"Apothecary" },
                 sortOrder = 20,
-                requiredTech = "MedicineIV"
+                requiredTech = AdvancedCureConfig.recipe.requiredTech// "MedicineIV"
             };
             return looseEntity;
         }

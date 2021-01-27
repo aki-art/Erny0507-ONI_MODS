@@ -38,7 +38,7 @@ namespace HatchMorphs
                 nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
                 fabricators = new List<Tag>() { (Tag)"Apothecary" },
                 sortOrder = 20,
-                requiredTech = "MedicineIV"
+                requiredTech = AdvancedCureConfig.recipe.requiredTech// "MedicineIV"
             };
             return looseEntity;
         }

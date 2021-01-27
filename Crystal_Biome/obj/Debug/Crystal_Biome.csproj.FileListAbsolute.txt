@@ -44,3 +44,13 @@ D:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.csproj.Cor
 D:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.csproj.CopyComplete
 D:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.dll
 D:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.pdb
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\bin\Debug\Crystal_Biome.dll
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\bin\Debug\Crystal_Biome.pdb
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\bin\Debug\0Harmony.dll
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\bin\Debug\UnityEngine.CoreModule.dll
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.csprojAssemblyReference.cache
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.csproj.CopyComplete
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.dll
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\obj\Debug\Crystal_Biome.pdb
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\bin\Debug\UnityEngine.UIModule.dll
+G:\modding\vs_projects\ONI_MODS\Crystal_Biome\bin\Debug\UnityEngine.TextRenderingModule.dll

@@ -1,0 +1,15 @@
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\PipMorphs.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\PipMorphs.pdb
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\0Harmony.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\Assembly-CSharp-firstpass.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\Assembly-CSharp.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\UnityEngine.CoreModule.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\UnityEngine.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\obj\Debug\PipMorphs.csprojAssemblyReference.cache
+G:\modding\vs_projects\ONI_MODS\PipMorphs\obj\Debug\PipMorphs.csproj.CopyComplete
+G:\modding\vs_projects\ONI_MODS\PipMorphs\obj\Debug\PipMorphs.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\obj\Debug\PipMorphs.pdb
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\UnityEngine.UI.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\UnityEngine.UIModule.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\UnityEngine.TextRenderingModule.dll
+G:\modding\vs_projects\ONI_MODS\PipMorphs\bin\Debug\Unity.TextMeshPro.dll

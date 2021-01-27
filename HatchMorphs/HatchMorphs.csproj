@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HatchMorphs</RootNamespace>
     <AssemblyName>HatchMorphs</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,11 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BarkSkinConfig.cs" />
     <Compile Include="CreatureLightMonitor.cs" />
     <Compile Include="DiamondBabyHatchConfig.cs" />
     <Compile Include="DiamondHatchConfig.cs" />
-    <Compile Include="EthanolDistillery.cs" />
     <Compile Include="FilamentsConfig.cs" />
     <Compile Include="FloralAntihistamineConfig.cs" />
     <Compile Include="FloralBabyHatchConfig.cs" />
@@ -79,7 +78,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\Erny\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\Sr. Leyva\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
