@@ -29,7 +29,7 @@ namespace PacuMorphs
             string anim_file,
             bool is_baby)
         {
-            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BasePacuConfig.CreatePrefab(id, BASE_TRAIT_ID, name, desc, anim_file, is_baby, null, MIN_TEMP, MAX_TEMP), PacuTuning.PEN_SIZE_PER_CREATURE, 25f);
+            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BasePacuConfig.CreatePrefab(id, BASE_TRAIT_ID, name, desc, anim_file, is_baby, null, MIN_TEMP, MAX_TEMP), PacuTuning.PEN_SIZE_PER_CREATURE);
             wildCreature.AddOrGet<DecorProvider>()?.SetValues(DECOR);
 
             Diet diet = new Diet(new Diet.Info[1]
@@ -54,8 +54,7 @@ namespace PacuMorphs
                     DESCRIPTION,
                     "algaepacu_kanim",
                     false),
-                    PacuTuning.PEN_SIZE_PER_CREATURE,
-                    25f),
+                    PacuTuning.PEN_SIZE_PER_CREATURE),
                 EGG_ID,
                 EGG_NAME,
                 DESCRIPTION,
@@ -78,6 +77,15 @@ namespace PacuMorphs
 
         public void OnSpawn(GameObject inst)
         {
+        }
+
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
     }
 }

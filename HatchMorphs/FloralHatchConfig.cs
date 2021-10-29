@@ -90,8 +90,7 @@ namespace HatchMorphs
                     is_baby,
                     SymbolOverride
                 ),
-                HatchTuning.PEN_SIZE_PER_CREATURE,
-                MaxAge);
+                HatchTuning.PEN_SIZE_PER_CREATURE);
             CreateTrait(name);
 
             List<Diet.Info> diet_infos = FloralDiet(
@@ -101,11 +100,7 @@ namespace HatchMorphs
             wildCreature.AddOrGet<DecorProvider>()?.SetValues(tier);
 
             DiseaseDropper.Def def = wildCreature.AddOrGetDef<DiseaseDropper.Def>();
-            //def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
-            //Db.Get().Diseases.Add();
-            def.diseaseIdx = Db.Get().Diseases.GetIndex(SweetPollenGerms.ID);
-           
-
+            def.diseaseIdx = Db.Get().Diseases.GetIndex(PollenGerms.ID);
             def.emitFrequency = 1f;
             def.averageEmitPerSecond = 1000*40;
             def.singleEmitQuantity = 0;
@@ -172,6 +167,14 @@ namespace HatchMorphs
 
         }
 
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
         public const string BASE_TRAIT_ID = "HatchFloralBaseTrait";
         public const string Id = "HatchFloral";
         public static string Name = UI.FormatAsLink("Floral Hatch", Id);

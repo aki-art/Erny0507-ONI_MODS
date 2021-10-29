@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using STRINGS;
 using UnityEngine;
 using TUNING;
@@ -75,8 +75,7 @@ namespace HatchMorphs
                     is_baby,
                     SymbolOverride
                 ),
-                HatchTuning.PEN_SIZE_PER_CREATURE,
-                MaxAge);
+                HatchTuning.PEN_SIZE_PER_CREATURE);
             CreateTrait(name);
 
             List<Diet.Info> diet_infos = WoodenDiet(
@@ -166,6 +165,15 @@ namespace HatchMorphs
             if (!((Object)component != (Object)null))
                 return;
             component.EnableConsumption(true);
+        }
+
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
         public const string BASE_TRAIT_ID = "HatchWoodenBaseTrait";

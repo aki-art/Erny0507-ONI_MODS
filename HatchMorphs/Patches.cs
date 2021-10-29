@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Database;
-using Harmony;
+using HarmonyLib;
 using Klei.AI;
 using TUNING;
 using UnityEngine;
@@ -12,10 +12,12 @@ using static CreatureCalorieMonitor;
 
 namespace HatchMorphs
 {
-    class Patches
+    class Patches:KMod.UserMod2
     {
-        public static void OnLoad()
+        public override void OnLoad(Harmony harmony)
         {
+            harmony.PatchAll();
+
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
                 .GetValue<System.Action>(
@@ -30,7 +32,6 @@ namespace HatchMorphs
                     DiamondHatchConfig.EggId.ToTag(),
                     SimHashes.Katairite.CreateTag(),
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
-
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
                 .GetValue<System.Action>(
@@ -59,7 +60,13 @@ namespace HatchMorphs
                     WoodenHatchConfig.EggId.ToTag(),
                  WoodLogConfig.TAG,
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
-            List<ExposureType> types = new List<ExposureType>();
+
+            var t = GERM_EXPOSURE.TYPES[4];
+            t.excluded_effects = new List<string>
+            {
+                         "HistamineSuppression",FloralAntihistamineConfig.Effect_
+            };
+            /*List<ExposureType> types = new List<ExposureType>();
 
             types.AddRange(GERM_EXPOSURE.TYPES);
             ExposureType t = new ExposureType
@@ -90,7 +97,7 @@ namespace HatchMorphs
             };
             types.Add(t);
             types.Add(t2);
-            GERM_EXPOSURE.TYPES = types.ToArray();
+            GERM_EXPOSURE.TYPES = types.ToArray();*/
 
             //TUNING.MEDICINE.
             /*  MedicineInfo ANTIHISTAMINE = new MedicineInfo("antihistamine", "HistamineSuppression", MedicineInfo.MedicineType.CureSpecific, new string[1]
@@ -160,8 +167,8 @@ namespace HatchMorphs
                 Strings.Add("STRINGS.ITEMS.FOOD." + NectarConfig.Id.ToUpper() + ".NAME", NectarConfig.Name);
                 Strings.Add("STRINGS.ITEMS.FOOD." + NectarConfig.Id.ToUpper() + ".DESC", NectarConfig.Description);
 
-                Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".NAME", SweetPollenGerms.Name);
-                Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".LEGEND_HOVERTEXT", SweetPollenGerms.Tooltip);
+      /*          Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".NAME", SweetPollenGerms.Name);
+                Strings.Add("STRINGS.DUPLICANTS.DISEASES." + SweetPollenGerms.ID.ToUpper() + ".LEGEND_HOVERTEXT", SweetPollenGerms.Tooltip);*/
 
                 Strings.Add("STRINGS.ITEMS.PILLS." + FloralAntihistamineConfig.ID.ToUpper() + ".NAME", FloralAntihistamineConfig.Name);
                 Strings.Add("STRINGS.ITEMS.PILLS." + FloralAntihistamineConfig.ID.ToUpper() + ".DESC", FloralAntihistamineConfig.Description);

@@ -31,6 +31,7 @@ namespace HatchMorphs
 
             var foodInfo = new EdiblesManager.FoodInfo(
                 id: Id,
+                dlcId: DlcManager.VANILLA_ID,
                 caloriesPerUnit: 2000f,
                 quality: TUNING.FOOD.FOOD_QUALITY_GOOD,
                 preserveTemperatue: 255.15f,
@@ -45,6 +46,14 @@ namespace HatchMorphs
             return foodEntity;
         }
 
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
         public void OnPrefabInit(GameObject inst)
         {
         }

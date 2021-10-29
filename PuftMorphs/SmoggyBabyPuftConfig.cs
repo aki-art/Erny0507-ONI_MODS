@@ -19,6 +19,16 @@ namespace PuftMorphs
             EntityTemplates.ExtendEntityToBeingABaby(puft, (Tag)SmoggyPuftConfig.ID, (string)null);
             return puft;
         }
+
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
+
         public void OnPrefabInit(GameObject prefab)
         {
         }

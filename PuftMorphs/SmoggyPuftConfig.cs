@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using STRINGS;
 using UnityEngine;
 using TUNING;
@@ -39,7 +39,7 @@ namespace PuftMorphs
       string anim_file,
       bool is_baby)
         {
-            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BasePuftConfig.BasePuft(id, name, desc, BASE_TRAIT_ID, anim_file, is_baby, "", warningLowTemperature, warningHighTemperature), PuftTuning.PEN_SIZE_PER_CREATURE, 75f);
+            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BasePuftConfig.BasePuft(id, name, desc, BASE_TRAIT_ID, anim_file, is_baby, "", warningLowTemperature, warningHighTemperature), PuftTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, (string)null, false, (ChoreGroup[])null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, PuftTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, (float)(-(double)PuftTuning.STANDARD_CALORIES_PER_CYCLE / 600.0), name, false, false, true));
@@ -77,7 +77,7 @@ namespace PuftMorphs
                 new ComplexRecipe.RecipeElement((Tag)SmoggyPuftConfig.EGG_ID, 1f)
             };
             var r = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(ID, (IList<ComplexRecipe.RecipeElement>)ingredients,
-                (IList<ComplexRecipe.RecipeElement>)results), ingredients, results)
+                (IList<ComplexRecipe.RecipeElement>)results), ingredients, results, 0)
             {
                 time = 80f / 8,
                 description = BabyDescription,
@@ -106,6 +106,15 @@ namespace PuftMorphs
         public void OnSpawn(GameObject inst)
         {
             BasePuftConfig.OnSpawn(inst);
+        }
+
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
     }
 }

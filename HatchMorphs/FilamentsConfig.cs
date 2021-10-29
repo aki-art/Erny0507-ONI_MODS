@@ -12,7 +12,6 @@ namespace HatchMorphs
         public static string Id = "HatchFilaments";
         public static string Name = "Floral filaments";
         public static string Description = "Produced by floral hatches. Edible and useful in medicine.";
-
         public GameObject CreatePrefab()
         {
             var entity = EntityTemplates.CreateLooseEntity(
@@ -31,6 +30,7 @@ namespace HatchMorphs
 
             var foodInfo = new EdiblesManager.FoodInfo(
                 id: Id,
+                dlcId: DlcManager.VANILLA_ID,
                 caloriesPerUnit: 1000f,
                 quality: TUNING.FOOD.FOOD_QUALITY_MEDIOCRE,
                 preserveTemperatue: 255.15f,
@@ -45,6 +45,14 @@ namespace HatchMorphs
             return foodEntity;
         }
 
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
         public void OnPrefabInit(GameObject inst)
         {
         }

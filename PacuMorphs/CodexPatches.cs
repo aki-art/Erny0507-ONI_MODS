@@ -1,14 +1,21 @@
-﻿using PeterHan.PLib;
-using PeterHan.PLib.Datafiles;
-
+﻿using PeterHan.PLib.Core;
+using PeterHan.PLib.Options;
+using HarmonyLib;
+using UnityEngine;
+using PeterHan.PLib.Database;
 namespace Codex
 {
-    public class CodexPatches
+    class CodexPatches : KMod.UserMod2
     {
-        public static void OnLoad()
+        public override void OnLoad(Harmony harmony)
         {
-            PUtil.InitLibrary();
-            PCodex.RegisterCreatures();
+            base.OnLoad(harmony);
+
+            PUtil.InitLibrary(false);
+            
+            PCodexManager pCodexManager = new PCodexManager();
+            pCodexManager.RegisterCreatures();
+            //PCodex.RegisterCreatures();
         }
     }
 }

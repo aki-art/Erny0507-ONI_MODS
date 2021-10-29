@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using STRINGS;
 using UnityEngine;
 using TUNING;
@@ -40,7 +40,7 @@ namespace DreckoMorphs
         private static float CALORIES_PER_DAY_OF_PLANT_EATEN = DreckoTuning.STANDARD_CALORIES_PER_CYCLE / MetalDrecko.DAYS_PLANT_GROWTH_EATEN_PER_CYCLE;
         private static float MIN_POOP_SIZE_IN_CALORIES = MetalDrecko.CALORIES_PER_DAY_OF_PLANT_EATEN * MetalDrecko.MIN_POOP_SIZE_IN_KG / MetalDrecko.KG_POOP_PER_DAY_OF_PLANT;
 
-        public static int EGG_SORT_ORDER = 700;
+        public static int EGG_SORT_ORDER = 1;
         public const string ID = "DreckoOpulent";
         public const string BASE_TRAIT_ID = "DreckoOpulentTrait";
         public const string EGG_ID = "DreckoOpulentEgg";
@@ -61,7 +61,7 @@ namespace DreckoMorphs
   string anim_file,
   bool is_baby)
         {
-            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BaseDreckoConfig.BaseDrecko(id, name, desc, anim_file, BASE_TRAIT_ID, is_baby, (string)null, 308.15f, 363.15f), DreckoTuning.PEN_SIZE_PER_CREATURE, 150f);
+            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BaseDreckoConfig.BaseDrecko(id, name, desc, anim_file, BASE_TRAIT_ID, is_baby, (string)null, 308.15f, 363.15f), DreckoTuning.PEN_SIZE_PER_CREATURE);
             CreateTrait(name);
 
             Diet diet = new Diet(new Diet.Info[1]
@@ -107,7 +107,7 @@ namespace DreckoMorphs
                 new ComplexRecipe.RecipeElement((Tag)EGG_ID, 1f)
             };
             var r = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(ID, (IList<ComplexRecipe.RecipeElement>)ingredients,
-                (IList<ComplexRecipe.RecipeElement>)results), ingredients, results)
+                (IList<ComplexRecipe.RecipeElement>)results), ingredients, results, 0)
             {
                 time = 80f / 8,
                 description = BabyDescription,
@@ -145,6 +145,15 @@ namespace DreckoMorphs
 
         public void OnSpawn(GameObject inst)
         {
+        }
+
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using STRINGS;
 using UnityEngine;
 using TUNING;
@@ -73,8 +73,7 @@ namespace HatchMorphs
                     is_baby,
                     SymbolOverride
                 ),
-                HatchTuning.PEN_SIZE_PER_CREATURE,
-                MaxAge);
+                HatchTuning.PEN_SIZE_PER_CREATURE);
             CreateTrait(name);
 
             List<Diet.Info> diet_infos = DiamondDiet(
@@ -138,6 +137,14 @@ namespace HatchMorphs
 
         }
 
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
         public const string BASE_TRAIT_ID = "HatchDiamondBaseTrait";
         public const string Id = "HatchDiamond";
         public static string Name = UI.FormatAsLink("Diamond Hatch", Id);

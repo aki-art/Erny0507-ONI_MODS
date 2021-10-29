@@ -1,10 +1,12 @@
 ﻿
 using System;
-using Harmony;
+using HarmonyLib;
+using PeterHan.PLib.Database;
+using PeterHan.PLib.Core;
 
 namespace PacuMorphs
 {
-    public class PacuMorphsPatches
+    public class PacuMorphsPatches : KMod.UserMod2
     {
         [HarmonyPatch(typeof(EntityConfigManager))]
         [HarmonyPatch(nameof(EntityConfigManager.LoadGeneratedEntities))]
@@ -25,8 +27,17 @@ namespace PacuMorphs
 
         public static readonly Type[] CREATE_TEMPERATURE_MODIFIER_METHOD_TYPES = new[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
 
-        public static void OnLoad()
+        public override void OnLoad(Harmony harmony)
         {
+            base.OnLoad(harmony);
+
+            PUtil.InitLibrary(false);
+
+            PCodexManager pCodexManager = new PCodexManager();
+            pCodexManager.RegisterCreatures();
+
+
+
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS))
                 .Method("CreateTemperatureModifier", CREATE_TEMPERATURE_MODIFIER_METHOD_TYPES)

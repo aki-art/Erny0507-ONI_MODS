@@ -34,7 +34,8 @@ namespace HatchMorphs
 
             var foodInfo = new EdiblesManager.FoodInfo(
                 id: Id,
-                caloriesPerUnit:350000f,
+                dlcId: DlcManager.VANILLA_ID,
+                caloriesPerUnit:1400000f,
                 quality: TUNING.FOOD.FOOD_QUALITY_AMAZING,
                 preserveTemperatue: 255.15f,
                 rotTemperature: 277.15f,
@@ -46,7 +47,7 @@ namespace HatchMorphs
             var output = new[] { new ComplexRecipe.RecipeElement(MacedoniaConfig.Id, 1f) };
             var fabricatorId= CookingStationConfig.ID;
             var recipeId = ComplexRecipeManager.MakeRecipeID(fabricatorId, input, output);
-            Recipe =  new ComplexRecipe(recipeId, input, output)
+            Recipe =  new ComplexRecipe(recipeId, input, output, 0)
             {
                 time = 100f,
                 description = RecipeDescription,
@@ -60,6 +61,14 @@ namespace HatchMorphs
             return food;
         }
 
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
         public void OnPrefabInit(GameObject inst)
         {
         }

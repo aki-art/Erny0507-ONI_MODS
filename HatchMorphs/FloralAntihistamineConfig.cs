@@ -19,7 +19,10 @@ namespace HatchMorphs
            
             GameObject looseEntity = EntityTemplates.CreateLooseEntity(ID, Name, Description, 1f, true, Assets.GetAnim((HashedString)"floral_antihistamine_kanim"),
                 "object", Grid.SceneLayer.Front, EntityTemplates.CollisionShape.RECTANGLE, 0.8f, 0.4f, true, 0, SimHashes.Creature, (List<Tag>)null);
-            MedicineInfo medicine_info = new MedicineInfo(ID.ToLower(), Effect_, MedicineInfo.MedicineType.Booster, (string[])null);
+            MedicineInfo medicine_info = new MedicineInfo(ID.ToLower(), Effect_, MedicineInfo.MedicineType.CureSpecific, (string)null, new string[1]
+    {
+      "Allergies"
+    });
             EntityTemplates.ExtendEntityToMedicine(looseEntity, medicine_info);
             looseEntity.GetComponent<KPrefabID>().AddTag(GameTags.MedicalSupplies, false);
             ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[2]
@@ -32,7 +35,7 @@ namespace HatchMorphs
       new ComplexRecipe.RecipeElement((Tag) ID, 1f)
             };
             
-            FloralAntihistamineConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("Apothecary", (IList<ComplexRecipe.RecipeElement>)ingredients, (IList<ComplexRecipe.RecipeElement>)results), ingredients, results)
+            FloralAntihistamineConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("Apothecary", (IList<ComplexRecipe.RecipeElement>)ingredients, (IList<ComplexRecipe.RecipeElement>)results), ingredients, results,0)
             {
                 time = 200f,
                 description = (string)Description,
@@ -48,6 +51,15 @@ namespace HatchMorphs
         }
         public void OnSpawn(GameObject inst)
         {
+        }
+
+        public string GetDlcId()
+        {
+            return DlcManager.VANILLA_ID;
+        }
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
         public static ComplexRecipe recipe;
     }
