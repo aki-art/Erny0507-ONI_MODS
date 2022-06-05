@@ -18,14 +18,7 @@ namespace HatchMorphs
         {
             harmony.PatchAll();
 
-            TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
-                Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
-                .GetValue<System.Action>(
-                    DiamondHatchConfig.Id,
-                    DiamondHatchConfig.EggId.ToTag(),
-                    SimHashes.Diamond.CreateTag(),
-                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
-            TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
+            /*TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
                 .GetValue<System.Action>(
                     DiamondHatchConfig.Id,
@@ -37,21 +30,22 @@ namespace HatchMorphs
                 .GetValue<System.Action>(
                     FloralHatchConfig.Id,
                     FloralHatchConfig.EggId.ToTag(),
-                    (Tag)PrickleFruitConfig.ID,
+                    PrickleFruitConfig.ID.ToTag(),
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
                 .GetValue<System.Action>(
                     FloralHatchConfig.Id,
                     FloralHatchConfig.EggId.ToTag(),
-                    (Tag)PrickleFlowerConfig.SEED_ID,
+                    PrickleFlowerConfig.SEED_ID.ToTag(),
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
                 .GetValue<System.Action>(
                     WoodenHatchConfig.Id,
                     WoodenHatchConfig.EggId.ToTag(),
-                 (Tag)TUNING.FOOD.FOOD_TYPES.BASICPLANTFOOD.Id,
+                 //(Tag)TUNING.FOOD.FOOD_TYPES.BASICPLANTFOOD.Id,
+                 BasicPlantFoodConfig.ID.ToTag(),
                     0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
             TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) })
@@ -59,7 +53,7 @@ namespace HatchMorphs
                     WoodenHatchConfig.Id,
                     WoodenHatchConfig.EggId.ToTag(),
                  WoodLogConfig.TAG,
-                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+                    0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));*/
 
             var t = GERM_EXPOSURE.TYPES[4];
             t.excluded_effects = new List<string>
@@ -105,6 +99,46 @@ namespace HatchMorphs
         "Allergies"
       });*/
 
+        }
+        [HarmonyPatch(typeof(ModifierSet), nameof(ModifierSet.Initialize))]
+        public class ModifierSet_LoadFertilityModifiers_Patch
+        {
+            private static void Prefix()
+            {
+                var list = TUNING.CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS;
+                var CreateModifier = Traverse.Create(typeof(TUNING.CREATURES.EGG_CHANCE_MODIFIERS)).Method("CreateDietaryModifier", new[] { typeof(string), typeof(Tag), typeof(Tag), typeof(float) });
+
+                list.Add(CreateModifier.GetValue<System.Action>(
+                        DiamondHatchConfig.Id,
+                        DiamondHatchConfig.EggId.ToTag(),
+                        SimHashes.Diamond.CreateTag(),
+                        0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+                list.Add(CreateModifier.GetValue<System.Action>(
+                        DiamondHatchConfig.Id,
+                        DiamondHatchConfig.EggId.ToTag(),
+                        SimHashes.Katairite.CreateTag(),
+                        0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+                list.Add(CreateModifier.GetValue<System.Action>(
+                        FloralHatchConfig.Id,
+                        FloralHatchConfig.EggId.ToTag(),
+                        (Tag)PrickleFruitConfig.ID,
+                        0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+                list.Add(CreateModifier.GetValue<System.Action>(
+                        FloralHatchConfig.Id,
+                        FloralHatchConfig.EggId.ToTag(),
+                        (Tag)PrickleFlowerConfig.SEED_ID,
+                        0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+                list.Add(CreateModifier.GetValue<System.Action>(
+                        WoodenHatchConfig.Id,
+                        WoodenHatchConfig.EggId.ToTag(),
+                        (Tag)TUNING.FOOD.FOOD_TYPES.BASICPLANTFOOD.Id,
+                        0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+                list.Add(CreateModifier.GetValue<System.Action>(
+                        WoodenHatchConfig.Id,
+                        WoodenHatchConfig.EggId.ToTag(),
+                        WoodLogConfig.TAG,
+                        0.05f / HatchTuning.STANDARD_CALORIES_PER_CYCLE));
+            }
         }
 
         [HarmonyPatch(typeof(EntityTemplates), nameof(EntityTemplates.ExtendEntityToFertileCreature))]

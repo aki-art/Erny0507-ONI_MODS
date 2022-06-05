@@ -17,7 +17,7 @@ namespace PipMorphs
         private static float CALORIES_PER_DAY_OF_PLANT_EATEN = SquirrelTuning.STANDARD_CALORIES_PER_CYCLE / DAYS_PLANT_GROWTH_EATEN_PER_CYCLE;
         private static float KG_POOP_PER_DAY_OF_PLANT = 50f;
         private static float MIN_POOP_SIZE_KG = 40f;
-        public static int EGG_SORT_ORDER = 2;
+        public static int EGG_SORT_ORDER =SquirrelConfig.EGG_SORT_ORDER+ 1;
         public const string ID = "SquirrelAutumn";
         public const string BASE_TRAIT_ID = "SquirrelBaseTrait";
         public const string EGG_ID = "SquirrelAutumnEgg";
@@ -66,7 +66,7 @@ namespace PipMorphs
   string anim_file,
   bool is_baby)
         {
-            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BaseSquirrelConfig.BaseSquirrel(id, name, desc, anim_file, "SquirrelBaseTrait", is_baby, (string)null), SquirrelTuning.PEN_SIZE_PER_CREATURE);
+            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(BaseSquirrelConfig.BaseSquirrel(id, name, desc, anim_file, "SquirrelBaseTrait", is_baby, (string)null, false), SquirrelTuning.PEN_SIZE_PER_CREATURE);
             CreateTrait(name);
             Diet.Info[] diet_infos = Diet(
                 EMIT_ELEMENT.CreateTag(),CALORIES_PER_DAY_OF_PLANT_EATEN, 
@@ -113,8 +113,8 @@ namespace PipMorphs
             return EntityTemplates.ExtendEntityToFertileCreature(
              CreateCritter(
                  id: ID,
-                 name: Name,
-                 desc: Description,
+                 name: STRINGS.CREATURES.SPECIES.SQUIRREL.VARIANT_AUTUMN.NAME,
+                 desc: STRINGS.CREATURES.SPECIES.SQUIRREL.VARIANT_AUTUMN.DESC,
                  anim_file:
                  //"squirrel_kanim",
                  //"squirrel_autumn_kanim",

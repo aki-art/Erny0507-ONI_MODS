@@ -81,8 +81,10 @@
   <ItemGroup>
     <Compile Include="AlgaeDrecko.cs" />
     <Compile Include="BabyAlgaeDrecko.cs" />
+    <Compile Include="BabyFrostyDrecko.cs" />
     <Compile Include="BabyGlassDrecko.cs" />
     <Compile Include="BabyMetalDrecko.cs" />
+    <Compile Include="FrostyDrecko.cs" />
     <Compile Include="GlassDrecko.cs" />
     <Compile Include="MetalDrecko.cs" />
     <Compile Include="Patches.cs" />

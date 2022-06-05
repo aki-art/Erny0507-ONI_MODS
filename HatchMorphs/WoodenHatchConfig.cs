@@ -133,6 +133,29 @@ namespace HatchMorphs
         public GameObject CreatePrefab()
         {
 
+            ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[4]
+           {
+                new ComplexRecipe.RecipeElement((Tag)HatchConfig.EGG_ID, 2f ),
+                new ComplexRecipe.RecipeElement((Tag)RawEggConfig.ID, (float) (5)),
+                new ComplexRecipe.RecipeElement(ForestTreeConfig.SEED_ID.ToTag(), 10f),
+                new ComplexRecipe.RecipeElement(BasicSingleHarvestPlantConfig.SEED_ID.ToTag(), 10f),
+           };
+            ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
+            {
+                new ComplexRecipe.RecipeElement((Tag)EggId, 1f)
+            };
+            var r = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(Id, (IList<ComplexRecipe.RecipeElement>)ingredients,
+                (IList<ComplexRecipe.RecipeElement>)results), ingredients, results, 0)
+            {
+                time = 80f / 8,
+                description = BabyDescription,
+                nameDisplay = ComplexRecipe.RecipeNameDisplay.Result
+            };
+            r.fabricators = new List<Tag>()
+            {
+                TagManager.Create(SupermaterialRefineryConfig.ID)
+            };
+
             return EntityTemplates.ExtendEntityToFertileCreature(
                CreateHatch(
                    id: Id,

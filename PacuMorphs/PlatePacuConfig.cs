@@ -65,6 +65,28 @@ namespace PacuMorphs
 
         public GameObject CreatePrefab()
         {
+            ComplexRecipe.RecipeElement[] ingredients = new ComplexRecipe.RecipeElement[4]
+          {
+                new ComplexRecipe.RecipeElement((Tag)PacuConfig.EGG_ID, 2f ),
+                new ComplexRecipe.RecipeElement((Tag)RawEggConfig.ID, (float) (5)),
+                new ComplexRecipe.RecipeElement(SimHashes.Gold.CreateTag(), 1000f),
+                new ComplexRecipe.RecipeElement(SimHashes.Copper.CreateTag(), 1000f),
+          };
+            ComplexRecipe.RecipeElement[] results = new ComplexRecipe.RecipeElement[1]
+            {
+                new ComplexRecipe.RecipeElement((Tag)EGG_ID, 1f)
+            };
+            var r = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID(ID, (IList<ComplexRecipe.RecipeElement>)ingredients,
+                (IList<ComplexRecipe.RecipeElement>)results), ingredients, results, 0)
+            {
+                time = 80f / 8,
+                description = DESCRIPTION,
+                nameDisplay = ComplexRecipe.RecipeNameDisplay.Result
+            };
+            r.fabricators = new List<Tag>()
+            {
+                TagManager.Create(SupermaterialRefineryConfig.ID)
+            };
             return EntityTemplates.ExtendEntityToFertileCreature(
                 EntityTemplates.ExtendEntityToWildCreature(
                     CreatePacu(ID,

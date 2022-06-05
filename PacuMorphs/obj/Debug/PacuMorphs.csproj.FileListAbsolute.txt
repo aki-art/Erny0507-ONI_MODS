@@ -36,3 +36,16 @@ G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\UnityEngine.DirectorModule.
 G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\Unity.Timeline.dll
 G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\UnityEngine.AudioModule.pdb
 G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\UnityEngine.DirectorModule.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\ImGui.dll
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\com.rlabrecque.steamworks.net.dll
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\ImGui.NET.dll
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\Assembly-CSharp.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\Assembly-CSharp-firstpass.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\FMODUnity.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\ImGui.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\com.rlabrecque.steamworks.net.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\Ionic.Zip.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\LibNoiseDotNet.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\ImGui.NET.pdb
+G:\modding\vs_projects\ONI_MODS\PacuMorphs\bin\Debug\Unity.Timeline.pdb

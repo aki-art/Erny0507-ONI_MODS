@@ -95,3 +95,8 @@ G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\Unity.Timeline.dll
 G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.UnityCurlModule.dll
 G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.VirtualTexturingModule.dll
 G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.UIElementsNativeModule.dll
+G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\ImGui.dll
+G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\com.rlabrecque.steamworks.net.dll
+G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\ImGui.NET.dll
+G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\UnityEngine.TLSModule.dll
+G:\modding\vs_projects\ONI_MODS\HatchMorphs\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
